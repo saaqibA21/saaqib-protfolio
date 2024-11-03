@@ -1,0 +1,206 @@
+@import 'utilities.css';
+
+:root {
+    --primary: #3DCFD3;
+    --dark: #161616;
+    --pure: #FFFFFF;
+    --secondary: #1eb9d4;
+    --light: #F2F2F2;
+}
+
+body {
+    font-family: 'Bangers', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background-color: var(--dark);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 80%, 0 100%);
+    color: var(--pure);
+}
+
+.container {
+    max-width: 1155px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+header nav .left a {
+    color: var(--pure);
+    text-decoration: none;
+    margin-right: 2rem;
+    text-transform: uppercase;
+    transition: all .3s ease;
+}
+
+header nav .left a:hover {
+    color: var(--primary);
+}
+
+header nav {
+    padding: 2rem 0;
+}
+
+header .branding {
+    margin-right: 3rem;
+}
+
+.me {
+    padding: 3rem 0;
+}
+
+.me .left img {
+    width: 600px;
+    border-radius: 10%;
+}
+
+.me .right {
+    color: var(--pure);
+}
+
+.me .right h6 {
+    font-size: 1.6rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.me .right h1 {
+    font-size: 4rem;
+    font-weight: 100;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.me .right h1 span {
+    color: var(--secondary);
+}
+
+.me .right p {
+    line-height: 1.9;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--pure);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--pure);
+}
+
+section.about .about-me-image {
+    height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+section.about h1 {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+section.about h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+section.about p {
+    margin-bottom: 2rem;
+}
+
+.projects {
+    padding: 2rem 0;
+    background-color: var(--light);
+    margin-top: 2rem;
+}
+
+.projects .container {
+    text-align: center;
+}
+
+.projects .project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.projects .project-item {
+    background-color: var(--pure);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: left;
+}
+
+.projects .project-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.projects .project-item h3 {
+    font-size: 1.25rem;
+    margin: 1rem;
+}
+
+.projects .project-item p {
+    margin: 0 1rem 1rem;
+}
+
+.contact {
+    padding: 2rem 0;
+    background-color: var(--pure);
+    margin-top: 2rem;
+}
+
+.contact .container {
+    text-align: center;
+}
+
+.contact p {
+    font-size: 1.25rem;
+}
+
+.contact a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: var(--dark);
+    color: var(--pure);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
