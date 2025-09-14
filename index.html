@@ -42,7 +42,7 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 16px;
       --radius-xl: 22px;
-      --container: 1120px;
+      --container: 1280px;
       --section-pad: clamp(64px, 8vw, 120px);
     }
     @media (prefers-color-scheme: light) {
@@ -127,7 +127,7 @@
     .project-controls { display:flex; flex-wrap: wrap; gap:.6rem; margin-bottom: 1rem; }
     .filter-btn { padding:.55rem .9rem; border-radius: 999px; border:1px solid var(--border); background: var(--card); cursor:pointer; }
     .filter-btn.active { background: linear-gradient(135deg, rgba(124,92,255,.15), rgba(94,211,243,.15)); border-color: color-mix(in oklab, var(--accent) 60%, var(--border)); }
-    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 22px); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(14px, 2vw, 22px); }
     .card { border:1px solid var(--border); border-radius: 16px; background: var(--card); overflow:hidden; transition: transform .18s ease, box-shadow .18s ease, border-color .2s ease; }
     .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in oklab, var(--accent) 55%, var(--border)); }
     .card .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(94,211,243,.2)); display:grid; place-items:center; }
@@ -153,8 +153,8 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 1020px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero { grid-template-columns: 1fr; } }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .nav .desktop-only { display:none; } }
+    @media (max-width: 1200px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } .nav .desktop-only { display:none; } }
   </style>
 </head>
 <body>
@@ -259,9 +259,11 @@
       <h2 class="reveal">Projects</h2>
       <div class="project-controls reveal" role="tablist" aria-label="Project filters">
         <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="app" role="tab">Apps</button>
         <button class="filter-btn" data-filter="python" role="tab">Python</button>
-        <button class="filter-btn" data-filter="ui" role="tab">UI</button>
         <button class="filter-btn" data-filter="ml" role="tab">AI/ML</button>
+        <button class="filter-btn" data-filter="sdk" role="tab">SDK</button>
+        <button class="filter-btn" data-filter="web" role="tab">Web/UI</button>
       </div>
       <div class="grid" id="projectGrid" aria-live="polite"></div>
     </div>
@@ -367,7 +369,7 @@
         alt: 'Banking app dashboard',
         desc: 'A Python banking app focusing on clean design and reliable transactions.',
         tags: ['Python', 'OOP', 'CLI/UI'],
-        cat: ['python']
+        cat: ['python','app']
       },
       {
         title: 'Weather Forecast (Tkinter)',
@@ -375,7 +377,7 @@
         alt: 'Weather UI mock',
         desc: 'A fast Tkinter desktop app with real-time weather and city search.',
         tags: ['Python', 'Tkinter', 'API'],
-        cat: ['python','ui']
+        cat: ['python','app','web']
       },
       {
         title: 'Personal Assistant (JARVIS‑inspired)',
@@ -383,7 +385,55 @@
         alt: 'Assistant console view',
         desc: 'Local assistant with commands for search, notes, reminders, and quick tasks.',
         tags: ['Python', 'Automation', 'Speech'],
-        cat: ['python','ml']
+        cat: ['python','ml','app']
+      },
+      {
+        title: 'Curelith — Medical AI',
+        img: './images/curelith.jpg',
+        alt: 'Curelith medical AI interface',
+        desc: 'AI health assistant with OCR for lab reports and evidence-based Q&A.',
+        tags: ['AI/ML', 'OCR', 'FastAPI'],
+        cat: ['ml','web','app']
+      },
+      {
+        title: 'LangBridge — Multilingual Messaging SDK',
+        img: './images/langbridge.jpg',
+        alt: 'LangBridge SDK diagram',
+        desc: 'Drop-in SDK that translates chat in real time to each user’s preferred language.',
+        tags: ['SDK', 'Realtime', 'WebSocket'],
+        cat: ['sdk','web','app','ml']
+      },
+      {
+        title: '2D ↔ 3D Converter',
+        img: './images/2d3d.jpg',
+        alt: '2D to 3D visualization',
+        desc: 'Computer-vision pipeline to infer depth/mesh from images and render back to 2D.',
+        tags: ['CV', 'Python', 'Geometry'],
+        cat: ['ml','python']
+      },
+      {
+        title: 'QuickDine — Food Ordering',
+        img: './images/quickdine.jpg',
+        alt: 'QuickDine ordering UI',
+        desc: 'Restaurant ordering app with menus, cart, and order tracking.',
+        tags: ['Full‑stack', 'Payments'],
+        cat: ['app','web']
+      },
+      {
+        title: 'Synergy — Social Media',
+        img: './images/synergy.jpg',
+        alt: 'Synergy feed layout',
+        desc: 'Instagram‑style social platform with posts, likes, and messaging.',
+        tags: ['App', 'UI'],
+        cat: ['app','web','ui']
+      },
+      {
+        title: 'Campus Dine — SRM',
+        img: './images/campusdine.jpg',
+        alt: 'Campus Dine app',
+        desc: 'Mobile app to order from shops inside SRM campus; optimized for speed.',
+        tags: ['Mobile', 'Orders'],
+        cat: ['app','web']
       }
     ];
 
