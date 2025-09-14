@@ -1,337 +1,515 @@
 <!doctype html>
-<html lang="en" data-theme="auto">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MOHAMMED SAAQIB R — Portfolio</title>
-  <meta name="description" content="Portfolio of Mohammed SaaQib R — B.Tech AI & ML @ SRM. Projects: Curelith (medical AI), LangBridge (multilingual messaging), 2D↔3D, QuickDine, Synergy, Campus Dine, and more." />
-  <meta name="author" content="Mohammed SaaQib R" />
-  <meta property="og:title" content="MOHAMMED SAAQIB R — Portfolio" />
-  <meta property="og:description" content="AI/ML student building useful software with Python and Java." />
+  <title>Savro Tech — Company Portfolio</title>
+  <meta name="description" content="Savro Tech builds intelligent, enterprise-grade SaaS: AI, Cloud Telephony (WebRTC/VoIP), CRM & Billing integrations, and secure, scalable cloud infrastructure." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="Savro Tech — Company Portfolio" />
+  <meta property="og:description" content="AI-powered SaaS, Cloud Telephony, CRM integrations, and secure cloud at enterprise scale." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="./images/LOGO.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://savrotech.example.com/portfolio" />
+
+  <!-- Fonts (optional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Bangers&display=swap" rel="stylesheet" />
-  <style>
-    /* ===== reset ===== */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-    img,svg,video,canvas{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    html{scroll-behavior:smooth}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    /* ===== theme ===== */
-    :root{
-      --sq-bg:#0b0b12; --sq-bg2:#0f1020; --sq-text:#e9ecf1; --sq-muted:#a6aec2;
-      --sq-card:#121326; --sq-card2:#171832; --sq-border:#252a4a;
-      --sq-accent:#7c5cff; --sq-accent2:#5ed3f3;
-      --sq-shadow:0 10px 30px rgba(0,0,0,.35);
-      --sq-r:16px; --sq-rx:22px;
-      --sq-wrap:clamp(1100px,95vw,1680px);  /* WIDE + FLUID */
-      --sq-pad:clamp(56px,7vw,120px);
-      --sq-gutter:clamp(24px,6vw,96px);
-    }
-    @media (prefers-color-scheme: light){
-      :root{--sq-bg:#f7f8fc;--sq-bg2:#ffffff;--sq-text:#0c0d14;--sq-muted:#586080;--sq-card:#ffffff;--sq-card2:#f5f6ff;--sq-border:#e4e7f2;--sq-shadow:0 10px 30px rgba(0,0,0,.08)}
-    }
-    [data-theme="light"]{--sq-bg:#f7f8fc;--sq-bg2:#ffffff;--sq-text:#0c0d14;--sq-muted:#586080;--sq-card:#ffffff;--sq-card2:#f5f6ff;--sq-border:#e4e7f2;--sq-shadow:0 10px 30px rgba(0,0,0,.08)}
-
-    body{
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,"Noto Sans",Arial,"Apple Color Emoji","Segoe UI Emoji";
-      color:var(--sq-text);
-      background:
-        radial-gradient(1000px 600px at 90% -10%, rgba(124,92,255,.25), rgba(94,211,243,.12) 35%, transparent 60%),
-        radial-gradient(800px 500px at 10% 110%, rgba(94,211,243,.2), rgba(124,92,255,.1) 40%, transparent 70%),
-        linear-gradient(180deg,var(--sq-bg2),var(--sq-bg));
-      min-height:100vh; overflow-x:hidden;
-    }
-
-    /* ===== namespaced layout (no collisions) ===== */
-    .sq-wrap{width:min(100% - var(--sq-gutter), var(--sq-wrap)); margin-inline:auto}
-    .sq-section{padding-block:var(--sq-pad); position:relative}
-
-    .sq-hidden{display:none!important}
-    .sq-muted{color:var(--sq-muted)}
-    .sq-btn{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--sq-border);padding:.85rem 1.1rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:var(--sq-text);box-shadow:var(--sq-shadow);transition:transform .15s ease,border-color .2s ease,background .3s ease;cursor:pointer}
-    .sq-btn:hover{transform:translateY(-2px);border-color:rgba(124,92,255,.55)}
-    .sq-btn-primary{background:linear-gradient(135deg,var(--sq-accent),var(--sq-accent2));border:none;color:#0b0b12;font-weight:700}
-    .sq-btn-ghost{background:transparent}
-    .sq-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .7rem;border-radius:999px;border:1px solid var(--sq-border);background:rgba(255,255,255,.03);font-size:.85rem}
-
-    .sq-progress{position:fixed;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--sq-accent),var(--sq-accent2));transform-origin:0 50%;transform:scaleX(0);z-index:1000}
-
-    header{position:sticky;top:0;z-index:999;backdrop-filter:saturate(130%) blur(10px);background:color-mix(in oklab, var(--sq-bg2) 85%, transparent);border-bottom:1px solid var(--sq-border)}
-    @supports not (backdrop-filter: blur(10px)){ header{background:var(--sq-bg2)} }
-    .sq-nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0}
-    .sq-brand{display:flex;align-items:center;gap:.75rem}
-    .sq-brand img{width:40px;height:40px;border-radius:12px;object-fit:cover}
-    .sq-brand .sq-title{font-family:"Space Grotesk",Inter,sans-serif;font-weight:800;letter-spacing:.3px}
-    .sq-links a{color:var(--sq-muted);margin-inline:.9rem;font-weight:500}
-    .sq-links a:hover,.sq-links a.sq-active{color:var(--sq-text)}
-    .sq-controls{display:flex;align-items:center;gap:.6rem}
-    .sq-theme{inline-size:42px;block-size:42px;display:grid;place-items:center;border:1px solid var(--sq-border);border-radius:12px;background:var(--sq-card);cursor:pointer}
-    .sq-menu{display:none}
-    @media (max-width:920px){
-      .sq-menu{display:inline-flex}
-      .sq-links{position:fixed;inset:64px 12px auto;background:var(--sq-card);border:1px solid var(--sq-border);border-radius:var(--sq-r);padding:1rem;display:none;flex-direction:column;gap:.8rem;box-shadow:var(--sq-shadow)}
-      .sq-links.sq-open{display:flex}
-      .sq-links a{margin:0;padding:.7rem .85rem;border-radius:10px}
-      .sq-links a:hover{background:rgba(255,255,255,.04)}
-    }
-
-    .sq-hero{display:grid;grid-template-columns:minmax(520px,1.2fr) minmax(420px,.8fr);gap:clamp(24px,6vw,48px);align-items:center;min-height:clamp(560px,80vh,760px)}
-    .sq-hero h1{font-family:"Space Grotesk",Inter,sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:1.05;margin:0}
-    .sq-ac{background:linear-gradient(135deg,var(--sq-accent),var(--sq-accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sq-sub{font-size:clamp(16px,2.3vw,18px);color:var(--sq-muted)}
-    .sq-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.5rem}
-    .sq-portrait{position:relative}
-    .sq-portrait .sq-card{border-radius:var(--sq-rx);border:1px solid var(--sq-border);background:radial-gradient(120% 100% at 100% 0%,rgba(124,92,255,.12),rgba(94,211,243,.08) 40%,transparent 60%),var(--sq-card);box-shadow:var(--sq-shadow);overflow:hidden}
-    .sq-portrait img{aspect-ratio:4/5;object-fit:cover;width:100%}
-    .sq-blob{position:absolute;inset:auto -40px -40px auto;width:200px;height:200px;background:radial-gradient(circle at 30% 30%,var(--sq-accent),transparent 60%),radial-gradient(circle at 70% 70%,var(--sq-accent2),transparent 55%);filter:blur(30px) saturate(140%);opacity:.6;border-radius:50%;pointer-events:none;animation:drift 9s ease-in-out infinite alternate}
-    @keyframes drift{to{transform:translate(-20px,-10px) scale(1.05) rotate(10deg)}}
-
-    .sq-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,56px);align-items:center}
-    .sq-lede{font-size:1.05rem;color:var(--sq-muted)}
-    .sq-card{border:1px solid var(--sq-border);background:var(--sq-card);border-radius:var(--sq-rx);padding:clamp(16px,2.2vw,28px);box-shadow:var(--sq-shadow)}
-
-    .sq-marquee{overflow:hidden;border:1px solid var(--sq-border);border-radius:14px;background:var(--sq-card2)}
-    .sq-track{display:flex;gap:22px;padding:12px 18px;animation:slide 22s linear infinite}
-    .sq-chip{padding:.45rem .75rem;border-radius:999px;border:1px dashed var(--sq-border);background:rgba(255,255,255,.04);font-weight:600;font-size:.92rem;white-space:nowrap}
-    @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-    .sq-controls{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem}
-    .sq-filter{padding:.55rem .9rem;border-radius:999px;border:1px solid var(--sq-border);background:var(--sq-card);cursor:pointer}
-    .sq-filter.sq-on{background:linear-gradient(135deg,rgba(124,92,255,.15),rgba(94,211,243,.15));border-color:color-mix(in oklab, var(--sq-accent) 60%, var(--sq-border))}
-    .sq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(14px,2vw,24px)}
-    .sq-pcard{border:1px solid var(--sq-border);border-radius:16px;background:var(--sq-card);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .2s ease}
-    .sq-pcard:hover{transform:translateY(-4px);box-shadow:var(--sq-shadow);border-color:color-mix(in oklab, var(--sq-accent) 55%, var(--sq-border))}
-    .sq-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,rgba(124,92,255,.2),rgba(94,211,243,.2));display:grid;place-items:center}
-    .sq-content{padding:14px 16px 18px}
-    .sq-tags{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.4rem}
-    .sq-tag{font-size:.78rem;border:1px solid var(--sq-border);padding:.25rem .5rem;border-radius:999px;color:var(--sq-muted)}
-
-    .sq-tl{position:relative;margin-top:24px}
-    .sq-tl::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--sq-accent),var(--sq-accent2));opacity:.6}
-    .sq-step{position:relative;padding-left:36px;margin-bottom:20px}
-    .sq-step::before{content:"";position:absolute;left:2px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--sq-card2);border:2px solid var(--sq-accent)}
-
-    footer{padding:36px 0;border-top:1px solid var(--sq-border);color:var(--sq-muted)}
-
-    .sq-reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
-    .sq-reveal.sq-show{opacity:1;transform:none}
-    @media (prefers-reduced-motion: reduce){
-      .sq-reveal{opacity:1;transform:none;transition:none}
-      .sq-track{animation:none}
-      html{scroll-behavior:auto}
-    }
-
-    @media (max-width:1200px){.sq-hero{grid-template-columns:1fr 1fr}}
-    @media (max-width:900px){.sq-split{grid-template-columns:1fr}}
-    @media (max-width:820px){.sq-grid{grid-template-columns:1fr}.sq-links.sq-desktop{display:none}}
-  </style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-  <div class="sq-progress" id="sqProgress"></div>
 
+<body>
+  <a href="#main" class="visually-hidden">Skip to content</a>
+
+  <!-- Header / Nav -->
   <header>
-    <nav class="sq-wrap sq-nav" aria-label="Primary">
-      <div class="sq-brand">
-        <img src="./images/LOGO.png" alt="Saaqib monogram" />
-        <span class="sq-title">SAAQIB<span style="font-family:Bangers,system-ui;letter-spacing:1px;margin-left:.35ch;color:color-mix(in oklab, var(--sq-accent) 75%, var(--sq-text));">R</span></span>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <strong>Savro Tech</strong>
       </div>
-      <div class="sq-controls">
-        <div class="sq-links sq-desktop" id="sqLinks">
-          <a href="#home" class="sq-active">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#timeline">Journey</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button class="sq-theme" id="sqTheme" aria-label="Toggle theme" title="Toggle theme">
-          <svg id="sqSun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg id="sqMoon" class="sq-hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <button class="sq-btn sq-menu" id="sqMenu" aria-expanded="false" aria-controls="sqMobile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#specializations">Specializations</a>
+        <a href="#services">Services</a>
+        <a href="#work">Case Studies</a>
+        <a href="#clients">Clients</a>
+        <a href="#team">Team</a>
+        <a href="#stack">Tech</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="flex">
+        <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme">🌓</button>
+        <button class="hamb btn" id="hamb" aria-label="Open menu">☰</button>
       </div>
-    </nav>
-    <div id="sqMobile" class="sq-wrap sq-links" role="dialog" aria-label="Mobile Menu">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#timeline">Journey</a><a href="#contact">Contact</a>
     </div>
   </header>
 
-  <main id="home" class="sq-wrap sq-section">
-    <section class="sq-hero">
-      <div class="sq-reveal">
-        <span class="sq-badge">AI & ML @ SRM</span>
-        <h1>Hi, I'm <span class="sq-ac">MOHAMMED SAAQIB</span> R</h1>
-        <p class="sq-sub">I build practical software with <strong>Python</strong> and <strong>Java</strong> — from a banking app and a Tkinter weather tool to a JARVIS-inspired personal assistant. Bigger builds include <strong>Curelith</strong> (medical AI) and <strong>LangBridge</strong> (multilingual messaging SDK).</p>
-        <div class="sq-cta">
-          <a class="sq-btn sq-btn-primary" href="#projects">Explore Projects</a>
-          <a class="sq-btn sq-btn-ghost" href="#contact">Contact Me</a>
-          <a class="sq-btn" href="./documents/CV.pdf" target="_blank" rel="noopener">Download CV</a>
+  <!-- Mobile Drawer -->
+  <div id="drawer" hidden>
+    <div class="container drawer-list">
+      <a href="#about" class="btn" data-close>About</a>
+      <a href="#specializations" class="btn" data-close>Specializations</a>
+      <a href="#services" class="btn" data-close>Services</a>
+      <a href="#work" class="btn" data-close>Case Studies</a>
+      <a href="#clients" class="btn" data-close>Clients</a>
+      <a href="#team" class="btn" data-close>Team</a>
+      <a href="#stack" class="btn" data-close>Tech</a>
+      <a href="#contact" class="btn" data-close>Contact</a>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main id="main" tabindex="-1">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="kicker">
+          <span class="chip">Enterprise Portfolio</span>
+          <span class="chip">AI • Cloud • SaaS</span>
+        </div>
+        <h1>We build world-class software across web, mobile, AI, and cloud.</h1>
+        <p class="sub">We are a full-cycle software development company delivering end-to-end projects across web, mobile, AI/ML, data, DevOps, and creative. From MVPs to enterprise platforms — we handle it all.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn primary">Get a Quote</a>
+          <a href="#work" class="btn">View Case Studies</a>
+          <button id="print-btn" class="btn" type="button">Download PDF</button>
+        </div>
+        <div class="statgrid">
+          <div class="stat"><div class="num">99.99%+</div><div class="muted">Uptime architectures delivered</div></div>
+          <div class="stat"><div class="num">15+</div><div class="muted">Enterprise integrations</div></div>
+          <div class="stat"><div class="num">10–12 wks</div><div class="muted">Typical delivery window</div></div>
+          <div class="stat"><div class="num">3 Regions</div><div class="muted">Multi-region deployments</div></div>
         </div>
       </div>
-      <div class="sq-portrait sq-reveal">
-        <div class="sq-card"><img src="./images/IMG-20241027-WA0009.jpg" alt="Portrait of Mohammed SaaQib" loading="eager"/></div>
-        <div class="sq-blob" aria-hidden="true"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2>About Savro Tech</h2>
+        <p class="lead">We build mission-critical platforms that combine human-centered design with rigorous engineering. Our north star: reliability, security, and measurable ROI. We partner long-term to scale your product and your business.</p>
+        <div class="grid-3">
+          <div class="card"><h3>Vision</h3><p>Enable every business to leverage AI and cloud telephony with the simplicity and quality of a first-party platform.</p></div>
+          <div class="card"><h3>Values</h3><p>Outcome-driven • Security-first • Transparent • Iterative • Documentation-heavy • Performance-obsessed</p></div>
+          <div class="card"><h3>Engagement</h3><p>Agile sprints, milestone demos, and SLA-backed support. We integrate with your tools — Jira, Slack, GitHub, and more.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specializations -->
+    <section id="specializations" class="spec">
+      <div class="container">
+        <h2>Core Specializations</h2>
+        <p class="lead">Deep domain expertise across the stack. We combine proven patterns with modern tooling to ship safely and fast.</p>
+        <div class="grid-3">
+          <div class="card"><div class="icon" aria-hidden="true">🧠</div><div><h3>AI & ML Systems</h3><p>NLP, speech-to-text (Whisper/Deepgram), AI summaries, categorization, assisted responses, and model ops.</p></div></div>
+          <div class="card"><div class="icon" aria-hidden="true">📞</div><div><h3>Cloud Telephony</h3><p>WebRTC, SIP/VoIP, call routing, IVR, recording, analytics, and compliance (GDPR/HIPAA/SOC2-ready).</p></div></div>
+          <div class="card"><div class="icon" aria-hidden="true">🔗</div><div><h3>CRM & Billing</h3><p>HubSpot, Salesforce, Pipedrive; Stripe/Razorpay billing, invoicing, dunning, and revenue analytics.</p></div></div>
+          <div class="card"><div class="icon" aria-hidden="true">☁️</div><div><h3>Cloud & DevOps</h3><p>AWS/GCP, Kubernetes, Docker, IaC, monitoring (Prometheus/Grafana), autoscaling, and multi-region failover.</p></div></div>
+          <div class="card"><div class="icon" aria-hidden="true">🔒</div><div><h3>Security & Compliance</h3><p>Zero-trust networks, E2E encryption (TLS/SRTP), RBAC, secrets management, and continuous hardening.</p></div></div>
+          <div class="card"><div class="icon" aria-hidden="true">🧩</div><div><h3>Product Engineering</h3><p>Design systems, frontends (React/Next), backends (Node/Python), and mobile (React Native) at scale.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <h2>Services & Offerings</h2>
+        <p class="lead">End-to-end capabilities. Pick a lane or go full-stack — we adapt to your roadmap.</p>
+        <div class="grid-3">
+          <div class="card"><h3>Product Discovery</h3><p>Workshops, user journeys, risk mapping, and pilot design. From concept to validated plan.</p><div class="ks"><span class="tag">Figma</span><span class="tag">Storybook</span><span class="tag">POC</span></div></div>
+          <div class="card"><h3>Build & Integrate</h3><p>APIs, microservices, frontends, mobile, and third-party integrations delivered iteratively.</p><div class="ks"><span class="tag">Node</span><span class="tag">Python</span><span class="tag">React</span></div></div>
+          <div class="card"><h3>Scale & Operate</h3><p>SRE practices, CI/CD, autoscaling, disaster recovery, monitoring, and 24/7 support options.</p><div class="ks"><span class="tag">K8s</span><span class="tag">Grafana</span><span class="tag">Terraform</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="work">
+      <div class="container">
+        <div class="between">
+          <h2>Case Studies</h2>
+          <div class="filters" role="tablist" aria-label="Filter case studies">
+            <button class="btn chip" data-filter="all" aria-pressed="true">All</button>
+            <button class="btn chip" data-filter="telephony">Telephony</button>
+            <button class="btn chip" data-filter="ai">AI</button>
+            <button class="btn chip" data-filter="crm">CRM/Billing</button>
+          </div>
+        </div>
+        <div class="grid-3" id="case-grid">
+          <article class="card case-card" data-cat="mobile ai telephony">
+            <h3>FUSE — Dating App</h3>
+            <div class="meta"><span class="tag">React Native</span><span class="tag">WebRTC/Twilio</span><span class="tag">Node</span><span class="tag">MongoDB</span></div>
+            <p>Realtime interest-based matching, video calls, in-call chat, and compliments flow with scalable backend and analytics.</p>
+            <div class="ks"><b>Stack:</b> RN, Node.js, WebRTC, AWS</div>
+          </article>
+          <article class="card case-card" data-cat="ai web">
+            <h3>Curelith.com — Medical AI Website</h3>
+            <div class="meta"><span class="tag">Next.js</span><span class="tag">FastAPI</span><span class="tag">OpenAI</span><span class="tag">OCR</span></div>
+            <p>AI Q&A, lab report OCR + analysis, knowledge extraction from PDFs, and a doctor-grade interface.</p>
+            <div class="ks"><b>Stack:</b> Next.js, FastAPI, OpenAI, Postgres</div>
+          </article>
+          <article class="card case-card" data-cat="mobile commerce">
+            <h3>Campus Dine — Campus Food Ordering</h3>
+            <div class="meta"><span class="tag">React Native</span><span class="tag">Node</span><span class="tag">Razorpay</span></div>
+            <p>End-to-end ordering, live kitchen updates, payments, and vendor dashboards designed for high-traffic canteens.</p>
+            <div class="ks"><b>Stack:</b> RN, Node.js, Express, Razorpay</div>
+          </article>
+          <article class="card case-card" data-cat="web social">
+            <h3>Synergy — Social Media App</h3>
+            <div class="meta"><span class="tag">React</span><span class="tag">Node</span><span class="tag">WebSockets</span></div>
+            <p>Modern social platform with profiles, feeds, real-time chat/notifications, and content moderation tooling.</p>
+            <div class="ks"><b>Stack:</b> React, Node.js, WS, Redis</div>
+          </article>
+          <article class="card case-card" data-cat="telephony">
+            <h3>Contact Center Modernization</h3>
+            <div class="meta"><span class="tag">WebRTC</span><span class="tag">AI</span></div>
+            <p>Multi-tenant calling with live transcription, summaries, and analytics; 30% faster call handling.</p>
+            <div class="ks"><b>Stack:</b> Node, WebRTC, OpenAI, K8s</div>
+          </article>
+          <article class="card case-card" data-cat="crm">
+            <h3>CRM + Billing Unification</h3>
+            <div class="meta"><span class="tag">Salesforce</span><span class="tag">Stripe</span></div>
+            <p>Unified customer, subscription, and invoice lifecycle; automated dunning; boosted revenue recovery by 18%.</p>
+            <div class="ks"><b>Stack:</b> SFDC, Stripe, Python</div>
+          </article>
+          <article class="card case-card" data-cat="ai">
+            <h3>AI Service Desk Copilot</h3>
+            <div class="meta"><span class="tag">NLP</span><span class="tag">Summaries</span></div>
+            <p>Deployed AI categorization and assisted responses, reducing average resolution time by 22% across L1/L2 queues.</p>
+            <div class="ks"><b>Stack:</b> Python, OpenAI, Redis</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clients -->
+    <section id="clients">
+      <div class="container">
+        <h2>Previous Clients</h2>
+        <p class="lead">A snapshot of brands we’ve partnered with across websites and custom software.</p>
+        <div class="grid-3">
+          <div class="card"><h3>Rocksphere Pvt Ltd</h3><p class="muted">Corporate Website</p></div>
+          <div class="card"><h3>MSBotique</h3><p class="muted">E-commerce Website</p></div>
+          <div class="card"><h3>AK Jewellers</h3><p class="muted">Brand Website</p></div>
+          <div class="card"><h3>Rocky’s Cafe</h3><p class="muted">Billing Software</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Gallery -->
+    <section id="gallery">
+      <div class="container">
+        <h2>Work Gallery</h2>
+        <p class="lead">A visual snapshot of projects we’ve shipped — websites, apps, dashboards, and brand work.</p>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="Curelith — Medical AI landing redesign" loading="lazy">
+            <figcaption>Curelith — Medical AI website</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="Fuse — React Native app screens" loading="lazy">
+            <figcaption>Fuse — React Native app</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop" alt="Campus Dine — Vendor dashboard" loading="lazy">
+            <figcaption>Campus Dine — vendor dashboard</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Telephony analytics & call QA" loading="lazy">
+            <figcaption>Telephony analytics</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" hidden>
+      <button class="lb-close" aria-label="Close">×</button>
+      <img alt="">
+      <figcaption class="lb-cap"></figcaption>
+    </div>
+
+    <!-- Team -->
+    <section id="team">
+      <div class="container">
+        <h2>Our Team</h2>
+        <p class="lead">A senior core with deep delivery experience across AI/ML, mobile, web, data, UI/UX, and business operations.</p>
+        <div class="grid-3">
+          <div class="card team-card">
+            <div class="avatar">MS</div>
+            <div>
+              <h3>Mohammed Saaqib — Senior Developer</h3>
+              <p class="muted">AI Architect & MERN Stack specialist. Leads AI systems and scalable web platforms.</p>
+              <div class="socials"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">gh</a></div>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">VD</div>
+            <div>
+              <h3>Vignesh Dharmaraj — Senior Developer</h3>
+              <p class="muted">App Developer focused on high-performance mobile apps and native integrations.</p>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">MV</div>
+            <div>
+              <h3>Manav — Senior Developer</h3>
+              <p class="muted">Website development, modern frontends, and performance optimization.</p>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">DP</div>
+            <div>
+              <h3>Deepak — Developer</h3>
+              <p class="muted">Figma prototyping & Big Data workflows; bridges design to data-driven builds.</p>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">MA</div>
+            <div>
+              <h3>Mohammed Asim Akmal — UI/UX</h3>
+              <p class="muted">Interface design, user research, and design systems for accessible products.</p>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">NK</div>
+            <div>
+              <h3>Nikil — UI/UX & Creative Head</h3>
+              <p class="muted">Creative direction, brand systems, and high-impact visual storytelling.</p>
+            </div>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">AS</div>
+            <div>
+              <h3>Ashwath Sai — Business Management</h3>
+              <p class="muted">Operations, partnerships, and delivery excellence across engagements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="stack">
+      <div class="container">
+        <h2>Technology Stack</h2>
+        <p class="lead">Modern, well-supported technologies with long-term viability and a bias for performance and security.</p>
+        <div class="stack">
+          <span class="chip">React / Next.js</span><span class="chip">Node.js</span><span class="chip">Python / FastAPI</span><span class="chip">WebRTC / SIP</span><span class="chip">OpenAI / Whisper</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">AWS / GCP</span><span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Terraform</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+      <div class="container">
+        <h2>How We Work</h2>
+        <p class="lead">Clear phases, continuous validation, and strong documentation. You see progress every sprint.</p>
+        <ol class="timeline">
+          <li class="step"><div class="bullet"></div><b>Discover</b> — Workshops, user journeys, technical spikes, and success metrics.</li>
+          <li class="step"><div class="bullet"></div><b>Design</b> — Architecture, data models, API specs, and design system.</li>
+          <li class="step"><div class="bullet"></div><b>Build</b> — Iterative development with CI/CD and feature toggles.</li>
+          <li class="step"><div class="bullet"></div><b>Harden</b> — Security, performance, observability, and chaos testing.</li>
+          <li class="step"><div class="bullet"></div><b>Launch</b> — Cutover plan, SLOs, runbooks, and training.</li>
+          <li class="step"><div class="bullet"></div><b>Operate</b> — SLAs, monitoring, and roadmap acceleration.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+      <div class="container">
+        <h2>What Clients Say</h2>
+        <div class="carousel" aria-roledescription="carousel">
+          <div class="slides" id="slides">
+            <div class="slide">“Savro Tech delivered our telephony platform in record time — with rock-solid reliability.” <br><span class="muted">— VP Engineering, Fintech</span></div>
+            <div class="slide">“The AI summaries were a game-changer for our support team. Real impact from week one.” <br><span class="muted">— Head of CX, SaaS</span></div>
+            <div class="slide">“Best documentation and handover we’ve seen. The stack just runs.” <br><span class="muted">— CTO, HealthTech</span></div>
+          </div>
+          <button class="ctrl prev" aria-label="Previous" data-move="-1">‹</button>
+          <button class="ctrl next" aria-label="Next" data-move="1">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p class="lead">Tell us about your goals. We’ll propose a lean, value-driven plan within 48 hours.</p>
+        <div class="grid-2">
+          <div class="card">
+            <form id="contact-form">
+              <input type="text" name="name" placeholder="Your name" required />
+              <input type="email" name="email" placeholder="Email" required />
+              <input type="text" name="company" placeholder="Company" />
+              <input type="text" name="budget" placeholder="Project budget (optional)" />
+              <textarea class="full" name="summary" rows="5" placeholder="Project summary, goals, timelines" required></textarea>
+              <div class="full flex between">
+                <label class="flex" style="gap:.4rem"><input type="checkbox" name="consent" required /> I agree to the privacy terms</label>
+                <button class="btn primary" type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+          <div class="card">
+            <h3>Reach us</h3>
+            <p class="muted">Email: savrotech@gmail.com<br/> Phone: +91-9498071974<br/> HQ: Chennai, India</p>
+            <p class="muted">We operate globally across IST, CET, and PST.</p>
+            <div class="ks"><span class="tag">SLA Support</span><span class="tag">NDA Ready</span><span class="tag">Vendor Onboarding</span></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <section id="about" class="sq-section">
-    <div class="sq-wrap sq-split">
-      <div class="sq-card sq-reveal">
-        <img src="./images/IMG-20241027-WA0010.jpg" alt="Saaqib on a ride" style="border-radius:16px" loading="lazy"/>
-      </div>
-      <div class="sq-reveal">
-        <h2>About Me</h2>
-        <p class="sq-lede">B.Tech in <strong>Artificial Intelligence &amp; Machine Learning</strong> at SRM University. I'm curious, hands-on, and happiest when I'm shipping small wins daily.</p>
-        <p>Beyond code: I enjoy <strong>bike riding</strong>, <strong>car racing</strong>, and <strong>drawing</strong>. These fuel my creativity and focus — the same energy I bring to building products and solving problems.</p>
-        <div style="height:12px"></div>
-        <div class="sq-marquee" aria-label="Skills">
-          <div class="sq-track">
-            <span class="sq-chip">Python</span><span class="sq-chip">Java</span><span class="sq-chip">Tkinter</span><span class="sq-chip">Flask</span><span class="sq-chip">FastAPI</span><span class="sq-chip">REST</span><span class="sq-chip">Git & GitHub</span><span class="sq-chip">SQL</span><span class="sq-chip">DSA</span><span class="sq-chip">OOP</span><span class="sq-chip">AI/ML</span><span class="sq-chip">Problem Solving</span>
-            <span class="sq-chip">Python</span><span class="sq-chip">Java</span><span class="sq-chip">Tkinter</span><span class="sq-chip">Flask</span><span class="sq-chip">FastAPI</span><span class="sq-chip">REST</span><span class="sq-chip">Git & GitHub</span><span class="sq-chip">SQL</span><span class="sq-chip">DSA</span><span class="sq-chip">OOP</span><span class="sq-chip">AI/ML</span><span class="sq-chip">Problem Solving</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="sq-section">
-    <div class="sq-wrap">
-      <h2 class="sq-reveal">Projects</h2>
-      <div class="sq-controls sq-reveal" role="tablist">
-        <button class="sq-filter sq-on" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="sq-filter" data-filter="app" role="tab">Apps</button>
-        <button class="sq-filter" data-filter="python" role="tab">Python</button>
-        <button class="sq-filter" data-filter="ml" role="tab">AI/ML</button>
-        <button class="sq-filter" data-filter="sdk" role="tab">SDK</button>
-        <button class="sq-filter" data-filter="web" role="tab">Web/UI</button>
-      </div>
-      <div class="sq-grid" id="sqProjects" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section id="timeline" class="sq-section">
-    <div class="sq-wrap">
-      <h2 class="sq-reveal">Journey</h2>
-      <div class="sq-tl sq-reveal">
-        <div class="sq-step">
-          <h3>2024–2025 · B.Tech AI/ML @ SRM</h3>
-          <p class="sq-muted">Deep dives in Python/Java and applied ML. Turning classroom theory into real utility.</p>
-        </div>
-        <div class="sq-step">
-          <h3>Projects Milestone</h3>
-          <p class="sq-muted">Banking app (Python), Weather app (Tkinter), JARVIS-style assistant with speech/search/automation.</p>
-        </div>
-        <div class="sq-step">
-          <h3>What's Next</h3>
-          <p class="sq-muted">More Flask/FastAPI, sharper UI/UX, and ML features that make apps smarter — not just bigger.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="sq-section">
-    <div class="sq-wrap">
-      <h2 class="sq-reveal">Contact</h2>
-      <div class="sq-card sq-reveal" style="display:grid;gap:14px">
-        <p>Want to collaborate or just say hi? I’m always open to good ideas and interesting problems.</p>
-        <div style="display:flex;gap:.7rem;flex-wrap:wrap">
-          <a class="sq-btn sq-btn-primary" href="mailto:saaqibindia@gmail.com">Email Me</a>
-          <button class="sq-btn" id="sqCopy">Copy Email</button>
-          <a class="sq-btn" href="./documents/CV.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-        <span class="sq-muted" id="sqCopyState" aria-live="polite"></span>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <div class="sq-wrap" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-      <span>© <span id="sqYear"></span> MOHAMMED SAAQIB R</span>
-      <a class="sq-badge" href="#home">Back to top ↑</a>
+    <div class="container between">
+      <div>© <span id="year"></span> Savro Tech. All rights reserved.</div>
+      <div class="muted">Privacy • Security • Terms</div>
     </div>
   </footer>
 
-  <script>
-    // THEME
-    const $t=document.getElementById('sqTheme'), $sun=document.getElementById('sqSun'), $moon=document.getElementById('sqMoon');
-    function setTheme(mode){const html=document.documentElement;
-      if(mode==='light'){html.setAttribute('data-theme','light');$sun.classList.add('sq-hidden');$moon.classList.remove('sq-hidden');}
-      else if(mode==='dark'){html.setAttribute('data-theme','dark');$sun.classList.remove('sq-hidden');$moon.classList.add('sq-hidden');}
-      else{html.setAttribute('data-theme','auto');const dark=matchMedia('(prefers-color-scheme: dark)').matches;$sun.classList.toggle('sq-hidden',!dark);$moon.classList.toggle('sq-hidden',dark);}
+  <!-- Back to Top -->
+  <button id="back-to-top" class="btn" aria-label="Back to top">↑</button>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Savro Tech",
+      "url": "https://savrotech.example.com",
+      "logo": "https://savrotech.example.com/logo.png",
+      "sameAs": ["https://www.linkedin.com/company/savrotech"],
+      "foundingLocation": "Chennai, India",
+      "description": "AI, Cloud Telephony, CRM integrations, and secure, scalable cloud platforms."
     }
-    setTheme(localStorage.getItem('sq-theme')||'auto');
-    $t.addEventListener('click',()=>{const cur=localStorage.getItem('sq-theme')||'auto';const next=cur==='auto'?'light':cur==='light'?'dark':'auto';localStorage.setItem('sq-theme',next);setTheme(next);});
-
-    // MOBILE MENU
-    const $m=document.getElementById('sqMenu'), $menu=document.getElementById('sqMobile');
-    $m?.addEventListener('click',()=>{const open=$menu.classList.toggle('sq-open');$m.setAttribute('aria-expanded',String(open));});
-
-    // PROGRESS
-    const $p=document.getElementById('sqProgress');
-    const onScroll=()=>{const h=document.documentElement;const s=(h.scrollTop)/(h.scrollHeight-h.clientHeight);$p.style.transform=`scaleX(${s})`;};
-    document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-
-    // REVEAL
-    const io=new IntersectionObserver((es)=>{for(const e of es){if(e.isIntersecting){e.target.classList.add('sq-show');io.unobserve(e.target);}}},{threshold:.1});
-    document.querySelectorAll('.sq-reveal').forEach(el=>io.observe(el));
-
-    // SCROLL SPY
-    const secs=['home','about','projects','timeline','contact'].map(id=>document.getElementById(id));
-    const links=[...document.querySelectorAll('#sqLinks a')];
-    const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;links.forEach(a=>a.classList.toggle('sq-active',a.getAttribute('href')==='#'+id));}});},{rootMargin:'-50% 0px -45% 0px'});
-    secs.forEach(s=>s&&spy.observe(s));
-
-    // PROJECTS
-    const data=[
-      {title:'Banking Application',img:'./images/project1 logo.jpg',alt:'Banking app',desc:'Python banking app with clean design and reliable transactions.',tags:['Python','OOP','CLI/UI'],cat:['python','app']},
-      {title:'Weather Forecast (Tkinter)',img:'./images/project2 logo.jpg',alt:'Weather UI',desc:'Fast Tkinter app with real-time weather and city search.',tags:['Python','Tkinter','API'],cat:['python','app','web']},
-      {title:'Personal Assistant (JARVIS-inspired)',img:'./images/project3 logo.jpg',alt:'Assistant',desc:'Local assistant for search, notes, reminders, and quick tasks.',tags:['Python','Automation','Speech'],cat:['python','ml','app']},
-      {title:'Curelith — Medical AI',img:'./images/curelith.jpg',alt:'Curelith',desc:'AI health assistant with OCR for lab reports and evidence-based Q&A.',tags:['AI/ML','OCR','FastAPI'],cat:['ml','web','app']},
-      {title:'LangBridge — Multilingual Messaging SDK',img:'./images/langbridge.jpg',alt:'LangBridge',desc:'Drop-in SDK that translates chat in real time to each user’s preferred language.',tags:['SDK','Realtime','WebSocket'],cat:['sdk','web','app','ml']},
-      {title:'2D ↔ 3D Converter',img:'./images/2d3d.jpg',alt:'2D to 3D',desc:'CV pipeline to infer depth/mesh from images and render back to 2D.',tags:['CV','Python','Geometry'],cat:['ml','python']},
-      {title:'QuickDine — Food Ordering',img:'./images/quickdine.jpg',alt:'QuickDine',desc:'Ordering app with menus, cart, and order tracking.',tags:['Full-stack','Payments'],cat:['app','web']},
-      {title:'Synergy — Social Media',img:'./images/synergy.jpg',alt:'Synergy',desc:'Instagram-style social platform with posts, likes, and messaging.',tags:['App','UI'],cat:['app','web','ui']},
-      {title:'Campus Dine — SRM',img:'./images/campusdine.jpg',alt:'Campus Dine',desc:'Order from shops inside SRM campus.',tags:['Mobile','Orders'],cat:['app','web']}
-    ];
-    const grid=document.getElementById('sqProjects');
-    function render(filter='all'){
-      grid.innerHTML='';
-      const list=filter==='all'?data:data.filter(p=>p.cat.includes(filter));
-      for(const p of list){
-        grid.insertAdjacentHTML('beforeend',`
-          <article class="sq-pcard sq-reveal" tabindex="0" aria-label="${p.title}">
-            <div class="sq-thumb"><img src="${p.img}" alt="${p.alt}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'"/></div>
-            <div class="sq-content">
-              <h3 style="margin:.2rem 0 .25rem;font-size:1.1rem">${p.title}</h3>
-              <p class="sq-muted" style="margin:0 0 .6rem">${p.desc}</p>
-              <div class="sq-tags">${p.tags.map(t=>`<span class='sq-tag'>${t}</span>`).join('')}</div>
-            </div>
-          </article>`);
-      }
-      document.querySelectorAll('#projects .sq-reveal,.sq-wrap .sq-reveal').forEach(el=>io.observe(el));
-    }
-    render();
-    document.querySelectorAll('.sq-filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.sq-filter').forEach(x=>x.classList.remove('sq-on'));b.classList.add('sq-on');render(b.dataset.filter)}));
-
-    // COPY EMAIL
-    const copyBtn=document.getElementById('sqCopy'), copyState=document.getElementById('sqCopyState');
-    copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText('saaqibindia@gmail.com');copyState.textContent='Email copied ✔';setTimeout(()=>copyState.textContent='',1800);}catch{copyState.textContent='Copy failed — just email me!';}});
-
-    // footer year
-    document.getElementById('sqYear').textContent=new Date().getFullYear();
   </script>
 
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Mohammed SaaQib R","alumniOf":"SRM University","description":"AI/ML student building useful software in Python and Java.","email":"mailto:saaqibindia@gmail.com","url":"","image":"./images/IMG-20241027-WA0009.jpg","sameAs":[]}
+  <!-- JS -->
+  <script>
+    const $ = (s, p=document) => p.querySelector(s);
+    const $$ = (s, p=document) => Array.from(p.querySelectorAll(s));
+
+    // Theme Toggle (persist)
+    const root = document.documentElement;
+    const themeToggle = $('#theme-toggle');
+    const savedTheme = localStorage.getItem('savro-theme');
+    if (savedTheme === 'light') root.classList.add('light');
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('savro-theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Mobile drawer
+    const drawer = $('#drawer');
+    const hamb = $('#hamb');
+    function toggleDrawer(force){
+      const next = (force === false) ? false : drawer.hasAttribute('hidden');
+      drawer.toggleAttribute('hidden', !next);
+      hamb.setAttribute('aria-expanded', String(next));
+    }
+    hamb.addEventListener('click', () => toggleDrawer());
+    $$('[data-close]', drawer).forEach(a => a.addEventListener('click', () => toggleDrawer(false)));
+
+    // Case study filters
+    const buttons = $$('[data-filter]');
+    const cases = $$('#case-grid .case-card');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+      const f = btn.getAttribute('data-filter');
+      cases.forEach(card => {
+        const cat = card.getAttribute('data-cat') || '';
+        card.style.display = (f === 'all' || cat.includes(f)) ? 'flex' : 'none';
+      });
+    }));
+
+    // Carousel
+    let idx = 0; const slides = $('#slides');
+    function move(dir){ idx = (idx + dir + slides.children.length) % slides.children.length; slides.style.transform = `translateX(-${idx*100}%)`; }
+    let auto = setInterval(()=>move(1), 6000);
+    slides.addEventListener('mouseenter', ()=> clearInterval(auto));
+    slides.addEventListener('mouseleave', ()=> auto = setInterval(()=>move(1), 6000));
+    $$('.carousel [data-move]').forEach(btn => btn.addEventListener('click', () => move(Number(btn.dataset.move))));
+    slides.addEventListener('keydown', e=>{ if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
+    slides.setAttribute('tabindex','0');
+
+    // Footer year
+    $('#year').textContent = new Date().getFullYear();
+
+    // Contact form (demo)
+    $('#contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert("Thanks! We'll get back within 48 hours.");
+      e.target.reset();
+    });
+
+    // Back to top
+    const btt = $('#back-to-top');
+    window.addEventListener('scroll', () => {
+      btt.style.display = window.scrollY > 600 ? 'inline-flex' : 'none';
+    });
+    btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Link cards to demos + badge
+    (function(){
+      const map = new Map([
+        ['FUSE — Dating App','https://fuse.savrotech.com'],
+        ['Curelith.com — Medical AI Website','https://curelith.com'],
+        ['Campus Dine — Campus Food Ordering','https://campusdine.savrotech.com'],
+        ['Synergy — Social Media App','https://synergy.savrotech.com']
+      ]);
+      $$('#case-grid .case-card').forEach(card=>{
+        const title = card.querySelector('h3')?.textContent.trim();
+        const url = map.get(title);
+        if(!url) return;
+        card.setAttribute('role','link');
+        card.setAttribute('tabindex','0');
+        const badge = document.createElement('span');
+        badge.className='demo-badge';
+        badge.textContent='Live Demo →';
+        card.appendChild(badge);
+        const open = ()=> window.open(url, '_blank','noopener');
+        card.addEventListener('click', open);
+        card.addEventListener('keypress', e=>{ if(e.key==='Enter') open(); });
+      });
+    })();
+
+    // Team avatars — gradient ring + initials
+    (function(){
+      $$('#team .team-card').forEach(card=>{
+        const name = card.querySelector('h3')?.textContent.split(' — ')[0] || 'Team';
+        const avatar = card.querySelector('.avatar');
+        if(!avatar) return;
+        avatar.classList.add('avatar-ring');
+        avatar.innerHTML = `<img class="avatar-img" alt="${name} avatar" loading="lazy" src="https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}&backgroundType=gradientLinear&fontSize=42">`;
+      });
+    })();
+
+    // Print to PDF
+    $('#print-btn').addEventListener('click', () => window.print());
+
+    // Gallery Lightbox
+    const lb = $('#lightbox'), lbImg = $('#lightbox img'), lbCap = $('.lb-cap'), lbClose = $('.lb-close');
+    $$('#gallery .gallery-item img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        lbCap.textContent = img.closest('figure')?.querySelector('figcaption')?.textContent || '';
+        lb.removeAttribute('hidden');
+      });
+    });
+    lbClose.addEventListener('click', ()=> lb.setAttribute('hidden',''));
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) lb.setAttribute('hidden',''); });
+    window.addEventListener('keydown', e=>{ if(e.key === 'Escape' && !lb.hasAttribute('hidden')) lb.setAttribute('hidden',''); });
   </script>
 </body>
 </html>
