@@ -1,101 +1,446 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="auto">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHAMMED SAAQIB R</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MOHAMMED SAAQIB R — Portfolio</title>
+  <meta name="description" content="Portfolio of Mohammed SaaQib R — B.Tech AI & ML @ SRM. Projects in Python, Java, AI/ML. Banking app, weather tools, personal assistant, and more." />
+  <meta name="author" content="Mohammed SaaQib R" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="MOHAMMED SAAQIB R — Portfolio" />
+  <meta property="og:description" content="AI/ML student building useful software. Banking app, weather tools, JARVIS-like assistant, and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./images/LOGO.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Bangers&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== CSS RESET (modern, minimal) ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    img, picture, video, canvas, svg { display: block; max-width: 100%; }
+    input, button, textarea, select { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== THEME ===== */
+    :root {
+      --bg: #0b0b12;
+      --bg-2: #0f1020;
+      --text: #e9ecf1;
+      --muted: #a6aec2;
+      --card: #121326;
+      --card-2: #171832;
+      --border: #252a4a;
+      --accent: #7c5cff; /* electric violet */
+      --accent-2: #5ed3f3; /* malibu */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-xl: 22px;
+      --container: 1120px;
+      --section-pad: clamp(64px, 8vw, 120px);
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f7f8fc; --bg-2:#ffffff; --text:#0c0d14; --muted:#586080; --card:#ffffff; --card-2:#f5f6ff; --border:#e4e7f2; --shadow:0 10px 30px rgba(0,0,0,.08); }
+    }
+    [data-theme="light"] { --bg:#f7f8fc; --bg-2:#ffffff; --text:#0c0d14; --muted:#586080; --card:#ffffff; --card-2:#f5f6ff; --border:#e4e7f2; --shadow:0 10px 30px rgba(0,0,0,.08); }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1000px 600px at 90% -10%, rgba(124,92,255,.25), rgba(94,211,243,.12) 35%, transparent 60%),
+                  radial-gradient(800px 500px at 10% 110%, rgba(94,211,243,.2), rgba(124,92,255,.1) 40%, transparent 70%),
+                  linear-gradient(180deg, var(--bg-2), var(--bg));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container { width: min(100% - 32px, var(--container)); margin-inline: auto; }
+    .section { padding-block: var(--section-pad); position: relative; }
+
+    /* ===== UTIL ===== */
+    .hidden { display: none !important; }
+    .muted { color: var(--muted); }
+    .btn { display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--border); padding:.85rem 1.1rem; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); color: var(--text); box-shadow: var(--shadow); transition: transform .15s ease, border-color .2s ease, background .3s ease; cursor:pointer; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(124,92,255,.55); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; color: #0b0b12; font-weight: 700; }
+    .btn-ghost { background: transparent; }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .7rem; border-radius: 999px; border:1px solid var(--border); background: rgba(255,255,255,.03); font-size:.85rem; }
+
+    /* ===== TOP PROGRESS ===== */
+    .progress { position: fixed; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transform-origin: 0 50%; transform: scaleX(0); z-index: 1000; }
+
+    /* ===== NAV ===== */
+    header { position: sticky; top: 0; z-index: 999; backdrop-filter: saturate(130%) blur(10px); background: color-mix(in oklab, var(--bg-2) 85%, transparent); border-bottom: 1px solid var(--border); }
+    .nav { display:flex; align-items:center; justify-content: space-between; padding:.9rem 0; }
+    .brand { display:flex; align-items:center; gap:.75rem; }
+    .brand img { width: 40px; height: 40px; border-radius: 12px; object-fit: cover; }
+    .brand .title { font-family: "Space Grotesk", Inter, sans-serif; font-weight: 800; letter-spacing: .3px; }
+    .nav a { color: var(--muted); margin-inline: .9rem; font-weight: 500; }
+    .nav a:hover, .nav a.active { color: var(--text); }
+    .nav-cta { display:flex; align-items:center; gap:.6rem; }
+    .theme-toggle { inline-size: 42px; block-size: 42px; display:grid; place-items:center; border:1px solid var(--border); border-radius: 12px; background: var(--card); cursor:pointer; }
+
+    /* Mobile menu */
+    .menu-btn { display:none; }
+    @media (max-width: 920px) {
+      .menu-btn { display:inline-flex; }
+      .nav-links { position: fixed; inset: 64px 12px auto; background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding: 1rem; display:none; flex-direction: column; gap: .8rem; box-shadow: var(--shadow); }
+      .nav-links.open { display:flex; }
+      .nav a { margin: 0; padding: .7rem .85rem; border-radius: 10px; }
+      .nav a:hover { background: rgba(255,255,255,.04); }
+    }
+
+    /* ===== HERO ===== */
+    .hero { display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(24px, 6vw, 48px); align-items:center; min-height: clamp(560px, 80vh, 760px); }
+    .hero .intro { display:flex; flex-direction: column; gap: 1rem; }
+    .eyebrow { font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    h1 { font-family: "Space Grotesk", Inter, sans-serif; font-weight: 800; font-size: clamp(36px, 6vw, 72px); line-height: 1.05; margin: 0; }
+    h1 .accent { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .subtitle { font-size: clamp(16px, 2.3vw, 18px); color: var(--muted); }
+    .hero-cta { display:flex; gap:.8rem; flex-wrap: wrap; margin-top: .5rem; }
+
+    .portrait { position: relative; }
+    .portrait .card { border-radius: var(--radius-xl); border:1px solid var(--border); background: radial-gradient(120% 100% at 100% 0%, rgba(124,92,255,.12), rgba(94,211,243,.08) 40%, transparent 60%), var(--card); box-shadow: var(--shadow); overflow: hidden; }
+    .portrait img { aspect-ratio: 4/5; object-fit: cover; width: 100%; filter: saturate(1.02) contrast(1.02); }
+    .floating-blob { position:absolute; inset:auto -40px -40px auto; width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent-2), transparent 55%); filter: blur(30px) saturate(140%); opacity:.6; border-radius: 50%; pointer-events: none; animation: drift 9s ease-in-out infinite alternate; }
+    @keyframes drift { to { transform: translate(-20px, -10px) scale(1.05) rotate(10deg); } }
+
+    /* ===== ABOUT ===== */
+    .split { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 56px); align-items: center; }
+    .section h2 { font-family: "Space Grotesk"; font-size: clamp(28px, 4.2vw, 44px); margin: 0 0 .6rem; }
+    .lede { font-size: 1.05rem; color: var(--muted); }
+    .about-card { border:1px solid var(--border); background: var(--card); border-radius: var(--radius-xl); padding: clamp(16px, 2.2vw, 28px); box-shadow: var(--shadow); }
+
+    /* ===== SKILLS MARQUEE ===== */
+    .marquee { overflow: hidden; border:1px solid var(--border); border-radius: 14px; background: var(--card-2); }
+    .marquee-track { display:flex; gap: 22px; padding: 12px 18px; animation: slide 22s linear infinite; }
+    .chip { padding: .45rem .75rem; border-radius: 999px; border:1px dashed var(--border); background: rgba(255,255,255,.04); font-weight: 600; font-size: .92rem; white-space: nowrap; }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== PROJECTS ===== */
+    .project-controls { display:flex; flex-wrap: wrap; gap:.6rem; margin-bottom: 1rem; }
+    .filter-btn { padding:.55rem .9rem; border-radius: 999px; border:1px solid var(--border); background: var(--card); cursor:pointer; }
+    .filter-btn.active { background: linear-gradient(135deg, rgba(124,92,255,.15), rgba(94,211,243,.15)); border-color: color-mix(in oklab, var(--accent) 60%, var(--border)); }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 22px); }
+    .card { border:1px solid var(--border); border-radius: 16px; background: var(--card); overflow:hidden; transition: transform .18s ease, box-shadow .18s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in oklab, var(--accent) 55%, var(--border)); }
+    .card .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(94,211,243,.2)); display:grid; place-items:center; }
+    .card .content { padding: 14px 16px 18px; }
+    .tags { display:flex; gap:.45rem; flex-wrap: wrap; margin-top: .4rem; }
+    .tag { font-size:.78rem; border:1px solid var(--border); padding:.25rem .5rem; border-radius: 999px; color: var(--muted); }
+
+    /* ===== TIMELINE ===== */
+    .timeline { position: relative; margin-top: 24px; }
+    .timeline::before { content:""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent-2)); opacity:.6; }
+    .step { position: relative; padding-left: 36px; margin-bottom: 20px; }
+    .step::before { content:""; position:absolute; left: 2px; top: 3px; width: 16px; height: 16px; border-radius:50%; background: var(--card-2); border:2px solid var(--accent); }
+
+    /* ===== CONTACT ===== */
+    .contact-card { display:grid; gap: 14px; border:1px solid var(--border); border-radius: var(--radius-xl); padding: clamp(16px, 2.4vw, 28px); background: var(--card); box-shadow: var(--shadow); }
+    .contact-actions { display:flex; gap:.7rem; flex-wrap: wrap; }
+
+    /* ===== FOOTER ===== */
+    footer { padding: 36px 0; border-top: 1px solid var(--border); color: var(--muted); }
+
+    /* ===== REVEAL ANIM ===== */
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1020px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .nav .desktop-only { display:none; } }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="flex items-center justify-between container">
-            <div class="left flex items-center">
-                <div class="branding">
-                    <img src="./images/LOGO.png" alt="Logo" aria-label="Logo">
-                </div>
-                <div class="nav-links">
-                    <a href="#">Home</a>
-                    <a href="#about">About Me</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-            <div class="right">
-                <button class="btn btn-primary">CONTACT</button>
-            </div>
-        </nav>
-        <div class="me flex items-center justify-between container">
-            <div class="left">
-                <img src='./images/IMG-20241027-WA0009.jpg' alt='Profile Image'>
-            </div>
-            <div class="right flex-1 flex justify-center">
-                <div class="content">
-                    <h6>Hello, I am</h6>
-                    <h1>MOHAMMED SAAQIB <span>R</span></h1>
-                    <p>Hello, I'm Mohammed SaaQib, currently pursuing my B.Tech in Artificial Intelligence and Machine Learning at SRM University. Throughout my academic journey, I have immersed myself in a multitude of projects, honing my skills in Python and Java. My passion for technology drives me to constantly explore new challenges and innovative solutions. From developing sophisticated banking applications to creating intuitive weather forecasting tools and personal assistants, my projects reflect my commitment to leveraging programming languages to solve real-world problems. I am dedicated to continuing my growth in the field of AI and ML, aspiring to contribute meaningfully to the tech industry.
-
-                    </p>
-                    <button class="btn btn-secondary" onclick="window.open('https://yourdomain.com/documents/CV.pdf', '_blank')">DOWNLOAD CV</button>
-                </div>
-            </div>
+  <div class="progress" id="progress"></div>
+  <header>
+    <nav class="container nav" aria-label="Primary">
+      <div class="brand">
+        <img src="./images/LOGO.png" alt="Saaqib monogram" />
+        <span class="title">SAAQIB<span style="font-family:Bangers,system-ui; letter-spacing:1px; margin-left:.35ch; color:color-mix(in oklab, var(--accent) 75%, var(--text));">R</span></span>
+      </div>
+      <div class="nav-cta">
+        <div class="nav-links desktop-only" id="navLinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#timeline">Journey</a>
+          <a href="#contact">Contact</a>
         </div>
-    </header>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <!-- sun/moon -->
+          <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg id="iconMoon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="container nav-links" role="dialog" aria-label="Mobile Menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#timeline">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
 
-    <main>
-        <section id="about" class="about">
-            <div class="container flex items-center">
-                <div class="flex-1">
-                    <img class="about-me-image" src="./images/IMG-20241027-WA0010.jpg" alt="About Me Image">
-                </div>
-                <div class="flex-1">
-                    <h1>ABOUT ME</h1>
-                    <h3>HELLO, I'M MOHAMMED SAAQIB</h3>
-                    <p>Outside of my academic and professional pursuits, I have a deep passion for bike riding and car racing. The thrill of the open road and the precision required in racing provide an exhilarating contrast to my studies. Additionally, I find great joy in drawing, which allows me to express my creativity and unwind. Coding, on the other hand, is not just a skill but a hobby I thoroughly enjoy. It offers me a unique blend of problem-solving and creativity, much like my other interests. These activities not only enrich my personal life but also inspire my professional endeavors, fueling my creativity and drive in everything I do.</p>
-                    <div>
-                        <a href="#" class="btn btn-tertiary">View More</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <div class="container">
-                <h1>PROJECTS</h1>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <img src="./images/project1 logo.jpg" alt="Banking Application">
-                        <h3>BANKING APPLICATION</h3>
-                        <p>IT IS A BANKING APPLICATION USING PYTHON.</p>
-                    </div>
-                    <div class="project-item">
-                        <img src="./images/project2 logo.jpg" alt="Weather Forecast Website">
-                        <h3>WEATHER FORECAST WEBSITE</h3>
-                        <p>IT IS A WEATHER APP MADE USING PYTHON AND TKINTER.</p>
-                    </div>
-                    <div class="project-item">
-                        <img src="./images/project3 logo.jpg" alt="Personal Assistant">
-                        <h3>PERSONAL ASSISTANT</h3>
-                        <p>THIS PROJECT IS INSPIRED FROM JARVIS IN IRONMAN AND IT IS CAPABLE OF EVERYTHING WE NEED</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="container">
-                <h1>CONTACT</h1>
-                <p>If you'd like to get in touch, please email me at <a href="mailto:saaqibindia@gmail.com">saaqibindia@gmail.com</a>.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 MOHAMMED SAAQIB R</p>
+  <main id="home" class="container section">
+    <section class="hero">
+      <div class="intro reveal">
+        <span class="badge eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> AI & ML @ SRM</span>
+        <h1>Hi, I'm <span class="accent">MOHAMMED SAAQIB</span> R</h1>
+        <p class="subtitle">I build practical software with <strong>Python</strong> and <strong>Java</strong> — from a banking app and a Tkinter weather tool to a JARVIS‑inspired personal assistant. I love turning ideas into clean, useful products.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects" aria-label="See projects">Explore Projects</a>
+          <a class="btn btn-ghost" href="#contact" aria-label="Contact">Contact Me</a>
+          <a class="btn" href="./documents/CV.pdf" target="_blank" rel="noopener" aria-label="Download CV">Download CV</a>
         </div>
-    </footer>
+      </div>
+      <div class="portrait reveal">
+        <div class="card">
+          <img src="./images/IMG-20241027-WA0009.jpg" alt="Portrait of Mohammed SaaQib" />
+        </div>
+        <div class="floating-blob" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="about" class="section">
+    <div class="container split">
+      <div class="about-card reveal">
+        <img class="about-img" src="./images/IMG-20241027-WA0010.jpg" alt="Saaqib on a ride — hobbies and life" style="border-radius:16px;"/>
+      </div>
+      <div class="reveal">
+        <h2>About Me</h2>
+        <p class="lede">B.Tech in <strong>Artificial Intelligence & Machine Learning</strong> at SRM University. I'm curious, hands‑on, and happiest when I'm shipping small wins daily.</p>
+        <p>Beyond code: I enjoy <strong>bike riding</strong>, <strong>car racing</strong>, and <strong>drawing</strong>. These fuel my creativity and focus — the same energy I bring to building products and solving problems.</p>
+        <div style="height:12px"></div>
+        <div class="marquee" aria-label="Tech stack and skills">
+          <div class="marquee-track">
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">Tkinter</span>
+            <span class="chip">Flask</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Git & GitHub</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Data Structures</span>
+            <span class="chip">OOP</span>
+            <span class="chip">AI/ML</span>
+            <span class="chip">Problem Solving</span>
+            <!-- repeat for continuous scroll -->
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">Tkinter</span>
+            <span class="chip">Flask</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Git & GitHub</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Data Structures</span>
+            <span class="chip">OOP</span>
+            <span class="chip">AI/ML</span>
+            <span class="chip">Problem Solving</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="reveal">Projects</h2>
+      <div class="project-controls reveal" role="tablist" aria-label="Project filters">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="python" role="tab">Python</button>
+        <button class="filter-btn" data-filter="ui" role="tab">UI</button>
+        <button class="filter-btn" data-filter="ml" role="tab">AI/ML</button>
+      </div>
+      <div class="grid" id="projectGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="container">
+      <h2 class="reveal">Journey</h2>
+      <div class="timeline reveal">
+        <div class="step">
+          <h3>2024–2025 · B.Tech AI/ML @ SRM</h3>
+          <p class="muted">Diving deep into Python, Java, and applied ML. Building projects that turn classroom theory into real utility.</p>
+        </div>
+        <div class="step">
+          <h3>Projects Milestone</h3>
+          <p class="muted">Shipped a <strong>banking app</strong> (Python), a <strong>weather app</strong> (Tkinter), and a <strong>JARVIS‑style assistant</strong> with speech, search, and task automation.</p>
+        </div>
+        <div class="step">
+          <h3>What's Next</h3>
+          <p class="muted">Exploring backend APIs with Flask/FastAPI, polishing UI/UX, and adding small ML features to make apps smarter — not just bigger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="reveal">Contact</h2>
+      <div class="contact-card reveal">
+        <p>Want to collaborate or just say hi? I'm always open to good ideas and interesting problems.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:saaqibindia@gmail.com" aria-label="Email Saaqib">Email Me</a>
+          <button class="btn" id="copyEmail" type="button" aria-live="polite">Copy Email</button>
+          <a class="btn" href="./documents/CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+        <span class="muted" id="copyState" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span>© <span id="year"></span> MOHAMMED SAAQIB R</span>
+        <div style="display:flex; gap:.6rem; align-items:center;">
+          <a class="badge" href="#home" aria-label="Back to top">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== THEME TOGGLE ======
+    const themeToggle = document.getElementById('themeToggle');
+    const iconSun = document.getElementById('iconSun');
+    const iconMoon = document.getElementById('iconMoon');
+
+    function applyTheme(mode) {
+      const html = document.documentElement;
+      if (mode === 'light') { html.setAttribute('data-theme','light'); iconSun.classList.add('hidden'); iconMoon.classList.remove('hidden'); }
+      else if (mode === 'dark') { html.setAttribute('data-theme','dark'); iconSun.classList.remove('hidden'); iconMoon.classList.add('hidden'); }
+      else { html.setAttribute('data-theme','auto'); const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; iconSun.classList.toggle('hidden', !prefersDark); iconMoon.classList.toggle('hidden', prefersDark); }
+    }
+    const savedTheme = localStorage.getItem('theme-mode') || 'auto';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = localStorage.getItem('theme-mode') || 'auto';
+      const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
+      localStorage.setItem('theme-mode', next);
+      applyTheme(next);
+    });
+
+    // ====== MOBILE MENU ======
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // ====== TOP PROGRESS BAR ======
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+      progress.style.transform = `scaleX(${scrolled})`;
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ====== REVEAL ON SCROLL ======
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ====== PROJECTS DATA + FILTER ======
+    const projects = [
+      {
+        title: 'Banking Application',
+        img: './images/project1 logo.jpg',
+        alt: 'Banking app dashboard',
+        desc: 'A Python banking app focusing on clean design and reliable transactions.',
+        tags: ['Python', 'OOP', 'CLI/UI'],
+        cat: ['python']
+      },
+      {
+        title: 'Weather Forecast (Tkinter)',
+        img: './images/project2 logo.jpg',
+        alt: 'Weather UI mock',
+        desc: 'A fast Tkinter desktop app with real-time weather and city search.',
+        tags: ['Python', 'Tkinter', 'API'],
+        cat: ['python','ui']
+      },
+      {
+        title: 'Personal Assistant (JARVIS‑inspired)',
+        img: './images/project3 logo.jpg',
+        alt: 'Assistant console view',
+        desc: 'Local assistant with commands for search, notes, reminders, and quick tasks.',
+        tags: ['Python', 'Automation', 'Speech'],
+        cat: ['python','ml']
+      }
+    ];
+
+    const grid = document.getElementById('projectGrid');
+    function render(filter = 'all') {
+      grid.innerHTML = '';
+      const list = filter === 'all' ? projects : projects.filter(p => p.cat.includes(filter));
+      for (const p of list) {
+        grid.insertAdjacentHTML('beforeend', `
+          <article class="card reveal" tabindex="0" aria-label="${p.title}">
+            <div class="thumb"><img src="${p.img}" alt="${p.alt}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'"/></div>
+            <div class="content">
+              <h3 style="margin:.2rem 0 .25rem; font-size:1.1rem">${p.title}</h3>
+              <p class="muted" style="margin:0 0 .6rem">${p.desc}</p>
+              <div class="tags">${p.tags.map(t => `<span class='tag'>${t}</span>`).join('')}</div>
+            </div>
+          </article>
+        `);
+      }
+      document.querySelectorAll('#projects .reveal').forEach(el => io.observe(el));
+    }
+    render();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    }));
+
+    // ====== COPY EMAIL ======
+    const copyBtn = document.getElementById('copyEmail');
+    const copyState = document.getElementById('copyState');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('saaqibindia@gmail.com');
+        copyState.textContent = 'Email copied to clipboard ✔';
+        setTimeout(() => copyState.textContent = '', 1800);
+      } catch (e) { copyState.textContent = 'Copy failed — just email me!'; }
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohammed SaaQib R",
+    "alumniOf": "SRM University",
+    "description": "AI/ML student building useful software in Python and Java.",
+    "email": "mailto:saaqibindia@gmail.com",
+    "url": "",
+    "image": "./images/IMG-20241027-WA0009.jpg",
+    "sameAs": []
+  }
+  </script>
 </body>
 </html>
