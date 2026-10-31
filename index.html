@@ -1527,7 +1527,6 @@
       z-index: 99999;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       overflow: hidden;
       opacity: 1;
       visibility: visible;
@@ -1551,118 +1550,38 @@
       height: 100%;
       object-fit: cover;
       object-position: center 25%;
-      filter: contrast(1.04) brightness(0.96);
+      filter: contrast(1.02) brightness(1);
     }
-    .intro-gradient-overlay {
+    .intro-unmute-badge {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(8, 9, 13, 0.6) 100%),
-                  linear-gradient(180deg, rgba(8, 9, 13, 0.7) 0%, transparent 25%, transparent 65%, rgba(8, 9, 13, 0.95) 100%);
-      pointer-events: none;
-    }
-    .intro-header {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: clamp(16px, 3vw, 28px) clamp(20px, 4vw, 40px);
-    }
-    .intro-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(8, 9, 13, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    .intro-brand-title {
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      color: #ffffff;
-      font-family: var(--font-mono);
-    }
-    .intro-brand-tag {
-      color: var(--accent-primary);
-      font-weight: 600;
-    }
-    .intro-skip-btn {
-      display: inline-flex;
+      top: 24px;
+      right: 24px;
+      z-index: 25;
+      display: none;
       align-items: center;
       gap: 8px;
       background: rgba(8, 9, 13, 0.75);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: var(--radius-full);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
+      animation: pulseGlow 2s infinite ease-in-out;
     }
-    .intro-skip-btn:hover {
+    .intro-unmute-badge:hover {
       background: var(--accent-primary);
       border-color: var(--accent-primary);
-      transform: translateY(-2px);
+      transform: scale(1.05);
     }
-    .intro-kbd {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-    }
-    .intro-bottom-banner {
-      position: relative;
-      z-index: 10;
-      padding: clamp(20px, 4vw, 44px) clamp(20px, 4vw, 40px);
-      max-width: 800px;
-    }
-    .intro-kicker {
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      letter-spacing: 0.15em;
-      color: var(--accent-secondary);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-    .intro-title {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      line-height: 1.05;
-      margin-bottom: 8px;
-      text-shadow: 0 4px 16px rgba(0,0,0,0.8);
-    }
-    .intro-sub {
-      font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 500;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    }
-    .intro-progress-bar {
-      width: 100%;
-      max-width: 380px;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.18);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .intro-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      transition: width 0.1s linear;
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.6); }
+      50% { box-shadow: 0 0 0 8px rgba(255, 71, 87, 0); }
     }
     .intro-play-prompt {
       position: absolute;
@@ -1731,26 +1650,13 @@
 
 <body>
   <!-- ========================================================================
-       CINEMATIC VIDEO OPENING OVERLAY
+       CINEMATIC VIDEO OPENING OVERLAY (Pure Fullscreen with Sound)
        ======================================================================== -->
   <div id="cinematicIntro" class="cinematic-intro" role="dialog" aria-modal="true" aria-label="Cinematic Opening">
     <div class="intro-video-container">
-      <video id="introVideo" class="intro-video-player" playsinline muted autoplay preload="auto" poster="./hero_stopped.jpg">
+      <video id="introVideo" class="intro-video-player" playsinline autoplay preload="auto" poster="./hero_stopped.jpg">
         <source src="./intro.mp4" type="video/mp4"/>
       </video>
-      <div class="intro-gradient-overlay"></div>
-    </div>
-
-    <!-- Cinematic Overlay Top Header -->
-    <div class="intro-header">
-      <div class="intro-brand">
-        <span class="status-dot"></span>
-        <span class="intro-brand-title">MOHAMMED SAAQIB R <span class="intro-brand-tag">// OPENING</span></span>
-      </div>
-      <button class="intro-skip-btn" id="skipIntroBtn" title="Skip directly to portfolio (Esc or Click)">
-        <span>Skip to Home</span>
-        <span class="intro-kbd">ESC</span>
-      </button>
     </div>
 
     <!-- Fallback Play Prompt if strict browser blocks autoplay -->
@@ -1761,15 +1667,14 @@
       </button>
     </div>
 
-    <!-- Cinematic Bottom Banner / Subtitle -->
-    <div class="intro-bottom-banner" id="introBanner">
-      <div class="intro-kicker">SRM INSTITUTE OF SCIENCE & TECHNOLOGY · BATCH OF 2027</div>
-      <h1 class="intro-title">MOHAMMED SAAQIB R</h1>
-      <p class="intro-sub">Clinical AI · Tele-Radiology (DICOM) · Production Systems</p>
-      <div class="intro-progress-bar">
-        <div class="intro-progress-fill" id="introProgressFill"></div>
-      </div>
-    </div>
+    <!-- Floating Sound / Unmute pill in case browser initially blocks unmuted autoplay -->
+    <button id="introUnmuteBadge" class="intro-unmute-badge" aria-label="Toggle Sound" title="Click to enable sound">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <span>Click for Sound 🔊</span>
+    </button>
   </div>
 
   <!-- Scroll Progress Indicator -->
@@ -3460,12 +3365,11 @@
     renderProjects('all');
 
     /* ========================================================================
-       CINEMATIC VIDEO OPENING CONTROLLER
+       CINEMATIC VIDEO OPENING CONTROLLER (Clean Fullscreen with Audio)
        ======================================================================== */
     const cinematicIntro = document.getElementById('cinematicIntro');
     const introVideo = document.getElementById('introVideo');
-    const skipIntroBtn = document.getElementById('skipIntroBtn');
-    const introProgressFill = document.getElementById('introProgressFill');
+    const introUnmuteBadge = document.getElementById('introUnmuteBadge');
     const replayNavBtn = document.getElementById('replayNavBtn');
     const replayHeroBtn = document.getElementById('replayHeroBtn');
     const replayIntroHeroBtn = document.getElementById('replayIntroHeroBtn');
@@ -3473,7 +3377,7 @@
     const introPlayPrompt = document.getElementById('introPlayPrompt');
     const startIntroPlayBtn = document.getElementById('startIntroPlayBtn');
 
-    // Person stops walking and poses at ~8.8s
+    // Person stops walking and poses at ~8.8s -> transforms into home screen
     const PERSON_STOP_TIME = 8.8;
     const heroContentLayer = document.getElementById('heroContentLayer');
     let introFinished = false;
@@ -3494,6 +3398,16 @@
       sessionStorage.setItem('portfolio_intro_seen', 'true');
     }
 
+    function unmuteIntroAudio() {
+      if (introVideo) {
+        introVideo.muted = false;
+        introVideo.volume = 1.0;
+      }
+      if (introUnmuteBadge) {
+        introUnmuteBadge.style.display = 'none';
+      }
+    }
+
     function startIntro(isReplay = false) {
       introFinished = false;
       if (cinematicIntro) {
@@ -3503,12 +3417,26 @@
         heroContentLayer.classList.remove('hero-details-revealed');
       }
       document.body.style.overflow = 'hidden';
+
       if (introVideo) {
         introVideo.currentTime = 0;
+        introVideo.muted = false;
+        introVideo.volume = 1.0;
+
         const playPromise = introVideo.play();
         if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            if (introPlayPrompt) introPlayPrompt.style.display = 'grid';
+          playPromise.then(() => {
+            // Unmuted autoplay with sound successful!
+            if (introUnmuteBadge) introUnmuteBadge.style.display = 'none';
+          }).catch(err => {
+            console.log('Browser blocked initial unmuted autoplay, playing muted until tap:', err);
+            // Fallback for strict browser autoplay: start video, show audio prompt
+            introVideo.muted = true;
+            introVideo.play().then(() => {
+              if (introUnmuteBadge) introUnmuteBadge.style.display = 'inline-flex';
+            }).catch(() => {
+              if (introPlayPrompt) introPlayPrompt.style.display = 'grid';
+            });
           });
         }
       }
@@ -3521,11 +3449,7 @@
       introVideo.addEventListener('timeupdate', () => {
         if (!introVideo.duration) return;
         const current = introVideo.currentTime;
-        const progress = Math.min(100, (current / PERSON_STOP_TIME) * 100);
-        if (introProgressFill) {
-          introProgressFill.style.width = `${progress}%`;
-        }
-        // When the person in the video stops walking (at 8.8s) -> becomes the home screen!
+        // When the person in the video stops walking (at ~8.8s) -> becomes the home screen!
         if (current >= PERSON_STOP_TIME) {
           finishIntro();
         }
@@ -3534,13 +3458,26 @@
       introVideo.addEventListener('ended', finishIntro);
     }
 
-    if (skipIntroBtn) {
-      skipIntroBtn.addEventListener('click', finishIntro);
+    if (introUnmuteBadge) {
+      introUnmuteBadge.addEventListener('click', (e) => {
+        e.stopPropagation();
+        unmuteIntroAudio();
+      });
     }
+
+    // Auto-unmute on first user touch, click, or key anywhere on the screen
+    ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
+      document.addEventListener(evt, unmuteIntroAudio, { once: true });
+    });
+
     if (startIntroPlayBtn) {
       startIntroPlayBtn.addEventListener('click', () => {
         if (introPlayPrompt) introPlayPrompt.style.display = 'none';
-        if (introVideo) introVideo.play();
+        if (introVideo) {
+          introVideo.muted = false;
+          introVideo.volume = 1.0;
+          introVideo.play();
+        }
       });
     }
 
@@ -3550,16 +3487,6 @@
           e.preventDefault();
           startIntro(true);
         });
-      }
-    });
-
-    // Keyboard shortcut: Escape or Space to skip intro
-    document.addEventListener('keydown', (e) => {
-      if (!introFinished) {
-        if (e.key === 'Escape' || e.key === ' ') {
-          e.preventDefault();
-          finishIntro();
-        }
       }
     });
 
