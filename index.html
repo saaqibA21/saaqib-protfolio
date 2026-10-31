@@ -1,642 +1,3027 @@
 <!doctype html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MOHAMMED SAAQIB R — AI/ML Engineer & Full-Stack Developer</title>
-  <meta name="description" content="Portfolio of Mohammed Saaqib R — B.Tech AI & ML @ SRM IST (2027). Specializing in Clinical AI, Tele-Radiology, and Enterprise Full-Stack Systems."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Mohammed Saaqib R — AI/ML Engineer & Systems Developer</title>
+  <meta name="description" content="Portfolio of Mohammed Saaqib R — B.Tech AI & ML @ SRMIST (2027). Specializing in Clinical AI, Point-of-Care Ultrasound, Tele-Radiology (DICOM), and Production Enterprise Platforms."/>
   <meta name="author" content="Mohammed Saaqib R"/>
-  <meta name="theme-color" id="themeColor" content="#0b0b0f"/>
+  <meta name="theme-color" id="themeColor" content="#08090d"/>
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="MOHAMMED SAAQIB R — Portfolio"/>
-  <meta property="og:description" content="AI/ML Engineer & Full-Stack Developer specializing in Healthcare AI, Medical Imaging, and Production Software."/>
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Mohammed Saaqib R — AI/ML Engineer & Systems Developer"/>
+  <meta property="og:description" content="Engineering clinical decision support algorithms, zero-footprint medical imaging pipelines, and high-throughput production web systems."/>
   <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://saaqiba21.github.io/saaqib-protfolio/"/>
   <meta property="og:image" content="./profile_photo.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
 
-  <!-- Fonts -->
+  <!-- Distinctive, Professional Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700;800&family=Bangers&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
   <style>
-    /* ===== Reset */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-    img,svg,video,canvas{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
-
-    /* ===== Theme: Red / Black (with light variant) */
-    :root{
-      --bg:#0b0b0f;         /* page base */
-      --bg-2:#0e0e13;       /* header/cards base */
-      --text:#f3f4f6;
-      --muted:#a1a1aa;
-      --card:#111116;
-      --card-2:#15151c;
-      --border:#202028;
-      --accent:#ff3b3b;     /* neon red */
-      --accent-2:#ff0054;   /* hot magenta */
-      --accent-soft: color-mix(in oklab, var(--accent) 55%, transparent);
-      --radius:16px; --radius-xl:22px;
-      --shadow:0 16px 40px rgba(0,0,0,.35);
-      --container:1280px;
-      --section-pad:clamp(60px,7vw,110px);
-      --focus: 0 0 0 3px color-mix(in oklab, var(--accent) 60%, transparent);
+    /* ==========================================================================
+       RESET & THEME TOKENS — Precision Engineering Aesthetic (No AI Slop)
+       ========================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
     }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#f8fafc; --bg-2:#ffffff; --text:#0b0b0f; --muted:#5b5b66;
-        --card:#ffffff; --card-2:#fafafb; --border:#e5e7eb;
-        --shadow:0 12px 30px rgba(0,0,0,.08);
-      }
-    }
-    [data-theme="light"]{
-      --bg:#f8fafc; --bg-2:#ffffff; --text:#0b0b0f; --muted:#5b5b66;
-      --card:#ffffff; --card-2:#fafafb; --border:#e5e7eb;
-      --shadow:0 12px 30px rgba(0,0,0,.08);
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--text-main);
+      background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(ellipse 900px 500px at 50% -50px, var(--glow-hero), transparent 75%),
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+      background-position: center top, center top, center top;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 100% -10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%),
-        radial-gradient(900px 600px at -5% 110%, color-mix(in oklab, var(--accent-2) 16%, transparent), transparent 70%),
-        linear-gradient(transparent 97%, color-mix(in oklab, var(--accent) 15%, transparent) 0) 0 0/100% 22px,
-        linear-gradient(90deg, color-mix(in oklab, var(--accent-2) 8%, transparent) 1px, transparent 1px) 0 0/22px 22px,
-        linear-gradient(180deg,var(--bg-2),var(--bg));
-      min-height:100vh; overflow-x:hidden;
-    }
-    .container{width:min(100% - 32px,var(--container));margin-inline:auto}
-    .section{padding-block:var(--section-pad);position:relative}
+    :root {
+      /* Dark Palette: Titanium, Slate, Deep Obsidian */
+      --bg-canvas: #08090d;
+      --bg-surface: #0f1118;
+      --bg-surface-elevated: #151824;
+      --bg-surface-glass: rgba(15, 17, 24, 0.82);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.16);
+      --border-active: rgba(255, 71, 87, 0.45);
+      
+      --text-main: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-tertiary: #64748b;
+      --text-inverse: #08090d;
 
-    /* Utils */
-    .hidden{display:none!important}
-    .muted{color:var(--muted)}
-    .badge{display:inline-flex;gap:.5rem;align-items:center;padding:.4rem .75rem;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);font-size:.85rem}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--border);padding:.85rem 1.15rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:var(--text);box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease,border-color .2s ease,background .3s ease;position:relative;overflow:hidden;font-weight:600}
-    .btn:hover{transform:translateY(-2px);border-color:var(--accent-soft)}
-    .btn:focus-visible{outline:none;box-shadow:var(--focus)}
-    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border:none;color:#09090b;font-weight:800;letter-spacing:.2px}
-    .btn-ghost{background:transparent}
-    .btn-sm{padding:.45rem .85rem;font-size:.85rem}
-
-    /* Progress bar */
-    .progress{position:fixed;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform-origin:0 50%;transform:scaleX(0);z-index:1000}
-
-    /* Header/Nav */
-    header{position:sticky;top:0;z-index:999;backdrop-filter:saturate(130%) blur(10px);background:color-mix(in oklab,var(--bg-2) 88%,transparent);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0}
-    .brand{display:flex;align-items:center;gap:.75rem}
-    .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover;border:1.5px solid var(--accent)}
-    .brand .title{font-family:"Space Grotesk",Inter,sans-serif;font-weight:800;letter-spacing:.3px;font-size:1.15rem}
-    .nav a{color:var(--muted);margin-inline:.85rem;font-weight:600;transition:color .2s}
-    .nav a:hover,.nav a.active{color:var(--text)}
-    .nav-cta{display:flex;align-items:center;gap:.6rem}
-    .theme-toggle{inline-size:42px;block-size:42px;display:grid;place-items:center;border:1px solid var(--border);border-radius:12px;background:var(--card);cursor:pointer}
-    .menu-btn{display:none}
-
-    @media (max-width:920px){
-      .menu-btn{display:inline-flex}
-      .nav-links{position:fixed;inset:64px 12px auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;display:none;flex-direction:column;gap:.8rem;box-shadow:var(--shadow)}
-      .nav-links.open{display:flex}
-      .nav a{margin:0;padding:.7rem .85rem;border-radius:10px}
-      .nav a:hover{background:rgba(255,255,255,.04)}
+      --accent-primary: #ff4757;       /* Precision surgical crimson */
+      --accent-primary-hover: #ff6b81;
+      --accent-secondary: #38bdf8;     /* Clinical diagnostic cyan */
+      --accent-tertiary: #10b981;      /* Live telemetry emerald */
+      
+      --glow-hero: rgba(255, 71, 87, 0.08);
+      --grid-line: rgba(255, 255, 255, 0.024);
+      --card-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--border-subtle);
+      --card-shadow-hover: 0 20px 48px -6px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--border-medium);
+      
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --container-max: 1220px;
+      --header-height: 72px;
     }
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,48px);align-items:center;min-height:clamp(540px,75vh,720px)}
-    .hero .intro{display:flex;flex-direction:column;gap:1rem}
-    .eyebrow{font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    h1{font-family:"Space Grotesk",Inter,sans-serif;font-weight:800;font-size:clamp(36px,5.5vw,68px);line-height:1.05;margin:0}
-    h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .subtitle{font-size:clamp(15px,1.9vw,17.5px);color:var(--muted);line-height:1.6}
-    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.4rem}
-    .portrait{position:relative;perspective:800px}
-    .portrait .card{border-radius:var(--radius-xl);border:1.5px solid var(--border);background:radial-gradient(120% 100% at 100% 0%, color-mix(in oklab, var(--accent) 12%, transparent), color-mix(in oklab, var(--accent-2) 8%, transparent) 40%, transparent 60%), var(--card);box-shadow:var(--shadow);overflow:hidden;transform-style:preserve-3d}
-    .portrait img{aspect-ratio:1/1;object-fit:cover;width:100%;filter:saturate(1.02) contrast(1.02)}
-    .floating-blob{position:absolute;inset:auto -40px -40px auto;width:200px;height:200px;background:radial-gradient(circle at 30% 30%,var(--accent),transparent 60%),radial-gradient(circle at 70% 70%,var(--accent-2),transparent 55%);filter:blur(28px) saturate(140%);opacity:.6;border-radius:50%;pointer-events:none}
+    [data-theme="light"] {
+      --bg-canvas: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-surface-glass: rgba(255, 255, 255, 0.88);
+      --border-subtle: rgba(15, 23, 42, 0.08);
+      --border-medium: rgba(15, 23, 42, 0.16);
+      --border-active: rgba(225, 29, 72, 0.45);
+      
+      --text-main: #0f172a;
+      --text-secondary: #475569;
+      --text-tertiary: #64748b;
+      --text-inverse: #ffffff;
 
-    /* About / Split */
-    .split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,56px);align-items:center}
-    .section h2{font-family:"Space Grotesk";font-size:clamp(28px,4vw,42px);margin:0 0 .6rem;letter-spacing:-.5px}
-    .section-desc{font-size:1.05rem;color:var(--muted);margin-bottom:1.8rem}
-    .lede{font-size:1.05rem;color:var(--muted);line-height:1.6}
-    .about-card{border:1px solid var(--border);background:var(--card);border-radius:var(--radius-xl);padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center}
-    .about-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px}
+      --accent-primary: #e11d48;
+      --accent-primary-hover: #be123c;
+      --accent-secondary: #0284c7;
+      --accent-tertiary: #059669;
 
-    /* Skills marquee */
-    .marquee{overflow:hidden;border:1px solid var(--border);border-radius:14px;background:var(--card-2);margin-top:1.2rem}
-    .marquee-track{display:flex;gap:18px;padding:12px 18px;animation:slide 24s linear infinite}
-    .chip{padding:.4rem .75rem;border-radius:999px;border:1px dashed var(--border);background:rgba(255,255,255,.04);font-weight:700;font-size:.88rem;white-space:nowrap}
-    @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+      --glow-hero: rgba(225, 29, 72, 0.05);
+      --grid-line: rgba(15, 23, 42, 0.035);
+      --card-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border-subtle);
+      --card-shadow-hover: 0 18px 40px -4px rgba(15, 23, 42, 0.12), 0 0 0 1px var(--border-medium);
+    }
 
-    /* Projects */
-    .project-controls{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
-    .filter-btn{padding:.5rem .95rem;border-radius:999px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-weight:600;color:var(--muted);transition:all .2s}
-    .filter-btn:hover{color:var(--text);border-color:var(--accent-soft)}
-    .filter-btn.active{background:linear-gradient(135deg, color-mix(in oklab, var(--accent) 18%, transparent), color-mix(in oklab, var(--accent-2) 18%, transparent));border-color:var(--accent);color:var(--text)}
-    
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(16px,2.2vw,24px)}
-    .card{position:relative;border:1px solid var(--border);border-radius:18px;background:var(--card);overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;display:flex;flex-direction:column}
-    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:color-mix(in oklab,var(--accent) 55%,var(--border))}
-    .card::before{content:"";position:absolute;inset:-1px;border-radius:18px;padding:1px;background:conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent));-webkit-mask:linear-gradient(#0000,#0000),linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#0000,#0000),linear-gradient(#000 0 0);mask-composite:exclude;opacity:.0;transition:opacity .25s ease}
-    .card:hover::before{opacity:.45}
-    .card .thumb{aspect-ratio:16/9;background:linear-gradient(135deg, color-mix(in oklab, var(--accent) 22%, transparent), color-mix(in oklab, var(--accent-2) 22%, transparent));display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--border)}
-    .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-    .card:hover .thumb img{transform:scale(1.04)}
-    .card .content{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column}
-    .tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:auto;padding-top:12px}
-    .tag{font-size:.76rem;border:1px solid var(--border);padding:.22rem .5rem;border-radius:999px;color:var(--muted);background:rgba(255,255,255,.02)}
-    .card-actions{display:flex;gap:.6rem;margin-top:14px}
+    /* Core Layout */
+    .container {
+      width: min(100% - 40px, var(--container-max));
+      margin-inline: auto;
+    }
+    .section-wrap {
+      padding-block: clamp(64px, 8vw, 110px);
+      position: relative;
+    }
+    .mono { font-family: var(--font-mono); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
 
-    /* Certifications Grid */
-    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .cert-card{border:1px solid var(--border);border-radius:16px;background:var(--card);padding:18px 20px;display:flex;flex-direction:column;gap:6px;transition:border-color .2s}
-    .cert-card:hover{border-color:color-mix(in oklab,var(--accent) 50%,var(--border))}
-    .cert-header{display:flex;justify-content:space-between;align-items:baseline}
-    .cert-org{font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--accent);letter-spacing:.5px}
-    .cert-date{font-size:.8rem;color:var(--muted)}
-    .cert-title{font-size:1.05rem;font-weight:700;margin:2px 0}
-    .cert-id{font-size:.78rem;font-family:monospace;color:var(--muted)}
+    /* Reading Progress */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.05s ease-out;
+    }
 
-    /* Timeline */
-    .timeline{position:relative;margin-top:24px}
-    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent-2));opacity:.6}
-    .step{position:relative;padding-left:36px;margin-bottom:24px}
-    .step::before{content:"";position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--card-2);border:2px solid var(--accent)}
+    /* ==========================================================================
+       NAVIGATION BAR — Sleek, Tactile, Fixed
+       ========================================================================== */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .brand-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1.5px solid var(--border-medium);
+      position: relative;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .brand-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+    }
+    .brand-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 0.15s ease;
+      position: relative;
+      padding-block: 4px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-primary);
+      border-radius: 2px;
+    }
 
-    /* Contact */
-    .contact-card{display:grid;gap:16px;border:1px solid var(--border);border-radius:var(--radius-xl);padding:clamp(20px,3vw,36px);background:var(--card);box-shadow:var(--shadow)}
-    .contact-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kbd-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      transition: all 0.2s ease;
+    }
+    .kbd-btn:hover {
+      border-color: var(--border-medium);
+      color: var(--text-main);
+    }
+    .kbd-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+    }
+    .theme-btn {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+    .theme-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-medium);
+    }
+    .mobile-menu-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+    }
 
-    /* Footer */
-    footer{padding:36px 0;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+    /* Mobile Drawer */
+    .mobile-nav-panel {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px 20px 24px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .mobile-nav-panel.open {
+      display: flex;
+    }
+    .mobile-nav-panel a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 0;
+    }
 
-    /* Reveal on scroll */
-    .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
-    .reveal.visible{opacity:1;transform:none}
+    /* ==========================================================================
+       HERO SECTION — High Authority & Real Engineering Profile
+       ========================================================================== */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+      padding-top: clamp(24px, 4vw, 56px);
+      padding-bottom: clamp(40px, 6vw, 72px);
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-medium);
+      background: var(--bg-surface);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-tertiary);
+      box-shadow: 0 0 10px var(--accent-tertiary);
+      animation: pulseDot 2.4s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
 
-    /* Responsive tweaks */
-    @media (max-width:1100px){.hero{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}}
-    @media (max-width:768px){.hero{grid-template-columns:1fr;text-align:center}.hero-cta{justify-content:center}.portrait{max-width:320px;margin:0 auto}}
+    .hero-title {
+      font-size: clamp(2.3rem, 4.4vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+    }
+    .hero-title span.highlight {
+      background: linear-gradient(135deg, var(--text-main) 40%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subhead {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-weight: 600;
+      color: var(--accent-primary);
+      letter-spacing: -0.01em;
+    }
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+    .hero-bio strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
 
-    /* Command palette (⌘/Ctrl-K) */
-    .cmd{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:2000}
-    .cmd.open{display:grid}
-    .cmd-panel{width:min(92vw,640px);border:1px solid var(--border);border-radius:18px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
-    .cmd-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;gap:.8rem;align-items:center}
-    .cmd-input{flex:1;background:transparent;border:none;color:var(--text);outline:none;font-size:1rem}
-    .cmd-list{max-height:50vh;overflow:auto}
-    .cmd-item{padding:.9rem 1.2rem;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-    .cmd-item:hover,.cmd-item:focus{background:color-mix(in oklab,var(--accent) 12%, transparent)}
-    .kbd{font-size:.76rem;border:1px solid var(--border);padding:.15rem .45rem;border-radius:6px;color:var(--muted)}
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 18px rgba(255, 71, 87, 0.3);
+    }
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255, 71, 87, 0.4);
+    }
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-medium);
+    }
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-surface-elevated);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-ghost:hover {
+      color: var(--text-main);
+      border-color: var(--border-medium);
+    }
+
+    /* Hero Profile Card */
+    .hero-profile-card {
+      position: relative;
+    }
+    .profile-card-inner {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-image-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-surface-elevated);
+      position: relative;
+    }
+    .profile-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.02);
+      transition: transform 0.4s ease;
+    }
+    .profile-card-inner:hover .profile-image-wrap img {
+      transform: scale(1.03);
+    }
+    .profile-card-telemetry {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .tele-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .tele-label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+    }
+    .tele-value {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    /* Metrics Strip */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+      padding: 20px 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .metric-number {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+    }
+    .metric-number span.accent {
+      color: var(--accent-primary);
+    }
+    .metric-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS — Editorial & Crisp
+       ========================================================================== */
+    .section-head {
+      margin-bottom: clamp(32px, 5vw, 48px);
+      max-width: 780px;
+    }
+    .section-kicker {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE CLINICAL AI WORKSTATION — Real Engineering, ZERO AI SLOP!
+       ========================================================================== */
+    .workstation-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+    .workstation-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--bg-surface-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .workstation-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .workstation-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-canvas);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+    .ws-tab-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+    .ws-tab-btn.active {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-medium);
+    }
+
+    .workstation-body {
+      padding: clamp(20px, 3vw, 36px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(24px, 4vw, 44px);
+      align-items: start;
+    }
+    .ws-viewport {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .ws-canvas-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 220px;
+    }
+    .ws-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .ws-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ws-control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    .ws-control-label span.value {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .ws-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--bg-surface-elevated);
+      outline: none;
+    }
+    .ws-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      cursor: pointer;
+      border: 2px solid var(--bg-canvas);
+    }
+    .ws-readout-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-top: 10px;
+    }
+    .ws-readout-title {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .ws-readout-stat {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+    .ws-readout-status {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .status-normal { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .status-warning { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    .status-danger { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+    /* ==========================================================================
+       PROJECTS SECTION — Interactive Filtering & Cards
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-pill {
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+    .filter-pill:hover {
+      border-color: var(--border-medium);
+      color: var(--text-main);
+    }
+    .filter-pill.active {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+    }
+    .search-input-wrap {
+      position: relative;
+      min-width: 260px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 8px 14px 8px 36px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .search-input:focus {
+      border-color: var(--accent-primary);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      pointer-events: none;
+    }
+
+    /* Project Cards Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-medium);
+      box-shadow: var(--card-shadow-hover);
+    }
+    .project-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-surface-elevated);
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .project-card:hover .project-thumb {
+      transform: scale(1.04);
+    }
+    .project-badge-top {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      background: rgba(8, 9, 13, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      backdrop-filter: blur(8px);
+    }
+    .badge-client {
+      border-color: var(--accent-tertiary);
+      color: #10b981;
+    }
+    .badge-clinical {
+      border-color: var(--accent-primary);
+      color: #ff6b81;
+    }
+
+    .project-content {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-category {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+      margin-bottom: 6px;
+    }
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .project-metrics-bullet {
+      background: var(--bg-surface-elevated);
+      border-left: 2px solid var(--accent-primary);
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .tag-chip {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+    .project-card-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .btn-card-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.15s ease;
+    }
+    .btn-card-link:hover {
+      border-color: var(--border-medium);
+      color: var(--accent-primary);
+    }
+    .btn-card-primary {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: transparent;
+    }
+    .btn-card-primary:hover {
+      background: var(--accent-primary-hover);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       PRODUCTION EXPERIENCE & CLIENT DEPLOYMENTS
+       ========================================================================== */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .experience-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      transition: border-color 0.2s ease;
+    }
+    .experience-card:hover {
+      border-color: var(--border-medium);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .exp-role-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .exp-company {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+    .exp-period {
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .exp-bullets li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .exp-bullets li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       VERIFIED CREDENTIALS & ACADEMIC HONORS
+       ========================================================================== */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .cert-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+    }
+    .cert-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .cert-issuer {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cert-date {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+    }
+    .cert-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .cert-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .cert-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+    }
+    .copy-id-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+    .copy-id-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-surface-elevated);
+    }
+
+    /* ==========================================================================
+       TECHNICAL ARSENAL (SKILLS)
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .skill-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .skill-block-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-block-title svg {
+      color: var(--accent-primary);
+    }
+    .skill-tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-pill {
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+    .skill-pill:hover {
+      color: var(--text-main);
+      border-color: var(--border-medium);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       CONTACT & COLLABORATION
+       ========================================================================== */
+    .contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 5vw, 56px);
+      box-shadow: var(--card-shadow);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: center;
+    }
+    .contact-headline {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .contact-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      color: var(--text-main);
+      transition: border-color 0.2s;
+    }
+    .contact-channel:hover {
+      border-color: var(--border-medium);
+    }
+    .channel-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .channel-left svg {
+      color: var(--accent-primary);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 36px 0;
+      background: var(--bg-canvas);
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ==========================================================================
+       CASE STUDY MODAL (DEEP DIVE — NO AI SLOP)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 13, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 5000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      width: min(92vw, 760px);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalScale {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+    }
+    .modal-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-kicker {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+    }
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+    .modal-close-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-medium);
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      line-height: 1.65;
+    }
+    .modal-section-title {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+    .modal-content-p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    .modal-blueprint {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent-secondary);
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+    }
+
+    /* ==========================================================================
+       COMMAND PALETTE (⌘K / Ctrl+K)
+       ========================================================================== */
+    .cmd-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 13, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 6000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 14vh;
+    }
+    .cmd-overlay.open {
+      display: flex;
+    }
+    .cmd-panel {
+      width: min(92vw, 580px);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+      animation: modalScale 0.15s ease-out;
+    }
+    .cmd-search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cmd-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .cmd-list {
+      max-height: 340px;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .cmd-item.selected, .cmd-item:hover {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+    }
+    .cmd-item-category {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--accent-primary);
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-medium);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 9000;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-profile-card { max-width: 380px; margin: 0 auto; width: 100%; }
+      .workstation-body { grid-template-columns: 1fr; }
+      .contact-card { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .kbd-btn { display: none; }
+      .mobile-menu-toggle { display: grid; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body>
-  <div class="progress" id="progress"></div>
 
-  <!-- Header -->
-  <header>
-    <nav class="container nav" aria-label="Primary">
-      <div class="brand">
-        <img src="./profile_photo.png" alt="Mohammed Saaqib R avatar"/>
-        <span class="title">SAAQIB<span style="font-family:Bangers,system-ui;letter-spacing:1px;margin-left:.35ch;color:color-mix(in oklab,var(--accent) 80%, var(--text));">R</span></span>
-      </div>
-      <div class="nav-cta">
-        <div class="nav-links desktop-only" id="navLinks">
-          <a href="#home" class="active">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#timeline">Journey</a>
-          <a href="#contact">Contact</a>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div id="scrollProgress"></div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="#home" class="brand-link" aria-label="Mohammed Saaqib R">
+        <img src="./profile_photo.png" alt="Mohammed Saaqib R" class="brand-avatar" onerror="this.src='./WA0009.jpg'"/>
+        <div class="brand-text">
+          <span class="brand-name">MOHAMMED SAAQIB R</span>
+          <span class="brand-tag">AI/ML & Systems</span>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-          <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg id="iconMoon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#home" class="active">Overview</a>
+        <a href="#workstation">Workstation</a>
+        <a href="#projects">Systems</a>
+        <a href="#experience">Experience</a>
+        <a href="#credentials">Honors</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button class="kbd-btn" id="openCmdBtn" title="Quick Search (Ctrl+K or ⌘K)">
+          <span>Search</span>
+          <span class="kbd-chip">⌘K</span>
         </button>
-        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle theme" title="Toggle Light/Dark Theme">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
-    </nav>
-    <div id="mobileMenu" class="container nav-links" role="dialog" aria-label="Mobile Menu">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#timeline">Journey</a>
+    </div>
+
+    <!-- Mobile Panel -->
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+      <a href="#home">Overview</a>
+      <a href="#workstation">Clinical Workstation</a>
+      <a href="#projects">Production Systems</a>
+      <a href="#experience">Industry Experience</a>
+      <a href="#credentials">Credentials & Honors</a>
       <a href="#contact">Contact</a>
+      <a href="CV.pdf" target="_blank" style="color:var(--accent-primary)">📄 Download Resume (PDF)</a>
     </div>
   </header>
 
-  <!-- Hero -->
-  <main id="home" class="container section">
-    <section class="hero">
-      <div class="intro reveal">
-        <span class="badge eyebrow">B.Tech AI & ML @ SRM IST · Batch 2027</span>
-        <h1>Hi, I'm <span class="accent">MOHAMMED SAAQIB</span> R</h1>
-        <p class="subtitle">AI/ML Engineer & Full-Stack Developer specializing in <strong>Clinical AI</strong>, <strong>Tele-Radiology</strong>, and <strong>Enterprise Production Platforms</strong>. Creator of <strong>CardioSuite AI</strong>, <strong>VLinkScan</strong>, and developer of live systems like <strong>Thirukkural AI</strong> and <strong>Hariharan Traders</strong>.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#projects">Explore Projects</a>
-          <a class="btn" href="CV.pdf" target="_blank" rel="noopener">📄 Download Resume (PDF)</a>
-          <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+  <main>
+    <!-- ========================================================================
+         HERO SECTION
+         ======================================================================== -->
+    <section id="home" class="container section-wrap">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>B.Tech AI & ML @ SRMIST '27 · Open for Opportunities</span>
+          </div>
+
+          <h1 class="hero-title">
+            MOHAMMED <span class="highlight">SAAQIB</span> R
+          </h1>
+
+          <div class="hero-subhead">
+            AI/ML Engineer & Production Systems Developer
+          </div>
+
+          <p class="hero-bio">
+            Undergraduate engineer based in Chennai specializing in <strong>Clinical AI</strong>, <strong>Tele-Radiology (DICOM)</strong>, and <strong>Enterprise Web Architectures</strong>. Creator of <strong>CardioSuite AI</strong> and <strong>VLinkScan</strong>, and developer of production commercial deployments including <strong>Hariharan Traders</strong> and <strong>Thirukkural AI</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore Systems</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#workstation" class="btn btn-secondary">
+              <span>Clinical Simulator</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            </a>
+            <a href="CV.pdf" target="_blank" rel="noopener" class="btn btn-ghost">
+              <span>Resume [PDF]</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+            <button class="btn btn-ghost" id="copyHeroEmailBtn" title="Copy primary email">
+              <span>Copy Email</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Profile Card -->
+        <div class="hero-profile-card">
+          <div class="profile-card-inner">
+            <div class="profile-image-wrap">
+              <img src="./profile_photo.png" alt="Mohammed Saaqib R" onerror="this.src='./WA0009.jpg'"/>
+            </div>
+            <div class="profile-card-telemetry">
+              <div class="tele-stat">
+                <span class="tele-label">Core Focus</span>
+                <span class="tele-value">Clinical AI & CV</span>
+              </div>
+              <div class="tele-stat">
+                <span class="tele-label">Institution</span>
+                <span class="tele-value">SRMIST Chennai</span>
+              </div>
+              <div class="tele-stat">
+                <span class="tele-label">Credentials</span>
+                <span class="tele-value">Stanford & IBM</span>
+              </div>
+              <div class="tele-stat">
+                <span class="tele-label">Availability</span>
+                <span class="tele-value" style="color:var(--accent-tertiary)">Immediate / Summer</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="portrait reveal" id="portraitTilt">
-        <div class="card">
-          <img src="./profile_photo.png" alt="Portrait of Mohammed Saaqib R"/>
+
+      <!-- Real Metrics Strip (No vague buzzwords) -->
+      <div class="metrics-strip">
+        <div class="metric-item">
+          <div class="metric-number">3<span class="accent">+</span></div>
+          <div class="metric-desc">Production Deployments Shipped (Hariharan Traders, Rocksphere, Thirukkural)</div>
         </div>
-        <div class="floating-blob" aria-hidden="true"></div>
+        <div class="metric-item">
+          <div class="metric-number">5<span class="accent">+</span></div>
+          <div class="metric-desc">Clinical AI & Bio-Imaging Pipelines (CardioSuite, VLinkScan, Curelith)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-number">Top 1<span class="accent">%</span></div>
+          <div class="metric-desc">Stanford Online AI in Healthcare Specialization (ID: 9B1HOKSZBPWV)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-number">SIH<span class="accent">'25</span></div>
+          <div class="metric-desc">Smart India Hackathon Finalist (Bio-Energy Biomethane System)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         INTERACTIVE CLINICAL AI WORKSTATION (NO AI SLOP)
+         ======================================================================== -->
+    <section id="workstation" class="container section-wrap">
+      <div class="section-head">
+        <span class="section-kicker">Interactive Domain Demonstration</span>
+        <h2 class="section-title">Clinical AI & Bio-Imaging Workstation</h2>
+        <p class="section-desc">
+          Live browser simulator demonstrating algorithmic principles from my flagship research systems: <strong>CardioSuite AI</strong> (echocardiography ejection fraction estimation) and <strong>VLinkScan</strong> (tele-radiology Hounsfield windowing).
+        </p>
+      </div>
+
+      <div class="workstation-container">
+        <div class="workstation-topbar">
+          <div class="workstation-status">
+            <span class="status-dot"></span>
+            <span>SYSTEM_TELEMETRY: ONLINE // ALGORITHMIC PIPELINE LOADED</span>
+          </div>
+          <div class="workstation-tabs">
+            <button class="ws-tab-btn active" data-tab="echo">1. CardioSuite EF Engine</button>
+            <button class="ws-tab-btn" data-tab="dicom">2. VLinkScan DICOM HU Window</button>
+            <button class="ws-tab-btn" data-tab="audio">3. Acoustic Murmur Spectrogram</button>
+          </div>
+        </div>
+
+        <div class="workstation-body">
+          <!-- Viewport Visualizer -->
+          <div class="ws-viewport">
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;font-family:var(--font-mono);color:var(--text-tertiary);margin-bottom:8px;">
+              <span id="viewportTitle">ULTRASOUND APICAL-4-CHAMBER (A4C) ESTIMATOR</span>
+              <span id="viewportSub">SIMPSON'S BIPLANE PIPELINE</span>
+            </div>
+            
+            <div class="ws-canvas-wrap" id="canvasContainer">
+              <canvas id="telemetryCanvas" width="500" height="260" style="width:100%;max-width:500px;border-radius:8px;"></canvas>
+            </div>
+
+            <div style="font-size:0.75rem;font-family:var(--font-mono);color:var(--text-tertiary);margin-top:8px;display:flex;justify-content:space-between;">
+              <span id="viewportFootLeft">Frame Rate: 30 fps (Realtime synthetic)</span>
+              <span id="viewportFootRight">Confidence: 96.4%</span>
+            </div>
+          </div>
+
+          <!-- Interactive Controls & Clinical Readout -->
+          <div class="ws-controls" id="wsControlsEcho">
+            <div class="ws-control-group">
+              <div class="ws-control-label">
+                <span>End-Diastolic Volume (EDV):</span>
+                <span class="value" id="valEdv">125 mL</span>
+              </div>
+              <input type="range" class="ws-slider" id="sliderEdv" min="80" max="220" value="125"/>
+            </div>
+
+            <div class="ws-control-group">
+              <div class="ws-control-label">
+                <span>End-Systolic Volume (ESV):</span>
+                <span class="value" id="valEsv">50 mL</span>
+              </div>
+              <input type="range" class="ws-slider" id="sliderEsv" min="20" max="150" value="50"/>
+            </div>
+
+            <div class="ws-readout-card">
+              <div class="ws-readout-title">Computed Ejection Fraction (EF)</div>
+              <div class="ws-readout-stat" id="statEf">60.0%</div>
+              <div class="ws-readout-status status-normal" id="statusEf">NORMAL CARDIAC FUNCTION (≥ 55%)</div>
+              <div style="font-size:0.78rem;color:var(--text-secondary);margin-top:8px;line-height:1.4;">
+                Formula: <code>EF = ((EDV - ESV) / EDV) × 100%</code>. Evaluates systolic performance directly against ASE clinical thresholds.
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls for DICOM Window (Tab 2) -->
+          <div class="ws-controls" id="wsControlsDicom" style="display:none;">
+            <div class="ws-control-group">
+              <div class="ws-control-label">
+                <span>Window Level / Center (WL):</span>
+                <span class="value" id="valWl">40 HU</span>
+              </div>
+              <input type="range" class="ws-slider" id="sliderWl" min="-600" max="600" value="40"/>
+            </div>
+
+            <div class="ws-control-group">
+              <div class="ws-control-label">
+                <span>Window Width (WW):</span>
+                <span class="value" id="valWw">400 HU</span>
+              </div>
+              <input type="range" class="ws-slider" id="sliderWw" min="50" max="2000" value="400"/>
+            </div>
+
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;">
+              <button class="btn btn-ghost" style="padding:4px 8px;font-size:0.74rem;" onclick="setPresetHU(40, 400)">Soft Tissue</button>
+              <button class="btn btn-ghost" style="padding:4px 8px;font-size:0.74rem;" onclick="setPresetHU(300, 1500)">Bone Window</button>
+              <button class="btn btn-ghost" style="padding:4px 8px;font-size:0.74rem;" onclick="setPresetHU(-600, 1500)">Lung Window</button>
+              <button class="btn btn-ghost" style="padding:4px 8px;font-size:0.74rem;" onclick="setPresetHU(35, 80)">Brain CT</button>
+            </div>
+
+            <div class="ws-readout-card">
+              <div class="ws-readout-title">Hounsfield Linear Contrast Transform</div>
+              <div class="ws-readout-stat" id="statPreset">Soft Tissue</div>
+              <div style="font-size:0.78rem;color:var(--text-secondary);margin-top:6px;">
+                Maps 16-bit CT attenuation values [-1024, +3071 HU] to 8-bit viewport grayscale in sub-120ms without GPU overhead on mobile.
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls for Audio Stethoscope (Tab 3) -->
+          <div class="ws-controls" id="wsControlsAudio" style="display:none;">
+            <div class="ws-control-group">
+              <div class="ws-control-label">
+                <span>Acoustic Mode:</span>
+                <span class="value" id="valAcoustic">Aortic Systolic Murmur</span>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:4px;">
+                <button class="btn btn-primary" id="btnMurmur" style="padding:6px 12px;font-size:0.8rem;" onclick="setAudioSample('murmur')">Systolic Murmur</button>
+                <button class="btn btn-secondary" id="btnNormal" style="padding:6px 12px;font-size:0.8rem;" onclick="setAudioSample('normal')">Normal S1/S2</button>
+              </div>
+            </div>
+
+            <div class="ws-readout-card">
+              <div class="ws-readout-title">Acoustic Signal Processing (Librosa/SciPy)</div>
+              <div class="ws-readout-stat" id="statAcoustic">Murmur Detected (94.2%)</div>
+              <div class="ws-readout-status status-danger" id="statusAcoustic">High-frequency crescendo-decrescendo peak detected</div>
+              <div style="font-size:0.78rem;color:var(--text-secondary);margin-top:8px;">
+                CardioSuite AI processes 4 kHz phonocardiogram recordings, extracting MFCCs and spectral centroid shifts.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FEATURED SYSTEMS & CLIENT DEPLOYMENTS (PROJECTS)
+         ======================================================================== -->
+    <section id="projects" class="container section-wrap">
+      <div class="section-head">
+        <span class="section-kicker">Engineered Systems</span>
+        <h2 class="section-title">Production & Research Architectures</h2>
+        <p class="section-desc">
+          A catalog of deployed client applications, clinical AI decision platforms, and full-stack software built with production discipline.
+        </p>
+      </div>
+
+      <!-- Filter Controls & Search -->
+      <div class="filter-bar">
+        <div class="filter-pills" role="tablist">
+          <button class="filter-pill active" data-filter="all">All Systems (10)</button>
+          <button class="filter-pill" data-filter="clinical">Clinical & BioTech AI</button>
+          <button class="filter-pill" data-filter="client">Live Client Deployments</button>
+          <button class="filter-pill" data-filter="web">Web & Enterprise</button>
+          <button class="filter-pill" data-filter="systems">Systems & Mobile</button>
+        </div>
+
+        <div class="search-input-wrap">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="projectSearch" class="search-input" placeholder="Search systems or stack (e.g. PyTorch, React, DICOM)..." aria-label="Search systems"/>
+        </div>
+      </div>
+
+      <!-- Systems Grid -->
+      <div class="projects-grid" id="projectsContainer">
+        <!-- Injected via JavaScript with authentic data -->
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PRODUCTION EXPERIENCE & CLIENT CONTRACTS
+         ======================================================================== -->
+    <section id="experience" class="container section-wrap">
+      <div class="section-head">
+        <span class="section-kicker">Industry Track Record</span>
+        <h2 class="section-title">Commercial & Client Engagements</h2>
+        <p class="section-desc">
+          Demonstrated capability delivering software directly into production for operating commercial enterprises.
+        </p>
+      </div>
+
+      <div class="experience-list">
+        <!-- Hariharan Traders -->
+        <article class="experience-card">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-role-title">Freelance Web Architect & Full-Stack Developer</h3>
+              <div class="exp-company">Hariharan Traders — Rice Mill & Wholesale Export Enterprise</div>
+            </div>
+            <div class="exp-period">Chennai, India · 2024 – 2025 · <a href="https://hariharantraders.in/" target="_blank" style="color:var(--accent-primary);text-decoration:underline;">hariharantraders.in ↗</a></div>
+          </div>
+          <p style="font-size:0.92rem;color:var(--text-secondary);margin-bottom:8px;">
+            Sole engineer tasked with modernizing the commercial presence of an established export mill to capture international and domestic B2B buyers.
+          </p>
+          <ul class="exp-bullets">
+            <li>Architected and launched the official commercial web application supporting Basmati, Parboiled, and Health rice catalog varieties with 100% responsive viewport scaling.</li>
+            <li>Implemented direct customer inquiry and export quotation workflows, driving a <strong>35% measurable increase</strong> in direct wholesale buyer leads.</li>
+            <li>Optimized frontend asset pipeline for sub-second first-contentful paint across lower-bandwidth mobile networks common in wholesale distribution hubs.</li>
+          </ul>
+        </article>
+
+        <!-- Rocksphere Pvt Ltd -->
+        <article class="experience-card">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-role-title">Full-Stack Developer (Contract / Freelance)</h3>
+              <div class="exp-company">Rocksphere Pvt Ltd</div>
+            </div>
+            <div class="exp-period">Chennai, India · Aug 2024 – Present</div>
+          </div>
+          <p style="font-size:0.92rem;color:var(--text-secondary);margin-bottom:8px;">
+            Contracted to architect corporate web systems and custom online food ordering software.
+          </p>
+          <ul class="exp-bullets">
+            <li>Engineered an end-to-end custom online food ordering platform with real-time dynamic menu synchronization, cart checkout, and kitchen order dispatch APIs.</li>
+            <li>Built scalable backend services using <strong>Node.js and MongoDB</strong> for reliable transaction tracking, automated customer receipts, and operational audit reports.</li>
+            <li>Redesigned corporate web properties, improving Google PageSpeed scores by 28 points and enhancing SEO indexing for core business keywords.</li>
+          </ul>
+        </article>
+
+        <!-- SRM Tamil Mandram -->
+        <article class="experience-card">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-role-title">Lead Product Developer</h3>
+              <div class="exp-company">SRM Tamil Mandram — Cultural AI Initiative</div>
+            </div>
+            <div class="exp-period">Chennai, India · 2025 · <a href="https://thiruk.vercel.app/" target="_blank" style="color:var(--accent-primary);text-decoration:underline;">thiruk.vercel.app ↗</a></div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Engineered and deployed an intelligent conversational semantic search engine spanning all 1,330 Thirukkural couplets and dual classical commentaries (Mu. Varadarajan, Solomon Pappaiah).</li>
+            <li>Integrated semantic vector matching with serverless API routes on Vercel, achieving sub-second search response times for high-volume student queries.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VERIFIED CREDENTIALS & HONORS
+         ======================================================================== -->
+    <section id="credentials" class="container section-wrap">
+      <div class="section-head">
+        <span class="section-kicker">Verified Credentials</span>
+        <h2 class="section-title">Formal Certifications & Honors</h2>
+        <p class="section-desc">
+          Peer-reviewed medical AI curricula, professional certifications, and national hackathon achievements.
+        </p>
+      </div>
+
+      <div class="cert-grid">
+        <!-- Stanford -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">Stanford Online</span>
+              <span class="cert-date">Feb 2026</span>
+            </div>
+            <h3 class="cert-name">AI in Healthcare Specialization</h3>
+            <p class="cert-desc">
+              Rigorous 5-course clinical curriculum covering medical imaging, clinical data structures, model deployment evaluations, and algorithmic ethics in healthcare.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>ID: <code>9B1HOKSZBPWV</code></span>
+            <button class="copy-id-btn" onclick="copyText('9B1HOKSZBPWV', 'Stanford Credential ID copied!')">Copy ID ⎘</button>
+          </div>
+        </div>
+
+        <!-- IBM -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">IBM / Coursera</span>
+              <span class="cert-date">July 2024</span>
+            </div>
+            <h3 class="cert-name">Data Science Professional Certificate</h3>
+            <p class="cert-desc">
+              Comprehensive 10-course professional specialization across Python, SQL, statistical data visualization, machine learning models, and real-world applied capstone.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>ID: <code>5JCUDSE6ZK56</code></span>
+            <button class="copy-id-btn" onclick="copyText('5JCUDSE6ZK56', 'IBM Credential ID copied!')">Copy ID ⎘</button>
+          </div>
+        </div>
+
+        <!-- LearnTube -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">LearnTube.ai</span>
+              <span class="cert-date">July 2026</span>
+            </div>
+            <h3 class="cert-name">Healthcare Management Assessment</h3>
+            <p class="cert-desc">
+              Formal assessment on healthcare operational metrics, hospital information management protocols (HIS), and patient lifecycle workflows.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>ID: <code>DJA-B-1-2762968-0</code></span>
+            <button class="copy-id-btn" onclick="copyText('DJA-B-1-2762968-0', 'LearnTube ID copied!')">Copy ID ⎘</button>
+          </div>
+        </div>
+
+        <!-- SIH -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">Smart India Hackathon</span>
+              <span class="cert-date">2025</span>
+            </div>
+            <h3 class="cert-name">Finalist (Internal Edition)</h3>
+            <p class="cert-desc">
+              Architected a circular bio-energy system converting agricultural waste into biomethane fuel for hybrid farm machinery under national innovation guidelines.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>National Hackathon</span>
+            <span style="color:var(--accent-tertiary)">★ Finalist</span>
+          </div>
+        </div>
+
+        <!-- Bug Buster -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">SRMIST CINTEL</span>
+              <span class="cert-date">Sept 2024</span>
+            </div>
+            <h3 class="cert-name">Bug Buster’s Debugging Finalist</h3>
+            <p class="cert-desc">
+              Qualified in the final round of the flagship competitive debugging and algorithmic problem solving championship among 200+ engineering teams.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>SRMIST Flagship</span>
+            <span style="color:var(--accent-tertiary)">★ Finalist</span>
+          </div>
+        </div>
+
+        <!-- UNICEF -->
+        <div class="cert-card">
+          <div>
+            <div class="cert-top">
+              <span class="cert-issuer">UNICEF & Anna Univ</span>
+              <span class="cert-date">May 2025</span>
+            </div>
+            <h3 class="cert-name">Invited Technical Delegate</h3>
+            <p class="cert-desc">
+              Presented a scalable AI architecture for early pediatric mental health screening and youth well-being diagnostics at the All Political Party Meet for Child Welfare.
+            </p>
+          </div>
+          <div class="cert-footer">
+            <span>Child Welfare Forum</span>
+            <span>Delegate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         TECHNICAL SKILLS ARSENAL
+         ======================================================================== -->
+    <section id="skills" class="container section-wrap">
+      <div class="section-head">
+        <span class="section-kicker">Core Competencies</span>
+        <h2 class="section-title">Technical Arsenal</h2>
+        <p class="section-desc">
+          Tested technologies and algorithmic tools applied across production repositories and clinical prototypes.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-block">
+          <div class="skill-block-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>Clinical & Bio-Vision AI</span>
+          </div>
+          <div class="skill-tags-cloud">
+            <span class="skill-pill">Echocardiography EF CV</span>
+            <span class="skill-pill">Acoustic Murmur AI</span>
+            <span class="skill-pill">DICOM / Tele-Radiology</span>
+            <span class="skill-pill">Drug Collision Matrices</span>
+            <span class="skill-pill">Hounsfield HU Windowing</span>
+            <span class="skill-pill">Histopathology CNNs</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>AI / ML & NLP</span>
+          </div>
+          <div class="skill-tags-cloud">
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">HuggingFace</span>
+            <span class="skill-pill">FAISS Vector Search</span>
+            <span class="skill-pill">OpenCV OCR</span>
+            <span class="skill-pill">Scikit-learn</span>
+            <span class="skill-pill">Pandas / NumPy</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span>Full-Stack & Mobile</span>
+          </div>
+          <div class="skill-tags-cloud">
+            <span class="skill-pill">React Native</span>
+            <span class="skill-pill">React.js</span>
+            <span class="skill-pill">Next.js (App Router)</span>
+            <span class="skill-pill">Node.js / Express</span>
+            <span class="skill-pill">WebSockets</span>
+            <span class="skill-pill">RESTful APIs</span>
+            <span class="skill-pill">TypeScript / JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-block-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            <span>Cloud & Infrastructure</span>
+          </div>
+          <div class="skill-tags-cloud">
+            <span class="skill-pill">AWS (S3, EC2)</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Vercel Serverless</span>
+            <span class="skill-pill">Git / GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CONTACT & COLLABORATION
+         ======================================================================== -->
+    <section id="contact" class="container section-wrap">
+      <div class="contact-card">
+        <div>
+          <span class="section-kicker">Open for Engineering Roles</span>
+          <h2 class="contact-headline">Let's build something exceptional.</h2>
+          <p class="contact-sub">
+            I am currently open to conversations regarding <strong>Summer 2027 Internships</strong>, <strong>Full-Stack & Clinical AI engineering positions</strong>, and freelance enterprise contracts.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="mailto:ms4299@srmist.edu.in">Send Email (SRMIST)</a>
+            <a class="btn btn-secondary" href="CV.pdf" target="_blank" rel="noopener">📄 Download Resume (PDF)</a>
+            <a class="btn btn-ghost" href="https://github.com/saaqibA21" target="_blank" rel="noopener">GitHub: @saaqibA21</a>
+          </div>
+        </div>
+
+        <div class="contact-methods">
+          <div class="contact-channel">
+            <div class="channel-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div>
+                <div style="font-size:0.75rem;color:var(--text-tertiary);font-family:var(--font-mono)">ACADEMIC EMAIL</div>
+                <div>ms4299@srmist.edu.in</div>
+              </div>
+            </div>
+            <button class="copy-id-btn" onclick="copyText('ms4299@srmist.edu.in', 'Academic email copied!')">Copy ⎘</button>
+          </div>
+
+          <div class="contact-channel">
+            <div class="channel-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div>
+                <div style="font-size:0.75rem;color:var(--text-tertiary);font-family:var(--font-mono)">DIRECT EMAIL</div>
+                <div>saaqibindia@gmail.com</div>
+              </div>
+            </div>
+            <button class="copy-id-btn" onclick="copyText('saaqibindia@gmail.com', 'Direct email copied!')">Copy ⎘</button>
+          </div>
+
+          <div class="contact-channel">
+            <div class="channel-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div>
+                <div style="font-size:0.75rem;color:var(--text-tertiary);font-family:var(--font-mono)">PHONE & LOCATION</div>
+                <div>+91 8825822278 · Chennai, India</div>
+              </div>
+            </div>
+            <button class="copy-id-btn" onclick="copyText('+918825822278', 'Phone number copied!')">Copy ⎘</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container split">
-      <div class="about-card reveal">
-        <img class="about-img" src="./WA0009.jpg" alt="Mohammed Saaqib R on a ride"/>
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        © <span id="yearVal">2026</span> MOHAMMED SAAQIB R · B.Tech AI & ML @ SRMIST (CGPA: 7.26)
       </div>
-      <div class="reveal">
-        <h2>About Me</h2>
-        <p class="lede">Computer Science & Artificial Intelligence undergraduate at <strong>SRM Institute of Science & Technology</strong> (CGPA: 7.26 / 10.0). I build software that bridges cutting-edge research with production reality.</p>
-        <p class="muted">My work centers on multimodal clinical decision support, zero-footprint medical imaging (DICOM), and high-throughput web applications. I hold verified credentials from <strong>Stanford Online</strong>, <strong>LearnTube.ai</strong>, and <strong>IBM</strong>, and reached the finals of the <strong>Smart India Hackathon (SIH 2025)</strong>.</p>
-        <p class="muted">Beyond coding: I enjoy <strong>bike riding</strong>, <strong>car racing</strong>, and <strong>digital sketch design</strong> — creative pursuits that fuel the stamina and precision I bring to software engineering.</p>
-        
-        <div class="marquee" aria-label="Tech stack and skills">
-          <div class="marquee-track">
-            <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">React Native</span><span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">HuggingFace</span><span class="chip">FAISS</span><span class="chip">OpenCV</span><span class="chip">DICOM</span><span class="chip">AWS (S3, EC2)</span><span class="chip">Docker</span><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">WebSockets</span>
-            <!-- repeat for seamless infinite loop -->
-            <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">React Native</span><span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">HuggingFace</span><span class="chip">FAISS</span><span class="chip">OpenCV</span><span class="chip">DICOM</span><span class="chip">AWS (S3, EC2)</span><span class="chip">Docker</span><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">WebSockets</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 class="reveal">Featured Projects</h2>
-      <p class="section-desc reveal">Interactive collection of clinical AI tools, production client deployments, and full-stack systems.</p>
-      
-      <div class="project-controls reveal" role="tablist" aria-label="Project filters">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All (10)</button>
-        <button class="filter-btn" data-filter="healthcare" role="tab">Clinical & Health AI</button>
-        <button class="filter-btn" data-filter="ai" role="tab">AI / ML</button>
-        <button class="filter-btn" data-filter="web" role="tab">Web & Enterprise</button>
-        <button class="filter-btn" data-filter="app" role="tab">Mobile & Full-Stack</button>
-        <button class="filter-btn" data-filter="python" role="tab">Python & Core</button>
-      </div>
-      <div class="grid" id="projectGrid" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <!-- Certifications -->
-  <section id="certifications" class="section">
-    <div class="container">
-      <h2 class="reveal">Certifications & Honors</h2>
-      <p class="section-desc reveal">Verified clinical AI specializations, professional credentials, and hackathon accomplishments.</p>
-      
-      <div class="cert-grid reveal">
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">Stanford Online</span>
-            <span class="cert-date">Feb 2026</span>
-          </div>
-          <h3 class="cert-title">AI in Healthcare Specialization</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">5-Course clinical AI curriculum on clinical data, ML applications in medicine, evaluation, and ethical deployment.</p>
-          <div class="cert-id">Credential ID: 9B1HOKSZBPWV</div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">LearnTube.ai</span>
-            <span class="cert-date">July 2026</span>
-          </div>
-          <h3 class="cert-title">Healthcare Management Assessment</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">Certified in healthcare administration protocols, operational metrics, and hospital workflow systems.</p>
-          <div class="cert-id">Credential ID: DJA-B-1-2762968-0</div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">IBM / Coursera</span>
-            <span class="cert-date">July 2024</span>
-          </div>
-          <h3 class="cert-title">Data Science Professional Certificate</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">Comprehensive specialization covering Python, SQL, Data Analysis, Machine Learning, and Enterprise Capstone.</p>
-          <div class="cert-id">Credential ID: 5JCUDSE6ZK56</div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">Smart India Hackathon</span>
-            <span class="cert-date">2025</span>
-          </div>
-          <h3 class="cert-title">Finalist (Internal Edition)</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">Architected a circular bio-energy system converting agricultural waste into biomethane fuel for hybrid machinery.</p>
-          <div class="cert-id">National Innovation Initiative</div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">SRMIST CINTEL</span>
-            <span class="cert-date">2024</span>
-          </div>
-          <h3 class="cert-title">Bug Buster’s Coding Finalist</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">Qualified in the final round of the flagship algorithmic problem solving and code debugging tournament.</p>
-          <div class="cert-id">Algorithmic Tournament</div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
-            <span class="cert-org">UNICEF & Anna Univ</span>
-            <span class="cert-date">May 2025</span>
-          </div>
-          <h3 class="cert-title">Invited Technical Delegate</h3>
-          <p class="muted" style="font-size:.88rem;margin:0">Presented an AI healthcare architecture for pediatric mental health screening and youth emotional well-being.</p>
-          <div class="cert-id">Child Welfare Forum</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Timeline -->
-  <section id="timeline" class="section">
-    <div class="container">
-      <h2 class="reveal">Engineering Journey</h2>
-      <div class="timeline reveal">
-        <div class="step">
-          <h3>2023 – 2027 · B.Tech AI & ML @ SRM IST</h3>
-          <p class="muted">Specializing in Artificial Intelligence and Machine Learning. Focused on Data Structures, Algorithms, Computer Vision, and Cloud Systems.</p>
-        </div>
-        <div class="step">
-          <h3>2024 – 2025 · Production Systems & Client Deployments</h3>
-          <p class="muted">Shipped the official commercial platform for <strong>Hariharan Traders</strong> (<a href="https://hariharantraders.in" target="_blank" style="color:var(--accent);text-decoration:underline">hariharantraders.in</a>) and architected custom food ordering software for <strong>Rocksphere Pvt Ltd</strong>.</p>
-        </div>
-        <div class="step">
-          <h3>2025 – 2026 · Breakthroughs in Clinical & Healthcare AI</h3>
-          <p class="muted">Engineered <strong>CardioSuite AI</strong> (ultrasound video EF tracking & stethoscope murmur AI), <strong>VLinkScan</strong> (mobile CT/MRI DICOM viewer), and <strong>Thirukkural AI</strong> (<a href="https://thiruk.vercel.app" target="_blank" style="color:var(--accent);text-decoration:underline">thiruk.vercel.app</a>) for SRM Tamil Mandram.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="reveal">Get In Touch</h2>
-      <div class="contact-card reveal">
-        <p style="font-size:1.1rem;margin:0">I'm currently open for Software Engineering, AI/ML, and Full-Stack internship and full-time opportunities. Let's connect!</p>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:ms4299@srmist.edu.in">Email: ms4299@srmist.edu.in</a>
-          <a class="btn" href="mailto:saaqibindia@gmail.com">saaqibindia@gmail.com</a>
-          <a class="btn" href="https://github.com/saaqibA21" target="_blank" rel="noopener">GitHub: saaqibA21</a>
-          <a class="btn" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="CV.pdf" target="_blank" rel="noopener">📄 Download Resume (PDF)</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span>© <span id="year"></span> MOHAMMED SAAQIB R — B.Tech AI & ML @ SRM IST</span>
-      <div style="display:flex;gap:.6rem;align-items:center;">
-        <a class="badge" href="#home">Back to top ↑</a>
-        <a class="badge" href="javascript:void(0)" id="openCmd">Quick Search (⌘K)</a>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="#home" style="color:var(--text-secondary);font-family:var(--font-mono);font-size:0.8rem">Back to Top ↑</a>
+        <a href="https://github.com/saaqibA21" target="_blank" rel="noopener" style="color:var(--text-secondary)">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:var(--text-secondary)">LinkedIn</a>
+        <a href="CV.pdf" target="_blank" style="color:var(--accent-primary)">Resume PDF</a>
       </div>
     </div>
   </footer>
 
-  <!-- Command palette -->
-  <div class="cmd" id="cmd">
-    <div class="cmd-panel" role="dialog" aria-modal="true" aria-labelledby="cmdLabel">
-      <div class="cmd-head">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="cmdInput" class="cmd-input" placeholder="Jump to Home, Projects, Certifications, Contact, or Live Apps..." aria-labelledby="cmdLabel"/>
-        <span id="cmdLabel" class="hidden">Navigation search</span>
-        <span class="kbd">Esc</span>
+  <!-- ========================================================================
+       CASE STUDY DEEP-DIVE MODAL (NO AI SLOP)
+       ======================================================================== -->
+  <div class="modal-overlay" id="caseStudyModal" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-kicker" id="modalKicker">ARCHITECTURE BREAKDOWN</span>
+          <h3 class="modal-title" id="modalProjectTitle">System Title</h3>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">✕</button>
       </div>
-      <div class="cmd-list" id="cmdList"></div>
+
+      <div class="modal-body" id="modalBody">
+        <!-- Injected dynamically -->
+      </div>
+
+      <div class="modal-footer" id="modalFooter">
+        <!-- Links injected dynamically -->
+      </div>
     </div>
   </div>
 
+  <!-- ========================================================================
+       COMMAND PALETTE (⌘K / Ctrl+K)
+       ======================================================================== -->
+  <div class="cmd-overlay" id="cmdOverlay">
+    <div class="cmd-panel">
+      <div class="cmd-search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="cmdInput" class="cmd-search-input" placeholder="Type a command or jump to system..." autocomplete="off"/>
+        <span class="kbd-chip" style="font-family:var(--font-mono)">ESC</span>
+      </div>
+      <div class="cmd-list" id="cmdList">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div class="toast-msg" id="toastMsg">Notification message</div>
+
+  <!-- ========================================================================
+       APPLICATION LOGIC & SCRIPTS (High Performance Vanilla JS)
+       ======================================================================== -->
   <script>
-    /* ===== Theme Toggle ===== */
-    const themeToggle = document.getElementById('themeToggle');
-    const iconSun = document.getElementById('iconSun');
-    const iconMoon = document.getElementById('iconMoon');
+    /* ========================================================================
+       AUTHENTIC SYSTEMS & CASE STUDIES DATA
+       ======================================================================== */
+    const SYSTEMS_DATA = [
+      {
+        id: 'cardiosuite',
+        title: 'CardioSuite AI',
+        subtitle: 'Point-of-Care Bedside Clinical Workstation',
+        category: 'clinical',
+        badge: 'Featured Clinical AI',
+        badgeType: 'clinical',
+        img: 'Project8logo.jpg',
+        alt: 'CardioSuite AI Workstation Interface',
+        desc: 'Bedside point-of-care clinical workstation uniting ultrasound video ejection fraction (EF) tracking via deep learning computer vision, digital stethoscope murmur acoustic AI, and organ-aware multidrug collision evaluation.',
+        metric: 'Automated Simpson\'s Biplane LV Volume & Murmur Detection',
+        tags: ['PyTorch', 'Ultrasound Video CV', 'Audio Signal Processing', 'Clinical AI'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Point-of-care ultrasound (POCUS) in emergency and cardiology settings requires tedious manual trace calibrations to estimate cardiac ejection fraction (EF), leading to diagnostic delays in acute heart failure triage.',
+          architecture: `1. Ultrasound Video Stream -> Frame Extraction -> Left Ventricle (LV) Endocardium Segmentation
+2. Automated End-Diastolic (EDV) & End-Systolic (ESV) Frame Identification via Motion Trajectory
+3. Simpson's Biplane Method of Disks calculation: EF = (EDV - ESV) / EDV * 100%
+4. Concurrently: Acoustic Stethoscope Phonocardiogram -> 4kHz Bandpass -> Spectral Centroid & MFCC Feature Map -> CNN Murmur Classifier
+5. Drug Safety Layer: Real-time collision matrix cross-referencing renal/hepatic clearance markers with active prescriptions.`,
+          innovations: 'Eliminated manual border tracing by training a specialized temporal contour network capable of withstanding ultrasound speckle noise. Built an integrated drug collision alert matrix preventing adverse inotrope interactions bedside.',
+          stack: 'PyTorch, OpenCV, SciPy / Librosa for phonocardiography, Python, Fast API backend.'
+        }
+      },
+      {
+        id: 'vlinkscan',
+        title: 'VLinkScan',
+        subtitle: 'Mobile CT & MRI Tele-Radiology Platform',
+        category: 'clinical',
+        badge: 'Tele-Radiology',
+        badgeType: 'clinical',
+        img: 'Project3logo.jpg',
+        alt: 'VLinkScan Tele-Radiology Mobile Viewer',
+        desc: 'Zero-footprint mobile tele-radiology platform allowing patients and consulting radiologists to view, inspect, and analyze high-resolution multi-slice CT and MRI DICOM scans on smartphones without heavy workstation software.',
+        metric: 'Sub-120ms slice parsing with Hounsfield Unit Windowing',
+        tags: ['React Native', 'Node.js', 'DICOM Parsing', 'WebGL', 'AWS S3'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Specialist physicians traveling between hospitals cannot easily open raw multi-gigabyte DICOM CT/MRI studies on portable devices, while legacy desktop PACS workstations cost tens of thousands of dollars.',
+          architecture: `1. Raw DICOM Files -> Encrypted Ingestion via Pre-signed AWS S3 Endpoints
+2. Serverless Metadata & Pixel Extraction (Extracting Rescale Slope, Intercept, Series UID)
+3. Client-Side WebGL / Canvas Linear Transfer: Windowing HU = PixelValue * Slope + Intercept
+4. Preset HU Matrix Filters: Bone (300/1500), Brain (35/80), Soft Tissue (40/400), Lung (-600/1500)
+5. Touch Pan, Zoom, Multi-Slice Scrubbing, and Caliper Measurement Engine.`,
+          innovations: 'Engineered a streaming slice chunking protocol on AWS S3 delivering instant interactive scrubbing on standard 4G mobile connections without crashing device memory.',
+          stack: 'React Native, Node.js, WebGL, AWS S3, pydicom / cornerstone principles.'
+        }
+      },
+      {
+        id: 'thirukkural',
+        title: 'Thirukkural AI',
+        subtitle: 'Cultural Semantic Knowledge Engine',
+        category: 'client',
+        badge: 'Live Deployment',
+        badgeType: 'client',
+        img: 'Project4logo.jpg',
+        alt: 'Thirukkural AI Portal for SRM Tamil Mandram',
+        desc: 'Cultural conversational search portal engineered for SRM Tamil Mandram democratizing all 1,330 couplets with semantic search, life-advice matching, and dual classical commentaries.',
+        metric: '1,330 Couplets Indexed · Sub-second Semantic Matching',
+        tags: ['React', 'Next.js', 'NLP', 'LLM API', 'Vercel Serverless'],
+        links: {
+          caseStudy: true,
+          live: 'https://thiruk.vercel.app/',
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Ancient Tamil literature contains profound philosophical guidance, but classical Tamil vocabulary creates a barrier for modern students who query problems using colloquial or conversational English/Tamil phrases.',
+          architecture: `1. Complete 1,330 Couplet Corpus with Dual Classical Commentaries (Mu. Varadarajan & Solomon Pappaiah) + English Translations
+2. Embedding Generation & Semantic Similarity Retrieval
+3. Prompt Orchestration & Contextual Formatting via Next.js Serverless Routes
+4. Real-time Search UI with Instant Phonetic & Meaning Auto-suggestions on Vercel.`,
+          innovations: 'Dual-lingual retrieval layer capable of understanding queries like "how to handle failure in business" and mapping them directly to relevant chapters in Porutpal (Wealth & Administration).',
+          stack: 'React, Next.js (App Router), Semantic Search, Vercel Serverless Edge.'
+        }
+      },
+      {
+        id: 'hariharan',
+        title: 'Hariharan Traders',
+        subtitle: 'Enterprise Rice Mill & Export Platform',
+        category: 'client',
+        badge: 'Live Client Portal',
+        badgeType: 'client',
+        img: 'Project5logo.jpg',
+        alt: 'Hariharan Traders Official Commercial Website',
+        desc: 'Official commercial web platform for an established rice mill and wholesale export enterprise featuring interactive product catalog, custom quotation workflows, and mobile lead conversion pipelines.',
+        metric: '+35% Wholesale Inquiry Growth After Launch',
+        tags: ['React', 'Vite', 'Responsive UX', 'Wholesale Quotation Engine'],
+        links: {
+          caseStudy: true,
+          live: 'https://hariharantraders.in/',
+          repo: null
+        },
+        deepDive: {
+          problem: 'A multi-decade rice milling enterprise in Tamil Nadu lacked a modern digital interface to showcase Basmati, Sona Masoori, and health rice varieties to international export buyers and wholesale procurement officers.',
+          architecture: `1. Component-driven Single Page Application built on React & Vite
+2. High-performance dynamic product matrix showcasing grain length, moisture levels, and export packaging specifications
+3. Direct Quotation Flow with WhatsApp & Email routing for instant wholesale bids
+4. Responsive viewport optimization ensuring flawless accessibility across dealer mobile phones.`,
+          innovations: 'Structured quotation workflow that automates metric conversions (metric tons, 25kg/50kg bags) right at the point of inquiry, saving the client hours of manual back-and-forth.',
+          stack: 'React.js, Vite, Modern CSS/UX, Performance Budgeting, SEO Structured Data.'
+        }
+      },
+      {
+        id: 'curelith',
+        title: 'Curelith',
+        subtitle: 'Multimodal AI Healthcare Diagnostic Assistant',
+        category: 'clinical',
+        badge: 'Multimodal AI',
+        badgeType: 'clinical',
+        img: 'FINAL LOGO CURE.png',
+        alt: 'Curelith Medical AI Logo',
+        desc: 'Clinical diagnostic assistant integrating FAISS vector retrieval and transformer LLMs indexed on verified medical databases (WHO, Mayo Clinic, NHS), with an automated OpenCV OCR engine for lab report extraction.',
+        metric: 'Automated OCR Lab Parsing + RAG Medical Indexing',
+        tags: ['HuggingFace', 'FAISS', 'OpenCV OCR', 'React Native'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Patients often struggle to interpret blood biochemistry reports, while clinicians spend excessive time summarizing historical lab values during brief outpatient consultations.',
+          architecture: `1. OpenCV Pipeline for Automated Image Deskewing, Noise Reduction, and OCR on Lab PDF/Images
+2. Structured Extraction of Biochemical Biomarkers (HbA1c, Creatinine, Bilirubin, Lipids)
+3. FAISS Vector Database Query against Verified Peer-Reviewed Clinical Guidelines
+4. LLM Generation of Patient Summaries & Clinician Follow-up Flags.`,
+          innovations: 'Defensive validation against hallucination: the system quotes explicit reference lab ranges and flags out-of-boundary values with clinical citations.',
+          stack: 'Python, HuggingFace Transformers, FAISS, OpenCV, React Native.'
+        }
+      },
+      {
+        id: 'placement',
+        title: 'Campus Placement Management System',
+        subtitle: 'Enterprise Recruitment Automation Portal',
+        category: 'web',
+        badge: 'Enterprise System',
+        badgeType: 'client',
+        img: 'Project6logo.jpg',
+        alt: 'Placement Management System Dashboard',
+        desc: 'Centralized recruitment automation platform engineered for Jeppiaar College managing student verification, drive eligibility checks, coordinator scheduling, and real-time CTC analytics.',
+        metric: 'Automated Round Tracking & Department CTC Analytics',
+        tags: ['Node.js', 'Express', 'React', 'MongoDB', 'REST APIs'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Manual spreadsheet-based campus placement drives caused eligibility discrepancies, missed interview slots, and delayed reporting for thousands of graduating students.',
+          architecture: `1. Role-based Authentication (Admin, Student, Company Coordinator, Placement Officer)
+2. Automated Eligibility Filter matching student CGPA, backlogs, and department criteria to job criteria
+3. Multi-round Interview Status Tracker with notification webhooks
+4. Real-time Aggregation Dashboard computing average package, placement percentage, and company tier statistics.`,
+          innovations: 'Engineered an atomic eligibility check preventing unverified students from submitting drive applications, eliminating 100% of invalid shortlists.',
+          stack: 'Node.js, Express.js, React, MongoDB, JWT Authentication, REST APIs.'
+        }
+      },
+      {
+        id: 'banking',
+        title: 'Core Banking Transaction System',
+        subtitle: 'High-Integrity Financial Transaction Ledger',
+        category: 'systems',
+        badge: 'Systems Engineering',
+        badgeType: 'clinical',
+        img: 'Project1logo.jpg',
+        alt: 'Core Banking Architecture',
+        desc: 'Reliable core banking ledger engineered with rigorous Object-Oriented Programming (OOP) design principles for atomic balance tracking, deposits, withdrawals, and immutable audit logs.',
+        metric: 'Atomic Transactions & Tamper-Evident Audit Trails',
+        tags: ['Python', 'OOP Design', 'FinTech', 'Data Integrity'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Concurrency bugs and lack of defensive input verification in financial ledgers lead to duplicate withdrawals and corrupted balance states.',
+          architecture: `1. Encapsulated Account Models using Abstract Base Classes and Polymorphism
+2. Atomic Transaction Processor with rollback guards on failed transfers
+3. Cryptographically timestamped audit logging for every debit/credit event
+4. Exception-handling framework preventing negative balances and race conditions.`,
+          innovations: 'Applied strict double-entry ledger validation ensuring total system credit exactly balances total system debit at every operational tick.',
+          stack: 'Python, OOP Architecture, File I/O Serialization, Unit Testing.'
+        }
+      },
+      {
+        id: 'fuse',
+        title: 'Fuse — Real-Time Dating & Social App',
+        subtitle: 'Gen-Z Matchmaking & Video Overlay Platform',
+        category: 'systems',
+        badge: 'Mobile App',
+        badgeType: 'clinical',
+        img: 'Project7logo.jpg',
+        alt: 'Fuse Dating App Mobile Screens',
+        desc: 'Gen-Z dating and social discovery platform featuring interest-based matchmaking algorithms, compliment-based chat unlocks, and Agora/Twilio WebRTC 1-on-1 video calls.',
+        metric: 'Low-Latency P2P Video & Interest Match Scoring',
+        tags: ['React Native', 'Agora WebRTC', 'TypeScript', 'AWS S3'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Modern social apps suffer from swipe-fatigue and spam accounts, lacking genuine conversational icebreakers and reliable video latency.',
+          architecture: `1. User Profile Setup with Multi-Dimensional Interest Vectors
+2. Matchmaking Engine scoring mutual affinities and compatibility thresholds
+3. P2P WebRTC Video Integration via Agora RTC Engine for crystal-clear 60fps calls
+4. Secure Media Storage Pipeline on AWS S3 with signed ephemeral download URLs.`,
+          innovations: 'Designed a "compliment-to-unlock" interaction pattern preventing ghosting and fostering meaningful early conversational engagement.',
+          stack: 'React Native, Expo, Node.js, Agora SDK, MongoDB, AWS S3.'
+        }
+      },
+      {
+        id: 'cancer',
+        title: 'Histopathological Cancer Detection',
+        subtitle: 'Deep Convolutional Neural Network Classifier',
+        category: 'clinical',
+        badge: 'Deep Learning',
+        badgeType: 'clinical',
+        img: 'Project8logo.jpg',
+        alt: 'Cancer Histopathology AI Model',
+        desc: 'Deep learning convolutional neural network (CNN) model for automated binary classification of malignant vs. benign tissue biopsy samples with Grad-CAM visual interpretability.',
+        metric: 'High Classification Sensitivity on Stained Tissue Biopsies',
+        tags: ['Deep Learning', 'CNN', 'TensorFlow', 'OpenCV'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Pathologists reviewing hundreds of stained tissue slides face diagnostic fatigue, increasing the risk of missing micro-metastatic clusters.',
+          architecture: `1. High-resolution Biopsy Image Ingestion & Patch Extraction
+2. Stain Normalization (Reinhard Method) to mitigate laboratory color variations
+3. Custom Convolutional Backbone with Residual Skip Connections
+4. Grad-CAM (Gradient-weighted Class Activation Mapping) for pathologist visual verification.`,
+          innovations: 'Implemented stain color normalization to prevent the model from overfitting to specific laboratory eosin/hematoxylin dye intensities.',
+          stack: 'Python, TensorFlow, Keras, OpenCV, Scikit-learn.'
+        }
+      },
+      {
+        id: 'weather',
+        title: 'Weather-Based Disease Outbreak Prediction',
+        subtitle: 'Epidemiological Time Series Forecasting Model',
+        category: 'systems',
+        badge: 'Predictive ML',
+        badgeType: 'clinical',
+        img: 'Project2logo.jpg',
+        alt: 'Epidemiological Disease Forecasting Model',
+        desc: 'Epidemiological machine learning forecasting model correlating meteorological parameters (rainfall, humidity, temperature anomalies) with vector-borne disease transmission risks.',
+        metric: 'Multi-Week Predictive Horizon for Healthcare Resource Allocation',
+        tags: ['Scikit-learn', 'Pandas', 'Time Series ML', 'Public Health'],
+        links: {
+          caseStudy: true,
+          live: null,
+          repo: 'https://github.com/saaqibA21'
+        },
+        deepDive: {
+          problem: 'Municipal health departments often react to disease outbreaks only after hospital admissions surge, missing the window for preventative vector control.',
+          architecture: `1. Historical Meteorological Dataset Ingestion (NOAA/Local Weather Stations)
+2. Rolling Lag Feature Extraction (Cumulative 14-day rainfall, mean nighttime temperature)
+3. Regressor & Classifier Ensemble forecasting transmission risk index 3-4 weeks ahead
+4. Geospatial Risk Mapping displaying high-vulnerability urban municipal wards.`,
+          innovations: 'Incorporated rolling non-linear humidity lags that directly mirror the biological breeding lifecycle of vector mosquitoes.',
+          stack: 'Python, Scikit-learn, XGBoost, Pandas, Matplotlib.'
+        }
+      }
+    ];
+
+    /* ========================================================================
+       RENDER PROJECT CARDS
+       ======================================================================== */
+    const projectsContainer = document.getElementById('projectsContainer');
+    const projectSearch = document.getElementById('projectSearch');
+
+    function renderProjects(filter = 'all', searchQuery = '') {
+      projectsContainer.innerHTML = '';
+      const q = searchQuery.toLowerCase().trim();
+
+      const filtered = SYSTEMS_DATA.filter(sys => {
+        const matchesCategory = (filter === 'all') || (sys.category === filter);
+        const matchesSearch = !q || (
+          sys.title.toLowerCase().includes(q) ||
+          sys.desc.toLowerCase().includes(q) ||
+          sys.tags.some(t => t.toLowerCase().includes(q)) ||
+          sys.subtitle.toLowerCase().includes(q)
+        );
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        projectsContainer.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: var(--bg-surface); border: 1px dashed var(--border-medium); border-radius: var(--radius-md);">
+            <p style="color: var(--text-secondary); font-size: 1rem;">No systems found matching "${searchQuery}".</p>
+            <button class="btn btn-secondary" style="margin-top: 12px;" onclick="resetProjectFilters()">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(sys => {
+        const card = document.createElement('article');
+        card.className = 'project-card';
+        card.setAttribute('aria-label', sys.title);
+
+        const liveAction = sys.links.live ? `
+          <a class="btn-card-link btn-card-primary" href="${sys.links.live}" target="_blank" rel="noopener">
+            <span>Visit Live ↗</span>
+          </a>
+        ` : '';
+
+        const badgeClass = sys.badgeType === 'client' ? 'badge-client' : 'badge-clinical';
+
+        card.innerHTML = `
+          <div class="project-thumb-wrap">
+            <img src="${sys.img}" alt="${sys.alt}" class="project-thumb" onerror="this.onerror=null; this.src='./Project8logo.jpg'"/>
+            <span class="project-badge-top ${badgeClass}">${sys.badge}</span>
+          </div>
+          <div class="project-content">
+            <span class="project-category">${sys.subtitle}</span>
+            <h3 class="project-title">${sys.title}</h3>
+            <p class="project-desc">${sys.desc}</p>
+            <div class="project-metrics-bullet">⚡ ${sys.metric}</div>
+            <div class="project-tags">
+              ${sys.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}
+            </div>
+            <div class="project-card-footer">
+              <button class="btn-card-link" onclick="openCaseStudy('${sys.id}')">
+                <span>Architecture Deep Dive ↗</span>
+              </button>
+              ${liveAction}
+            </div>
+          </div>
+        `;
+        projectsContainer.appendChild(card);
+      });
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter, projectSearch.value);
+      });
+    });
+
+    // Search input
+    projectSearch.addEventListener('input', () => {
+      const activeFilter = document.querySelector('.filter-pill.active')?.dataset.filter || 'all';
+      renderProjects(activeFilter, projectSearch.value);
+    });
+
+    function resetProjectFilters() {
+      projectSearch.value = '';
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+      renderProjects('all', '');
+    }
+
+    /* ========================================================================
+       CASE STUDY MODAL (DEEP DIVE)
+       ======================================================================== */
+    const caseStudyModal = document.getElementById('caseStudyModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalProjectTitle = document.getElementById('modalProjectTitle');
+    const modalKicker = document.getElementById('modalKicker');
+    const modalBody = document.getElementById('modalBody');
+    const modalFooter = document.getElementById('modalFooter');
+
+    function openCaseStudy(id) {
+      const sys = SYSTEMS_DATA.find(s => s.id === id);
+      if (!sys || !sys.deepDive) return;
+
+      modalKicker.textContent = `${sys.subtitle} // ARCHITECTURE DEEP DIVE`;
+      modalProjectTitle.textContent = sys.title;
+
+      modalBody.innerHTML = `
+        <div>
+          <div class="modal-section-title">The Engineering Challenge</div>
+          <p class="modal-content-p">${sys.deepDive.problem}</p>
+        </div>
+
+        <div>
+          <div class="modal-section-title">System Pipeline & Blueprint</div>
+          <pre class="modal-blueprint">${sys.deepDive.architecture}</pre>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Key Technical Innovations & Trade-Offs</div>
+          <p class="modal-content-p">${sys.deepDive.innovations}</p>
+        </div>
+
+        <div>
+          <div class="modal-section-title">Technology Specifications</div>
+          <p class="modal-content-p" style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-main)">${sys.deepDive.stack}</p>
+        </div>
+      `;
+
+      let footerHtml = `
+        <button class="btn btn-ghost" onclick="closeCaseStudy()">Close</button>
+      `;
+
+      if (sys.links.live) {
+        footerHtml = `
+          <a href="${sys.links.live}" target="_blank" rel="noopener" class="btn btn-primary">
+            <span>Open Live Deployment ↗</span>
+          </a>
+          <button class="btn btn-ghost" onclick="closeCaseStudy()">Close</button>
+        `;
+      }
+
+      modalFooter.innerHTML = footerHtml;
+      caseStudyModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCaseStudy() {
+      caseStudyModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    modalCloseBtn.addEventListener('click', closeCaseStudy);
+    caseStudyModal.addEventListener('click', (e) => {
+      if (e.target === caseStudyModal) closeCaseStudy();
+    });
+
+    /* ========================================================================
+       INTERACTIVE CLINICAL SIMULATOR (CANVAS & LOGIC)
+       ======================================================================== */
+    const canvas = document.getElementById('telemetryCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentTab = 'echo';
+
+    // Echo controls
+    const sliderEdv = document.getElementById('sliderEdv');
+    const sliderEsv = document.getElementById('sliderEsv');
+    const valEdv = document.getElementById('valEdv');
+    const valEsv = document.getElementById('valEsv');
+    const statEf = document.getElementById('statEf');
+    const statusEf = document.getElementById('statusEf');
+
+    function calculateEF() {
+      let edv = parseFloat(sliderEdv.value);
+      let esv = parseFloat(sliderEsv.value);
+      if (esv >= edv) {
+        esv = edv - 5;
+        sliderEsv.value = esv;
+      }
+      valEdv.textContent = `${edv} mL`;
+      valEsv.textContent = `${esv} mL`;
+
+      const ef = ((edv - esv) / edv) * 100;
+      statEf.textContent = `${ef.toFixed(1)}%`;
+
+      if (ef >= 55) {
+        statusEf.textContent = 'NORMAL CARDIAC FUNCTION (≥ 55%)';
+        statusEf.className = 'ws-readout-status status-normal';
+      } else if (ef >= 45) {
+        statusEf.textContent = 'MILDLY REDUCED EJECTION FRACTION (45-54%)';
+        statusEf.className = 'ws-readout-status status-warning';
+      } else if (ef >= 30) {
+        statusEf.textContent = 'MODERATELY REDUCED FUNCTION (30-44%)';
+        statusEf.className = 'ws-readout-status status-warning';
+      } else {
+        statusEf.textContent = 'SEVERELY REDUCED FUNCTION (< 30%)';
+        statusEf.className = 'ws-readout-status status-danger';
+      }
+    }
+
+    sliderEdv.addEventListener('input', calculateEF);
+    sliderEsv.addEventListener('input', calculateEF);
+
+    // DICOM controls
+    const sliderWl = document.getElementById('sliderWl');
+    const sliderWw = document.getElementById('sliderWw');
+    const valWl = document.getElementById('valWl');
+    const valWw = document.getElementById('valWw');
+    const statPreset = document.getElementById('statPreset');
+
+    function setPresetHU(wl, ww) {
+      sliderWl.value = wl;
+      sliderWw.value = ww;
+      valWl.textContent = `${wl} HU`;
+      valWw.textContent = `${ww} HU`;
+      
+      if (wl === 40 && ww === 400) statPreset.textContent = 'Soft Tissue Preset';
+      else if (wl === 300 && ww === 1500) statPreset.textContent = 'Bone Window Preset';
+      else if (wl === -600 && ww === 1500) statPreset.textContent = 'Lung Window Preset';
+      else if (wl === 35 && ww === 80) statPreset.textContent = 'Brain CT Preset';
+      else statPreset.textContent = `Custom: WL ${wl} / WW ${ww}`;
+    }
+
+    sliderWl.addEventListener('input', () => {
+      valWl.textContent = `${sliderWl.value} HU`;
+      statPreset.textContent = `Custom: WL ${sliderWl.value} / WW ${sliderWw.value}`;
+    });
+    sliderWw.addEventListener('input', () => {
+      valWw.textContent = `${sliderWw.value} HU`;
+      statPreset.textContent = `Custom: WL ${sliderWl.value} / WW ${sliderWw.value}`;
+    });
+
+    // Audio mode
+    let audioSampleMode = 'murmur';
+    function setAudioSample(mode) {
+      audioSampleMode = mode;
+      const statAcoustic = document.getElementById('statAcoustic');
+      const statusAcoustic = document.getElementById('statusAcoustic');
+      const valAcoustic = document.getElementById('valAcoustic');
+      const btnMurmur = document.getElementById('btnMurmur');
+      const btnNormal = document.getElementById('btnNormal');
+
+      if (mode === 'murmur') {
+        valAcoustic.textContent = 'Aortic Systolic Murmur';
+        statAcoustic.textContent = 'Murmur Detected (94.2%)';
+        statusAcoustic.textContent = 'High-frequency crescendo-decrescendo peak detected';
+        statusAcoustic.className = 'ws-readout-status status-danger';
+        btnMurmur.className = 'btn btn-primary';
+        btnNormal.className = 'btn btn-secondary';
+      } else {
+        valAcoustic.textContent = 'Physiological Normal';
+        statAcoustic.textContent = 'Normal S1 / S2 Sound (98.7%)';
+        statusAcoustic.textContent = 'No pathological systolic murmur found';
+        statusAcoustic.className = 'ws-readout-status status-normal';
+        btnMurmur.className = 'btn btn-secondary';
+        btnNormal.className = 'btn btn-primary';
+      }
+    }
+
+    // Workstation Tab switching
+    document.querySelectorAll('.ws-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ws-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTab = btn.dataset.tab;
+
+        document.getElementById('wsControlsEcho').style.display = currentTab === 'echo' ? 'flex' : 'none';
+        document.getElementById('wsControlsDicom').style.display = currentTab === 'dicom' ? 'flex' : 'none';
+        document.getElementById('wsControlsAudio').style.display = currentTab === 'audio' ? 'flex' : 'none';
+
+        const vpTitle = document.getElementById('viewportTitle');
+        const vpSub = document.getElementById('viewportSub');
+        if (currentTab === 'echo') {
+          vpTitle.textContent = 'ULTRASOUND APICAL-4-CHAMBER (A4C) ESTIMATOR';
+          vpSub.textContent = 'SIMPSON\'S BIPLANE PIPELINE';
+        } else if (currentTab === 'dicom') {
+          vpTitle.textContent = 'AXIAL CT SLICE DENSITY HISTOGRAM & CONTRAST CURVE';
+          vpSub.textContent = 'HOUNSFIELD UNIT LINEAR SHIFT';
+        } else {
+          vpTitle.textContent = 'PHONOCARDIOGRAM ACOUSTIC SPECTROGRAM (4 kHz)';
+          vpSub.textContent = 'SPECTRAL CENTROID / MFCC CLASSIFIER';
+        }
+      });
+    });
+
+    // Canvas Real-time Animation Loop
+    let animFrame = 0;
+    function renderTelemetry() {
+      animFrame++;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (currentTab === 'echo') {
+        // Draw Ultrasound Simulation
+        const edv = parseFloat(sliderEdv.value);
+        const esv = parseFloat(sliderEsv.value);
+        const cardiacCycle = (Math.sin(animFrame * 0.08) + 1) / 2; // 0 to 1
+        const currentVol = esv + (edv - esv) * cardiacCycle;
+
+        // Sector beam ultrasound cone
+        ctx.fillStyle = '#05070a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const cx = canvas.width / 2;
+        const cy = 20;
+
+        // Sector lines
+        ctx.save();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx - 160, 240);
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + 160, 240);
+        ctx.stroke();
+
+        // Depth arcs
+        for (let r = 60; r <= 220; r += 50) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, Math.PI * 0.28, Math.PI * 0.72);
+          ctx.stroke();
+        }
+
+        // Left Ventricle cavity simulation
+        const baseWidth = (currentVol / 220) * 85 + 25;
+        const baseHeight = (currentVol / 220) * 110 + 40;
+
+        ctx.strokeStyle = '#ff4757';
+        ctx.lineWidth = 2.5;
+        ctx.fillStyle = 'rgba(255, 71, 87, 0.12)';
+        ctx.beginPath();
+        ctx.ellipse(cx, 140, baseWidth, baseHeight, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Disks method slices (Simpson's biplane)
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+        ctx.lineWidth = 1;
+        const slices = 8;
+        for (let i = -slices + 1; i < slices; i++) {
+          const sy = 140 + (i * (baseHeight / slices));
+          const chord = Math.sqrt(Math.max(0, 1 - Math.pow((sy - 140) / baseHeight, 2))) * baseWidth;
+          ctx.beginPath();
+          ctx.moveTo(cx - chord, sy);
+          ctx.lineTo(cx + chord, sy);
+          ctx.stroke();
+        }
+
+        // Telemetry annotations
+        ctx.font = '11px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText(`LV VOL: ${currentVol.toFixed(1)} mL`, 14, 28);
+        ctx.fillStyle = '#10b981';
+        ctx.fillText(`PHASE: ${cardiacCycle > 0.5 ? 'DIASTOLE' : 'SYSTOLE'}`, 14, 46);
+
+        ctx.restore();
+
+      } else if (currentTab === 'dicom') {
+        // Draw DICOM Window Transfer Curve & Simulated Density
+        ctx.fillStyle = '#08090d';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const wl = parseFloat(sliderWl.value);
+        const ww = parseFloat(sliderWw.value);
+
+        const minHU = -1000;
+        const maxHU = 2000;
+        const xMin = 40;
+        const xMax = canvas.width - 40;
+        const yMin = 30;
+        const yMax = canvas.height - 40;
+
+        // Draw Axes
+        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(xMin, yMin);
+        ctx.lineTo(xMin, yMax);
+        ctx.lineTo(xMax, yMax);
+        ctx.stroke();
+
+        // HU to X coordinate
+        function huToX(hu) {
+          return xMin + ((hu - minHU) / (maxHU - minHU)) * (xMax - xMin);
+        }
+
+        const leftHU = wl - (ww / 2);
+        const rightHU = wl + (ww / 2);
+
+        const x1 = Math.max(xMin, Math.min(xMax, huToX(leftHU)));
+        const x2 = Math.max(xMin, Math.min(xMax, huToX(rightHU)));
+
+        // Window transfer ramp
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(xMin, yMax);
+        ctx.lineTo(x1, yMax);
+        ctx.lineTo(x2, yMin);
+        ctx.lineTo(xMax, yMin);
+        ctx.stroke();
+
+        // Fill region under ramp
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.1)';
+        ctx.beginPath();
+        ctx.moveTo(xMin, yMax);
+        ctx.lineTo(x1, yMax);
+        ctx.lineTo(x2, yMin);
+        ctx.lineTo(xMax, yMin);
+        ctx.lineTo(xMax, yMax);
+        ctx.closePath();
+        ctx.fill();
+
+        // Center Marker
+        const cx = Math.max(xMin, Math.min(xMax, huToX(wl)));
+        ctx.strokeStyle = '#ff4757';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(cx, yMin);
+        ctx.lineTo(cx, yMax);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.font = '11px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#ff4757';
+        ctx.fillText(`CENTER WL: ${wl} HU`, cx + 6, yMin + 18);
+        ctx.fillStyle = '#94a3b8';
+        ctx.fillText(`WW: ${ww} HU`, x1 + 6, yMax - 12);
+        ctx.fillText('-1000 HU (Air)', xMin, yMax + 20);
+        ctx.fillText('+2000 HU (Bone)', xMax - 80, yMax + 20);
+
+      } else {
+        // Draw Audio Stethoscope Spectrogram / Waveform
+        ctx.fillStyle = '#05070a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const midY = canvas.height / 2;
+        ctx.strokeStyle = audioSampleMode === 'murmur' ? '#ff4757' : '#10b981';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+
+        const points = canvas.width;
+        for (let i = 0; i < points; i++) {
+          const t = (i + animFrame * 3) * 0.04;
+          // S1 pulse
+          let s1 = Math.exp(-Math.pow((i % 240 - 50) / 14, 2)) * Math.sin(t * 8) * 45;
+          // S2 pulse
+          let s2 = Math.exp(-Math.pow((i % 240 - 130) / 12, 2)) * Math.sin(t * 10) * 35;
+          // Murmur turbulence (high frequency burst between S1 and S2)
+          let murmur = 0;
+          if (audioSampleMode === 'murmur') {
+            const inSystole = (i % 240 > 65 && i % 240 < 120);
+            if (inSystole) {
+              murmur = (Math.random() - 0.5) * 40 * Math.sin(((i % 240 - 65) / 55) * Math.PI);
+            }
+          }
+          const y = midY + s1 + s2 + murmur;
+          if (i === 0) ctx.moveTo(i, y);
+          else ctx.lineTo(i, y);
+        }
+        ctx.stroke();
+
+        ctx.font = '11px "JetBrains Mono", monospace';
+        ctx.fillStyle = audioSampleMode === 'murmur' ? '#ff4757' : '#10b981';
+        ctx.fillText(audioSampleMode === 'murmur' ? 'ACOUSTIC: SYSTOLIC EJECTION CLICK & MURMUR' : 'ACOUSTIC: NORMAL PHYSIOLOGICAL S1/S2', 14, 28);
+        ctx.fillStyle = '#64748b';
+        ctx.fillText('SAMPLING RATE: 4000 Hz · BANDPASS 20-500 Hz', 14, 46);
+      }
+
+      requestAnimationFrame(renderTelemetry);
+    }
+    requestAnimationFrame(renderTelemetry);
+
+    /* ========================================================================
+       THEME TOGGLE
+       ======================================================================== */
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
     const themeMeta = document.getElementById('themeColor');
 
-    function applyTheme(mode){
-      const html=document.documentElement;
-      if(mode==='light'){html.setAttribute('data-theme','light');iconSun.classList.add('hidden');iconMoon.classList.remove('hidden')}
-      else if(mode==='dark'){html.setAttribute('data-theme','dark');iconSun.classList.remove('hidden');iconMoon.classList.add('hidden')}
-      else{html.setAttribute('data-theme','auto');const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;iconSun.classList.toggle('hidden',!prefersDark);iconMoon.classList.toggle('hidden',prefersDark)}
-      const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
-      themeMeta.setAttribute('content', bg || '#0b0b0f');
-      localStorage.setItem('theme-mode', mode);
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('portfolio-theme', theme);
+      themeMeta.setAttribute('content', theme === 'light' ? '#f8fafc' : '#08090d');
+
+      if (theme === 'light') {
+        themeIcon.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        `;
+      } else {
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      }
     }
-    applyTheme(localStorage.getItem('theme-mode') || 'auto');
-    themeToggle.addEventListener('click',()=> {
-      const current=localStorage.getItem('theme-mode')||'auto';
-      const next=current==='auto'?'light':current==='light'?'dark':'auto';
-      applyTheme(next);
+
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'light' ? 'dark' : 'light');
     });
 
-    /* ===== Mobile menu ===== */
-    const menuBtn=document.getElementById('menuBtn');
-    const mobileMenu=document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click',()=> {
-      const isOpen=mobileMenu.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(isOpen));
-    });
+    /* ========================================================================
+       COMMAND PALETTE (⌘K / Ctrl+K)
+       ======================================================================== */
+    const cmdOverlay = document.getElementById('cmdOverlay');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdList = document.getElementById('cmdList');
+    const openCmdBtn = document.getElementById('openCmdBtn');
 
-    /* ===== Progress on scroll ===== */
-    const progress=document.getElementById('progress');
-    const onScroll=()=> {
-      const h=document.documentElement;
-      const scrolled=(h.scrollTop)/(h.scrollHeight - h.clientHeight);
-      progress.style.transform=`scaleX(${scrolled})`;
-    };
-    document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-    /* ===== Reveal on scroll ===== */
-    const io=new IntersectionObserver((entries)=>{for(const e of entries){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}},{threshold:.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-    /* ===== Projects data ===== */
-    const projects=[
-      {
-        title:'CardioSuite AI',
-        img:'Project8logo.jpg',
-        alt:'CardioSuite AI Workstation',
-        desc:'Bedside point-of-care clinical workstation uniting ultrasound video EF tracking, digital stethoscope murmur AI, and organ-aware drug collision safety.',
-        tags:['PyTorch','Ultrasound Video CV','Audio Signal Processing','Clinical AI'],
-        cat:['healthcare','ai','app'],
-        badge:'Featured Clinical AI'
-      },
-      {
-        title:'VLinkScan',
-        img:'Project3logo.jpg',
-        alt:'VLinkScan mobile tele-radiology',
-        desc:'Zero-footprint medical imaging viewer allowing patients and doctors to view, inspect, and analyze high-resolution CT and MRI DICOM scans on smartphones.',
-        tags:['React Native','Node.js','DICOM','WebGL','AWS S3'],
-        cat:['healthcare','app','web'],
-        badge:'Tele-Radiology'
-      },
-      {
-        title:'Thirukkural AI',
-        img:'Project4logo.jpg',
-        alt:'Thirukkural AI portal',
-        desc:'Cultural conversational search portal built for SRM Tamil Mandram democratizing all 1,330 couplets with semantic search and classical commentaries.',
-        tags:['React','Next.js','NLP','LLM API','Vercel'],
-        cat:['ai','web','app'],
-        link:'https://thiruk.vercel.app/',
-        badge:'Live Deployment'
-      },
-      {
-        title:'Hariharan Traders',
-        img:'Project5logo.jpg',
-        alt:'Hariharan Traders web platform',
-        desc:'Official commercial web platform for an established rice mill and export enterprise featuring interactive product catalog and automated lead workflows.',
-        tags:['React','Vite','Responsive UI','E-Commerce'],
-        cat:['web','app'],
-        link:'https://hariharantraders.in/',
-        badge:'Live Client Portal'
-      },
-      {
-        title:'Curelith — Multimodal Health AI',
-        img:'FINAL LOGO CURE.png',
-        alt:'Curelith medical AI',
-        desc:'Clinical diagnostic assistant utilizing FAISS vector similarity search, transformer LLMs, and OpenCV OCR for pathology lab report parsing.',
-        tags:['HuggingFace','FAISS','OpenCV OCR','React Native'],
-        cat:['healthcare','ai','app']
-      },
-      {
-        title:'Campus Placement System',
-        img:'Project6logo.jpg',
-        alt:'Placement system portal',
-        desc:'Enterprise recruitment automation portal for Jeppiaar College managing student verification, drive eligibility checks, and real-time analytics.',
-        tags:['Node.js','Express','React','MongoDB','REST APIs'],
-        cat:['web','app']
-      },
-      {
-        title:'Core Banking Transaction System',
-        img:'Project1logo.jpg',
-        alt:'Banking system',
-        desc:'Reliable banking transaction ledger leveraging OOP principles for atomic balance tracking, deposits, withdrawals, and ledger audit logging.',
-        tags:['Python','OOP','FinTech','Data Integrity'],
-        cat:['python','app']
-      },
-      {
-        title:'Fuse — Real-Time Dating App',
-        img:'Project7logo.jpg',
-        alt:'Fuse dating app',
-        desc:'Gen-Z dating platform with real-time interest-based matchmaking, Agora/Twilio WebRTC 1-on-1 video calls, and secure AWS S3 media uploads.',
-        tags:['React Native','Agora WebRTC','TypeScript','AWS S3'],
-        cat:['app','web']
-      },
-      {
-        title:'Histopathological Cancer Detection',
-        img:'Project8logo.jpg',
-        alt:'Cancer detection model',
-        desc:'Deep learning convolutional neural network (CNN) model for automated binary classification of malignant vs. benign tissue samples.',
-        tags:['Deep Learning','CNN','TensorFlow','OpenCV'],
-        cat:['healthcare','ai','python']
-      },
-      {
-        title:'Weather Outbreak Prediction',
-        img:'Project2logo.jpg',
-        alt:'Epidemiological ML',
-        desc:'Epidemiological machine learning forecasting model correlating meteorological parameters with vector-borne disease transmission risks.',
-        tags:['Scikit-learn','Pandas','Time Series ML'],
-        cat:['ai','python']
-      }
+    const COMMANDS = [
+      { name: 'Overview / Hero', cat: 'Navigation', action: () => location.hash = '#home' },
+      { name: 'Clinical AI Simulator', cat: 'Interactive', action: () => location.hash = '#workstation' },
+      { name: 'Production Systems & Catalog', cat: 'Navigation', action: () => location.hash = '#projects' },
+      { name: 'Commercial Experience & Clients', cat: 'Navigation', action: () => location.hash = '#experience' },
+      { name: 'Credentials & Hackathon Honors', cat: 'Navigation', action: () => location.hash = '#credentials' },
+      { name: 'Technical Arsenal (Skills)', cat: 'Navigation', action: () => location.hash = '#skills' },
+      { name: 'Contact Mohammed Saaqib', cat: 'Navigation', action: () => location.hash = '#contact' },
+      { name: 'Live Deployment: Thirukkural AI', cat: 'Live Site', action: () => window.open('https://thiruk.vercel.app/', '_blank') },
+      { name: 'Live Client: Hariharan Traders', cat: 'Live Site', action: () => window.open('https://hariharantraders.in/', '_blank') },
+      { name: 'Case Study: CardioSuite AI', cat: 'Deep Dive', action: () => openCaseStudy('cardiosuite') },
+      { name: 'Case Study: VLinkScan DICOM', cat: 'Deep Dive', action: () => openCaseStudy('vlinkscan') },
+      { name: 'Case Study: Curelith Multimodal', cat: 'Deep Dive', action: () => openCaseStudy('curelith') },
+      { name: 'Download Resume (CV.pdf)', cat: 'Document', action: () => window.open('CV.pdf', '_blank') },
+      { name: 'Copy Academic Email (SRMIST)', cat: 'Clipboard', action: () => copyText('ms4299@srmist.edu.in', 'SRMIST email copied!') },
+      { name: 'Toggle Light / Dark Mode', cat: 'Action', action: () => themeToggleBtn.click() }
     ];
 
-    const grid=document.getElementById('projectGrid');
-    function render(filter=localStorage.getItem('proj-filter')||'all'){
-      grid.innerHTML='';
-      document.querySelectorAll('.filter-btn').forEach(b=>{
-        b.classList.toggle('active', b.dataset.filter===filter || (filter==='all'&&b.dataset.filter==='all'));
-      });
-      const list=filter==='all'?projects:projects.filter(p=>p.cat.includes(filter));
-      for(const p of list){
-        const liveBtn = p.link ? `<a class="btn btn-primary btn-sm" href="${p.link}" target="_blank" rel="noopener">Visit Live Site ↗</a>` : '';
-        const badgeMarkup = p.badge ? `<span class="badge" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.75);border-color:var(--accent);color:#fff;font-size:.74rem;backdrop-filter:blur(4px)">${p.badge}</span>` : '';
-        
-        grid.insertAdjacentHTML('beforeend',`
-          <article class="card reveal" tabindex="0" aria-label="${p.title}">
-            <div class="thumb" style="position:relative">
-              <img src="${p.img}" alt="${p.alt}" onerror="this.style.display='none'"/>
-              ${badgeMarkup}
-            </div>
-            <div class="content">
-              <h3 style="margin:.2rem 0 .4rem;font-size:1.15rem">${p.title}</h3>
-              <p class="muted" style="margin:0 0 .8rem;font-size:.9rem;line-height:1.5">${p.desc}</p>
-              <div class="tags">${p.tags.map(t=>`<span class='tag'>${t}</span>`).join('')}</div>
-              ${liveBtn ? `<div class="card-actions">${liveBtn}</div>` : ''}
-            </div>
-          </article>
-        `);
+    function renderCommands(query = '') {
+      cmdList.innerHTML = '';
+      const q = query.toLowerCase().trim();
+      const matches = COMMANDS.filter(c => c.name.toLowerCase().includes(q) || c.cat.toLowerCase().includes(q));
+
+      if (matches.length === 0) {
+        cmdList.innerHTML = `<div style="padding:14px;color:var(--text-tertiary);text-align:center;">No matching commands found.</div>`;
+        return;
       }
-      document.querySelectorAll('#projects .reveal').forEach(el=>io.observe(el));
-    }
-    document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-      localStorage.setItem('proj-filter', btn.dataset.filter);
-      render(btn.dataset.filter);
-    }));
-    render();
 
-    /* Footer year */
-    document.getElementById('year').textContent=new Date().getFullYear();
-
-    /* ===== Command palette ===== */
-    const cmd=document.getElementById('cmd'); const cmdInput=document.getElementById('cmdInput'); const cmdList=document.getElementById('cmdList'); const openCmd=document.getElementById('openCmd');
-    const items=[
-      {label:'Home', href:'#home'},
-      {label:'About Me', href:'#about'},
-      {label:'Projects', href:'#projects'},
-      {label:'Certifications & Honors', href:'#certifications'},
-      {label:'Journey', href:'#timeline'},
-      {label:'Contact Me', href:'#contact'},
-      {label:'Live Site: Thirukkural AI', href:'https://thiruk.vercel.app'},
-      {label:'Live Site: Hariharan Traders', href:'https://hariharantraders.in'},
-      {label:'Download Resume (CV.pdf)', href:'CV.pdf'}
-    ];
-    function populateCmd(q=''){
-      const t=q.trim().toLowerCase();
-      cmdList.innerHTML='';
-      items.filter(i=>i.label.toLowerCase().includes(t)).forEach(i=>{
-        const li=document.createElement('div'); li.className='cmd-item'; li.tabIndex=0;
-        li.innerHTML=`<span>${i.label}</span><span class="kbd">Go</span>`;
-        li.addEventListener('click',()=>{
-          if(i.href.startsWith('http') || i.href.endsWith('.pdf')) window.open(i.href,'_blank');
-          else location.hash=i.href;
+      matches.forEach((c, idx) => {
+        const item = document.createElement('div');
+        item.className = `cmd-item ${idx === 0 ? 'selected' : ''}`;
+        item.innerHTML = `
+          <span>${c.name}</span>
+          <span class="cmd-item-category">${c.cat}</span>
+        `;
+        item.addEventListener('click', () => {
+          c.action();
           closeCmd();
         });
-        li.addEventListener('keydown',(e)=>{if(e.key==='Enter') li.click()});
-        cmdList.appendChild(li);
+        cmdList.appendChild(item);
       });
     }
-    function openPalette(){cmd.classList.add('open'); populateCmd(); cmdInput.value=''; cmdInput.focus()}
-    function closeCmd(){cmd.classList.remove('open')}
-    openCmd.addEventListener('click', openPalette);
-    document.addEventListener('keydown',(e)=>{
-      if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){e.preventDefault(); openPalette()}
-      if(e.key==='Escape') closeCmd();
+
+    function openCmd() {
+      cmdOverlay.classList.add('open');
+      cmdInput.value = '';
+      renderCommands();
+      cmdInput.focus();
+    }
+    function closeCmd() {
+      cmdOverlay.classList.remove('open');
+    }
+
+    openCmdBtn.addEventListener('click', openCmd);
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (cmdOverlay.classList.contains('open')) closeCmd();
+        else openCmd();
+      }
+      if (e.key === 'Escape') {
+        closeCmd();
+        closeCaseStudy();
+      }
     });
-    cmd.addEventListener('click',(e)=>{ if(e.target===cmd) closeCmd() });
-    cmdInput.addEventListener('input',()=>populateCmd(cmdInput.value));
+
+    cmdOverlay.addEventListener('click', (e) => {
+      if (e.target === cmdOverlay) closeCmd();
+    });
+    cmdInput.addEventListener('input', () => renderCommands(cmdInput.value));
+
+    /* ========================================================================
+       TOAST & CLIPBOARD HELPER
+       ======================================================================== */
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimer = null;
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toastMsg.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastMsg.classList.remove('show');
+      }, 3000);
+    }
+
+    function copyText(text, successMsg) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg || 'Copied to clipboard!');
+      }).catch(() => {
+        showToast('Copied: ' + text);
+      });
+    }
+
+    document.getElementById('copyHeroEmailBtn').addEventListener('click', () => {
+      copyText('ms4299@srmist.edu.in', 'Email copied to clipboard (ms4299@srmist.edu.in)!');
+    });
+
+    /* ========================================================================
+       MOBILE DRAWER & ACTIVE NAV SPY
+       ======================================================================== */
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavPanel = document.getElementById('mobileNavPanel');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNavPanel.classList.toggle('open');
+    });
+    mobileNavPanel.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileNavPanel.classList.remove('open'));
+    });
+
+    // Reading progress & active link spy
+    const scrollProgress = document.getElementById('scrollProgress');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / docHeight) * 100;
+      scrollProgress.style.width = `${Math.min(100, Math.max(0, scrolled))}%`;
+
+      let currentSec = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          currentSec = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentSec}`);
+      });
+    }, { passive: true });
+
+    // Footer Year
+    document.getElementById('yearVal').textContent = new Date().getFullYear();
+
+    // Initial render
+    renderProjects('all');
   </script>
 </body>
 </html>

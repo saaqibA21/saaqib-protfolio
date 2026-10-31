@@ -1,53 +1,93 @@
-# Mohammed Saaqib R — Developer Portfolio & Systems
+# Mohammed Saaqib R — AI/ML Engineer & Systems Developer
 
-[![Portfolio Live](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://saaqiba21.github.io/saaqib-protfolio/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com)
-[![Email](https://img.shields.io/badge/Email-ms4299%40srmist.edu.in-red)](mailto:ms4299@srmist.edu.in)
-
-Computer Science & Engineering (Artificial Intelligence and Machine Learning) undergraduate at **SRM Institute of Science and Technology** (Batch of 2027). Specializing in **Clinical AI**, **Medical Computer Vision (DICOM/Tele-Radiology)**, and **Full-Stack Enterprise Applications**.
+<p align="center">
+  <a href="https://saaqiba21.github.io/saaqib-protfolio/"><img src="https://img.shields.io/badge/Live_Portfolio-saaqiba21.github.io%2Fsaaqib--protfolio-ff4757?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portfolio"/></a>
+  <a href="mailto:ms4299@srmist.edu.in"><img src="https://img.shields.io/badge/Email-ms4299%40srmist.edu.in-38bdf8?style=for-the-badge&logo=gmail&logoColor=white" alt="Academic Email"/></a>
+  <a href="https://github.com/saaqibA21"><img src="https://img.shields.io/badge/GitHub-saaqibA21-10b981?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile"/></a>
+</p>
 
 ---
 
-## 🌟 Featured Projects
+## 📌 Executive Summary
+
+Undergraduate in Computer Science & Engineering (Artificial Intelligence and Machine Learning) at **SRM Institute of Science and Technology** (Batch of 2027, CGPA: 7.26 / 10.0).
+
+Specializing in:
+- **Clinical AI & Bio-Imaging**: Point-of-care echocardiography video segmentation, ejection fraction (EF) analysis, digital stethoscope phonocardiography, and zero-footprint tele-radiology (DICOM).
+- **Production Full-Stack Architectures**: High-throughput web applications with sub-second retrieval, real-time WebSockets, and commercial enterprise deployments.
+
+---
+
+## ⚡ Flagship Systems & Deployments
 
 ### 🏥 Healthcare & Clinical AI
-* **CardioSuite AI**: Bedside point-of-care clinical workstation uniting ultrasound video ejection fraction (EF) tracking via deep learning, digital stethoscope murmur acoustic AI, and organ-aware drug collision safety.
-* **VLinkScan**: Zero-footprint mobile tele-radiology platform allowing patients and physicians to render, inspect, and analyze high-resolution CT and MRI DICOM scans on smartphones.
-* **Curelith**: Intelligent clinical diagnostic platform integrating FAISS vector retrieval, transformer LLMs, and OpenCV OCR for pathology lab report parsing.
-* **Histopathological Cancer Detection System**: Deep convolutional neural network (CNN) model for automated binary classification of malignant vs. benign tissue samples.
-* **Weather-Based Disease Outbreak Prediction System**: Epidemiological forecasting pipeline correlating meteorological time-series patterns with vector-borne disease transmission risks.
+* **CardioSuite AI — Point-of-Care Bedside Clinical Workstation**
+  * Deep learning Left Ventricle (LV) segmentation on ultrasound video streams to compute real-time cardiac ejection fraction (EF) via Simpson’s Biplane Method.
+  * Acoustic phonocardiography pipeline (4 kHz bandpass, spectral centroid, and MFCCs) classifying systolic murmurs.
+  * Organ-aware drug collision safety engine evaluating hepatic/renal contraindications bedside.
+  * *Stack: PyTorch, OpenCV, SciPy, Librosa, Python.*
 
-### 🚀 Production Web & Enterprise Systems
-* **Thirukkural AI** — [Live Application](https://thiruk.vercel.app/)  
-  Cultural conversational knowledge portal engineered for **SRM Tamil Mandram**, providing semantic search across all 1,330 couplets and classical commentaries.
-* **Hariharan Traders** — [Live Application](https://hariharantraders.in/)  
-  Official commercial web platform for an established rice manufacturing and wholesale export enterprise.
-* **Campus Placement Management System**: Centralized recruitment automation platform for Jeppiaar College managing student verification, drive eligibility checks, and real-time statistics.
-* **Core Banking Transaction System**: High-integrity banking transaction ledger engineered with Python OOP design principles.
-* **Fuse**: Real-time Gen-Z dating application built with React Native, Agora WebRTC 1-on-1 video calls, and AWS S3 media pipelines.
-* **LangBridge**: Cross-platform drop-in translation chat overlay SDK with WebSocket streaming.
+* **VLinkScan — Mobile CT & MRI Tele-Radiology Platform**
+  * Zero-footprint medical imaging viewer allowing physicians to inspect raw multi-slice DICOM scans on smartphones.
+  * Real-time Hounsfield Unit (HU) windowing (Bone, Lung, Brain, Soft Tissue) via WebGL canvas transforms in sub-120ms.
+  * Encrypted S3 pipeline with pre-signed chunked retrieval.
+  * *Stack: React Native, Node.js, WebGL, DICOM, AWS S3.*
 
----
+* **Curelith — Multimodal AI Diagnostic Assistant**
+  * Automated OpenCV OCR pipeline deskewing and parsing biochemistry lab reports (blood, renal, liver panels).
+  * FAISS vector similarity search over peer-reviewed medical guideline databases (WHO, Mayo Clinic, NHS) with hallucination guards.
+  * *Stack: Python, HuggingFace, FAISS, OpenCV, React Native.*
 
-## 📜 Verified Certifications & Honors
-* **Stanford Online / Coursera**: AI in Healthcare Specialization (`9B1HOKSZBPWV`)
-* **LearnTube.ai**: Healthcare Management Assessment (`DJA-B-1-2762968-0`)
-* **IBM / Coursera**: Data Science Professional Certificate (`5JCUDSE6ZK56`)
-* **Smart India Hackathon (SIH 2025)**: Finalist (Internal Edition)
-* **Bug Buster’s Debugging Competition**: Finalist (SRMIST CINTEL)
-* **UNICEF Child Welfare Meet**: Invited Technical Delegate at Anna University
+* **Histopathological Cancer Classification**: Deep CNN model for automated binary classification of malignant vs. benign tissue biopsies with Grad-CAM interpretability.
+* **Weather-Driven Epidemiological Prediction**: Time series forecasting model correlating meteorological indicators with vector-borne disease transmission risks.
 
 ---
 
-## 🛠️ Tech Stack & Skills
-* **Languages**: Python, TypeScript, JavaScript, C, SQL (PostgreSQL), HTML5, CSS3
-* **AI / ML & NLP**: PyTorch, TensorFlow, HuggingFace Transformers, FAISS, Scikit-learn, OpenCV, Pandas, NumPy
-* **Mobile & Web**: React Native, React.js, Next.js, Node.js, Express.js, WebSockets, RESTful APIs
-* **Cloud & DevOps**: AWS (EC2, S3, Elastic Beanstalk), Docker, Git/GitHub, Vercel Serverless
+### 🚀 Production Commercial & Client Platforms
+* **[Hariharan Traders (Live Site)](https://hariharantraders.in/)**
+  * Official commercial platform for an established rice mill and wholesale export enterprise.
+  * Responsive product showcase across Basmati, Parboiled, and Health rice varieties with automated quote inquiries, generating a **35% boost in direct wholesale leads**.
+  * *Stack: React, Vite, Modern CSS/UX, Mobile Performance Budget.*
+
+* **[Thirukkural AI (Live Site)](https://thiruk.vercel.app/)**
+  * Cultural conversational search engine engineered for **SRM Tamil Mandram**.
+  * Semantic retrieval indexing all 1,330 couplets with dual classical commentaries (Mu. Varadarajan & Solomon Pappaiah) and English translations.
+  * *Stack: React, Next.js (App Router), NLP, Vercel Serverless.*
+
+* **Rocksphere Pvt Ltd (Food Enterprise Engine)**: Custom end-to-end ordering engine with dynamic menu synchronization, cart checkout, and kitchen order dispatch APIs (*Node.js, Express, MongoDB*).
+* **Campus Placement Management System**: Recruitment portal for Jeppiaar College managing student verification, drive eligibility, and placement CTC statistics (*Node.js, React, MongoDB*).
+* **Core Banking Transaction Ledger**: High-integrity banking transaction ledger engineered with Python OOP design principles, atomic operations, and tamper-evident audit logs.
+* **Fuse**: Gen-Z dating application featuring real-time interest-based matchmaking and Agora WebRTC 1-on-1 video calls (*React Native, Agora, AWS S3*).
 
 ---
 
-## 📬 Contact
-* **Primary Email**: [ms4299@srmist.edu.in](mailto:ms4299@srmist.edu.in)
-* **Personal Email**: [saaqibindia@gmail.com](mailto:saaqibindia@gmail.com)
+## 📜 Verified Credentials & Honors
+
+| Institution | Credential / Honor | Verification ID |
+|---|---|---|
+| **Stanford Online / Coursera** | AI in Healthcare Specialization (5-Course Clinical AI Curriculum) | `9B1HOKSZBPWV` |
+| **IBM / Coursera** | Data Science Professional Certificate | `5JCUDSE6ZK56` |
+| **LearnTube.ai** | Healthcare Management Assessment | `DJA-B-1-2762968-0` |
+| **Smart India Hackathon (SIH 2025)** | Finalist (Internal Edition) — Circular Bio-Energy Biomethane System | National Innovation Initiative |
+| **SRMIST CINTEL** | Bug Buster's Flagship Debugging Championship — Finalist | Algorithmic Tournament |
+| **UNICEF & Anna University** | Invited Technical Delegate — Pediatric AI Mental Health Architecture | Child Welfare Forum |
+
+---
+
+## 🛠️ Technical Arsenal
+
+* **Clinical & Bio-Vision AI**: Echocardiography Video CV, Phonocardiogram Murmur AI, DICOM Parsing, Hounsfield HU Windowing, Drug Safety Rules.
+* **AI / ML & NLP**: PyTorch, TensorFlow, HuggingFace Transformers, FAISS, Scikit-learn, OpenCV, Pandas, NumPy.
+* **Full-Stack & Mobile**: React Native, Expo, React.js, Next.js (App Router), Node.js, Express.js, WebSockets, REST APIs, TypeScript, JavaScript.
+* **Databases & Cloud**: AWS (S3, EC2), Docker, MongoDB, PostgreSQL, Git, GitHub Actions, Vercel.
+
+---
+
+## 📬 Contact & Availability
+
+* **Academic Email**: [ms4299@srmist.edu.in](mailto:ms4299@srmist.edu.in)
+* **Direct Email**: [saaqibindia@gmail.com](mailto:saaqibindia@gmail.com)
+* **Phone**: +91 8825822278
+* **Location**: Chennai, Tamil Nadu, India
 * **GitHub**: [@saaqibA21](https://github.com/saaqibA21)
+* **Resume**: [`CV.pdf`](./CV.pdf)
