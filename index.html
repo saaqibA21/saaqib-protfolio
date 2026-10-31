@@ -902,8 +902,66 @@
     .status-danger { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
 
     /* ==========================================================================
-       PROJECTS SECTION — Interactive Filtering & Cards
+       PROJECTS SECTION — SCROLL FRAMES BACKGROUND (LAPTOP ACTION)
        ========================================================================== */
+    .projects-stage-wrap {
+      position: relative;
+      width: 100%;
+      padding-block: clamp(80px, 10vw, 130px);
+      overflow: hidden;
+      background: #08090d;
+    }
+    .projects-scroll-backdrop {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .projects-scroll-video {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center 35%;
+      opacity: 0.38;
+      filter: contrast(1.15) brightness(0.85) saturate(1.1);
+      transition: opacity 0.5s ease;
+    }
+    .projects-scroll-overlay {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 1100px 75% at 50% 50%, rgba(8, 9, 13, 0.40) 0%, rgba(8, 9, 13, 0.85) 75%, #08090d 100%),
+        linear-gradient(180deg, #08090d 0%, transparent 12%, transparent 88%, #08090d 100%);
+      pointer-events: none;
+    }
+    .projects-foreground-content {
+      position: relative;
+      z-index: 5;
+    }
+    .projects-live-telemetry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-secondary);
+      background: rgba(15, 18, 28, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Interactive Filtering & Cards */
     .filter-bar {
       display: flex;
       align-items: center;
@@ -922,7 +980,9 @@
       padding: 7px 14px;
       border-radius: var(--radius-full);
       border: 1px solid var(--border-subtle);
-      background: var(--bg-surface);
+      background: rgba(12, 15, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-secondary);
@@ -933,7 +993,7 @@
       color: var(--text-main);
     }
     .filter-pill.active {
-      background: var(--accent-primary);
+      background: var(--accent-primary) !important;
       color: #ffffff;
       border-color: var(--accent-primary);
     }
@@ -946,7 +1006,9 @@
       padding: 8px 14px 8px 36px;
       border-radius: var(--radius-full);
       border: 1px solid var(--border-subtle);
-      background: var(--bg-surface);
+      background: rgba(12, 15, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: var(--text-main);
       font-size: 0.85rem;
       outline: none;
@@ -2214,36 +2276,51 @@
     </section>
 
     <!-- ========================================================================
-         FEATURED SYSTEMS & CLIENT DEPLOYMENTS (PROJECTS)
+         FEATURED SYSTEMS & CLIENT DEPLOYMENTS (PROJECTS) WITH SCROLL FRAMES BG
          ======================================================================== -->
-    <section id="projects" class="container section-wrap">
-      <div class="section-head">
-        <span class="section-kicker">Engineered Systems</span>
-        <h2 class="section-title">Production & Research Architectures</h2>
-        <p class="section-desc">
-          A catalog of deployed client applications, clinical AI decision platforms, and full-stack software built with production discipline.
-        </p>
+    <section id="projects" class="projects-stage-wrap">
+      <!-- Sticky / Pinned Background Video Scrubbed by Scroll -->
+      <div class="projects-scroll-backdrop" aria-hidden="true">
+        <video id="projectsScrollVideo" class="projects-scroll-video" playsinline muted preload="auto">
+          <source src="./laptop_scroll.mp4" type="video/mp4"/>
+        </video>
+        <div class="projects-scroll-overlay"></div>
       </div>
 
-      <!-- Filter Controls & Search -->
-      <div class="filter-bar">
-        <div class="filter-pills" role="tablist">
-          <button class="filter-pill active" data-filter="all">All Systems (10)</button>
-          <button class="filter-pill" data-filter="clinical">Clinical & BioTech AI</button>
-          <button class="filter-pill" data-filter="client">Live Client Deployments</button>
-          <button class="filter-pill" data-filter="web">Web & Enterprise</button>
-          <button class="filter-pill" data-filter="systems">Systems & Mobile</button>
+      <!-- Foreground Interactive Content -->
+      <div class="container projects-foreground-content">
+        <div class="section-head">
+          <div class="projects-live-telemetry-badge">
+            <span class="status-dot"></span>
+            <span>CINEMATIC SCROLL TELEMETRY // ACTIVE WORKSPACE</span>
+          </div>
+          <span class="section-kicker">Engineered Systems</span>
+          <h2 class="section-title">Production & Research Architectures</h2>
+          <p class="section-desc">
+            A catalog of deployed client applications, clinical AI decision platforms, and full-stack software built with production discipline.
+          </p>
         </div>
 
-        <div class="search-input-wrap">
-          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="projectSearch" class="search-input" placeholder="Search systems or stack (e.g. PyTorch, React, DICOM)..." aria-label="Search systems"/>
-        </div>
-      </div>
+        <!-- Filter Controls & Search -->
+        <div class="filter-bar">
+          <div class="filter-pills" role="tablist">
+            <button class="filter-pill active" data-filter="all">All Systems (10)</button>
+            <button class="filter-pill" data-filter="clinical">Clinical & BioTech AI</button>
+            <button class="filter-pill" data-filter="client">Live Client Deployments</button>
+            <button class="filter-pill" data-filter="web">Web & Enterprise</button>
+            <button class="filter-pill" data-filter="systems">Systems & Mobile</button>
+          </div>
 
-      <!-- Systems Grid -->
-      <div class="projects-grid" id="projectsContainer">
-        <!-- Injected via JavaScript with authentic data -->
+          <div class="search-input-wrap">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="projectSearch" class="search-input" placeholder="Search systems or stack (e.g. PyTorch, React, DICOM)..." aria-label="Search systems"/>
+          </div>
+        </div>
+
+        <!-- Systems Grid -->
+        <div class="projects-grid" id="projectsContainer">
+          <!-- Injected via JavaScript with authentic data -->
+        </div>
       </div>
     </section>
 
@@ -3717,6 +3794,55 @@
       startIntro(false);
     } else {
       finishIntro();
+    }
+
+    /* ========================================================================
+       PROJECTS SECTION — SCROLL FRAMES SCRUBBING CONTROLLER (LAPTOP ACTION)
+       ======================================================================== */
+    const projectsSection = document.getElementById('projects');
+    const projectsVideo = document.getElementById('projectsScrollVideo');
+    let projectsScrollRaf = null;
+
+    function scrubProjectsVideo() {
+      if (!projectsSection || !projectsVideo) return;
+      if (!projectsVideo.duration || isNaN(projectsVideo.duration)) return;
+
+      const rect = projectsSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Section scroll metrics:
+      // Scrubbing begins when section enters top of viewport,
+      // and advances through the frames until the user reaches the bottom of the section
+      const totalScrollable = rect.height - windowHeight;
+      if (totalScrollable <= 0) return;
+
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+
+      // Calculate target timestamp across the action clip
+      const targetTime = progress * projectsVideo.duration;
+
+      if (Math.abs(projectsVideo.currentTime - targetTime) > 0.03) {
+        if (typeof projectsVideo.fastSeek === 'function') {
+          projectsVideo.fastSeek(targetTime);
+        } else {
+          projectsVideo.currentTime = targetTime;
+        }
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!projectsScrollRaf) {
+        projectsScrollRaf = requestAnimationFrame(() => {
+          scrubProjectsVideo();
+          projectsScrollRaf = null;
+        });
+      }
+    }, { passive: true });
+
+    if (projectsVideo) {
+      projectsVideo.addEventListener('loadedmetadata', scrubProjectsVideo);
+      projectsVideo.pause();
     }
   </script>
 </body>
