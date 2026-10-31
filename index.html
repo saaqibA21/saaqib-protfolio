@@ -286,21 +286,88 @@
     }
 
     /* ==========================================================================
-       HERO SECTION — High Authority & Real Engineering Profile
+       CINEMATIC HERO STAGE (The Person Standing IS the Background)
        ========================================================================== */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: clamp(32px, 5vw, 64px);
+    .hero-cinematic-stage {
+      position: relative;
+      min-height: calc(100vh - var(--header-height));
+      display: flex;
       align-items: center;
-      padding-top: clamp(24px, 4vw, 56px);
-      padding-bottom: clamp(40px, 6vw, 72px);
+      overflow: hidden;
+      padding-block: clamp(60px, 8vw, 120px);
     }
-    .hero-content {
+    .hero-backdrop-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-backdrop-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right 24% center;
+      filter: contrast(1.05) brightness(0.92);
+      transition: transform 0.6s ease;
+    }
+    .hero-backdrop-scrim {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(90deg, 
+          rgba(8, 9, 13, 0.97) 0%, 
+          rgba(8, 9, 13, 0.90) 45%, 
+          rgba(8, 9, 13, 0.35) 72%, 
+          rgba(8, 9, 13, 0.65) 100%),
+        linear-gradient(180deg, 
+          rgba(8, 9, 13, 0.8) 0%, 
+          transparent 20%, 
+          transparent 75%, 
+          var(--bg-canvas) 100%);
+    }
+    [data-theme="light"] .hero-backdrop-scrim {
+      background: 
+        linear-gradient(90deg, 
+          rgba(248, 250, 252, 0.97) 0%, 
+          rgba(248, 250, 252, 0.88) 46%, 
+          rgba(248, 250, 252, 0.35) 72%, 
+          rgba(248, 250, 252, 0.65) 100%),
+        linear-gradient(180deg, 
+          rgba(248, 250, 252, 0.8) 0%, 
+          transparent 20%, 
+          transparent 75%, 
+          var(--bg-canvas) 100%);
+    }
+
+    .hero-content-layer {
+      position: relative;
+      z-index: 5;
+      max-width: 680px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+
+    /* Staggered entrance for details coming on the screen */
+    .hero-anim-item {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-details-revealed .hero-anim-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-details-revealed .hero-anim-item:nth-child(1) { transition-delay: 0.05s; }
+    .hero-details-revealed .hero-anim-item:nth-child(2) { transition-delay: 0.18s; }
+    .hero-details-revealed .hero-anim-item:nth-child(3) { transition-delay: 0.30s; }
+    .hero-details-revealed .hero-anim-item:nth-child(4) { transition-delay: 0.42s; }
+    .hero-details-revealed .hero-anim-item:nth-child(5) { transition-delay: 0.54s; }
+    .hero-details-revealed .hero-anim-item:nth-child(6) { transition-delay: 0.66s; }
+
     .status-badge {
       display: inline-flex;
       align-items: center;
@@ -309,7 +376,9 @@
       padding: 6px 14px;
       border-radius: var(--radius-full);
       border: 1px solid var(--border-medium);
-      background: var(--bg-surface);
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       font-size: 0.8rem;
       font-family: var(--font-mono);
       color: var(--text-secondary);
@@ -328,9 +397,9 @@
     }
 
     .hero-title {
-      font-size: clamp(2.3rem, 4.4vw, 3.8rem);
+      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       color: var(--text-main);
     }
@@ -361,7 +430,7 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 6px;
+      margin-top: 4px;
     }
     .btn {
       display: inline-flex;
@@ -387,7 +456,9 @@
       box-shadow: 0 6px 24px rgba(255, 71, 87, 0.4);
     }
     .btn-secondary {
-      background: var(--bg-surface);
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: var(--text-main);
       border: 1px solid var(--border-medium);
     }
@@ -397,7 +468,9 @@
       transform: translateY(-2px);
     }
     .btn-ghost {
-      background: transparent;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       color: var(--text-secondary);
       border: 1px solid var(--border-subtle);
     }
@@ -406,61 +479,29 @@
       border-color: var(--border-medium);
     }
 
-    /* Hero Profile Card */
-    .hero-profile-card {
-      position: relative;
-    }
-    .profile-card-inner {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--card-shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .profile-image-wrap {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--bg-surface-elevated);
-      position: relative;
-    }
-    .profile-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: contrast(1.02);
-      transition: transform 0.4s ease;
-    }
-    .profile-card-inner:hover .profile-image-wrap img {
-      transform: scale(1.03);
-    }
-    .profile-card-telemetry {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .tele-stat {
+    .hero-telemetry-strip {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
     }
-    .tele-label {
-      font-size: 0.7rem;
+    .telemetry-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
       font-family: var(--font-mono);
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      letter-spacing: 0.05em;
+      color: var(--text-secondary);
     }
-    .tele-value {
-      font-size: 0.88rem;
-      font-weight: 700;
+    .telemetry-chip strong {
       color: var(--text-main);
-      margin-top: 2px;
+      font-weight: 700;
     }
 
     /* Metrics Strip */
@@ -468,6 +509,14 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
+      padding: 22px 28px;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+    }
       margin-top: 36px;
       padding: 20px 24px;
       background: var(--bg-surface);
@@ -1360,8 +1409,10 @@
        RESPONSIVE BREAKPOINTS
        ========================================================================== */
     @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-profile-card { max-width: 380px; margin: 0 auto; width: 100%; }
+      .hero-backdrop-img { object-position: center 20%; }
+      .hero-backdrop-scrim { background: rgba(8, 9, 13, 0.88); }
+      [data-theme="light"] .hero-backdrop-scrim { background: rgba(248, 250, 252, 0.90); }
+      .hero-content-layer { max-width: 100%; }
       .workstation-body { grid-template-columns: 1fr; }
       .contact-card { grid-template-columns: 1fr; }
     }
@@ -1701,28 +1752,48 @@
 
   <main>
     <!-- ========================================================================
-         HERO SECTION
+         HERO SECTION — Person Standing as Cinematic Background
          ======================================================================== -->
-    <section id="home" class="container section-wrap">
-      <div class="hero-grid">
-        <div class="hero-content">
+    <section id="home" class="hero-cinematic-stage">
+      <!-- Background: Person Standing in Modern City Street -->
+      <div class="hero-backdrop-wrap" aria-hidden="true">
+        <img src="./hero_stopped.jpg" alt="Mohammed Saaqib R background" class="hero-backdrop-img" onerror="this.src='./profile_photo.png'"/>
+        <div class="hero-backdrop-scrim"></div>
+      </div>
+
+      <!-- Foreground Details (Slide in when person stops) -->
+      <div class="container hero-content-layer" id="heroContentLayer">
+        <!-- 1. Status Badge -->
+        <div class="hero-anim-item">
           <div class="status-badge">
             <span class="status-dot"></span>
             <span>B.Tech AI & ML @ SRMIST '27 · Open for Opportunities</span>
           </div>
+        </div>
 
+        <!-- 2. Main Title -->
+        <div class="hero-anim-item">
           <h1 class="hero-title">
             MOHAMMED <span class="highlight">SAAQIB</span> R
           </h1>
+        </div>
 
+        <!-- 3. Subheading -->
+        <div class="hero-anim-item">
           <div class="hero-subhead">
             AI/ML Engineer & Production Systems Developer
           </div>
+        </div>
 
+        <!-- 4. Bio Description -->
+        <div class="hero-anim-item">
           <p class="hero-bio">
-            Undergraduate engineer based in Chennai specializing in <strong>Clinical AI</strong>, <strong>Tele-Radiology (DICOM)</strong>, and <strong>Enterprise Web Architectures</strong>. Creator of <strong>CardioSuite AI</strong> and <strong>VLinkScan</strong>, and developer of production commercial deployments including <strong>Hariharan Traders</strong> and <strong>Thirukkural AI</strong>.
+            Undergraduate engineer based in Chennai specializing in <strong>Clinical AI</strong>, <strong>Tele-Radiology (DICOM)</strong>, and <strong>Enterprise Web Architectures</strong>. Creator of <strong>CardioSuite AI</strong> and <strong>VLinkScan</strong>, and developer of live production deployments including <strong>Hariharan Traders</strong> and <strong>Thirukkural AI</strong>.
           </p>
+        </div>
 
+        <!-- 5. Actions Row -->
+        <div class="hero-anim-item">
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary">
               <span>Explore Systems</span>
@@ -1747,39 +1818,32 @@
           </div>
         </div>
 
-        <!-- Hero Profile Card -->
-        <div class="hero-profile-card">
-          <div class="profile-card-inner">
-            <div class="profile-image-wrap">
-              <img src="./hero_stopped.jpg" alt="Mohammed Saaqib R" id="heroProfileImg" onerror="this.src='./profile_photo.png'"/>
-              <button class="hero-replay-badge" id="replayIntroHeroBtn" title="Replay Cinematic Opening Video">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>Replay Video</span>
-              </button>
+        <!-- 6. Floating Telemetry Badges -->
+        <div class="hero-anim-item">
+          <div class="hero-telemetry-strip">
+            <div class="telemetry-chip">
+              <span>CORE FOCUS:</span>
+              <strong>Clinical AI & CV</strong>
             </div>
-            <div class="profile-card-telemetry">
-              <div class="tele-stat">
-                <span class="tele-label">Core Focus</span>
-                <span class="tele-value">Clinical AI & CV</span>
-              </div>
-              <div class="tele-stat">
-                <span class="tele-label">Institution</span>
-                <span class="tele-value">SRMIST Chennai</span>
-              </div>
-              <div class="tele-stat">
-                <span class="tele-label">Credentials</span>
-                <span class="tele-value">Stanford & IBM</span>
-              </div>
-              <div class="tele-stat">
-                <span class="tele-label">Availability</span>
-                <span class="tele-value" style="color:var(--accent-tertiary)">Immediate / Summer</span>
-              </div>
+            <div class="telemetry-chip">
+              <span>INSTITUTION:</span>
+              <strong>SRMIST Chennai</strong>
+            </div>
+            <div class="telemetry-chip">
+              <span>CREDENTIALS:</span>
+              <strong>Stanford & IBM</strong>
+            </div>
+            <div class="telemetry-chip">
+              <span>STATUS:</span>
+              <strong style="color:var(--accent-tertiary)">Available Summer '27</strong>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Real Metrics Strip (No vague buzzwords) -->
+    <!-- Metrics Strip -->
+    <div class="container" style="position:relative;z-index:10;margin-top:-28px;">
       <div class="metrics-strip">
         <div class="metric-item">
           <div class="metric-number">3<span class="accent">+</span></div>
@@ -1798,7 +1862,7 @@
           <div class="metric-desc">Smart India Hackathon Finalist (Bio-Energy Biomethane System)</div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- ========================================================================
          INTERACTIVE CLINICAL AI WORKSTATION (NO AI SLOP)
@@ -3307,6 +3371,7 @@
 
     // Person stops walking and poses at ~8.8s
     const PERSON_STOP_TIME = 8.8;
+    const heroContentLayer = document.getElementById('heroContentLayer');
     let introFinished = false;
 
     function finishIntro() {
@@ -3318,6 +3383,9 @@
       if (cinematicIntro) {
         cinematicIntro.classList.add('fading-out');
       }
+      if (heroContentLayer) {
+        heroContentLayer.classList.add('hero-details-revealed');
+      }
       document.body.style.overflow = '';
       sessionStorage.setItem('portfolio_intro_seen', 'true');
     }
@@ -3326,6 +3394,9 @@
       introFinished = false;
       if (cinematicIntro) {
         cinematicIntro.classList.remove('fading-out');
+      }
+      if (heroContentLayer && isReplay) {
+        heroContentLayer.classList.remove('hero-details-revealed');
       }
       document.body.style.overflow = 'hidden';
       if (introVideo) {
