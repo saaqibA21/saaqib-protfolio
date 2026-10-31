@@ -908,35 +908,33 @@
       position: relative;
       width: 100%;
       padding-block: clamp(80px, 10vw, 130px);
-      overflow: hidden;
       background: #08090d;
     }
     .projects-scroll-backdrop {
-      position: absolute;
-      inset: 0;
+      position: sticky;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
+      margin-bottom: -100vh;
       pointer-events: none;
       z-index: 1;
       overflow: hidden;
     }
-    .projects-scroll-video {
-      position: sticky;
-      top: 0;
+    .projects-scroll-canvas {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       object-fit: cover;
       object-position: center 30%;
-      opacity: 0.82;
-      filter: contrast(1.10) brightness(1.08) saturate(1.1);
-      transition: opacity 0.4s ease;
+      filter: contrast(1.12) brightness(1.12) saturate(1.15);
+      display: block;
     }
     .projects-scroll-overlay {
       position: absolute;
       inset: 0;
       background: 
-        linear-gradient(180deg, #08090d 0%, rgba(8, 9, 13, 0.15) 12%, rgba(8, 9, 13, 0.20) 88%, #08090d 100%),
-        radial-gradient(ellipse 1200px 80% at 50% 45%, transparent 40%, rgba(8, 9, 13, 0.50) 85%, rgba(8, 9, 13, 0.85) 100%);
+        linear-gradient(180deg, #08090d 0%, rgba(8, 9, 13, 0.12) 12%, rgba(8, 9, 13, 0.18) 88%, #08090d 100%),
+        radial-gradient(ellipse 1200px 80% at 50% 45%, transparent 40%, rgba(8, 9, 13, 0.45) 85%, rgba(8, 9, 13, 0.85) 100%);
       pointer-events: none;
     }
     .projects-foreground-content {
@@ -2281,11 +2279,9 @@
          FEATURED SYSTEMS & CLIENT DEPLOYMENTS (PROJECTS) WITH SCROLL FRAMES BG
          ======================================================================== -->
     <section id="projects" class="projects-stage-wrap">
-      <!-- Sticky / Pinned Background Video Scrubbed by Scroll -->
+      <!-- Sticky / Pinned High-Performance Canvas Scrubbed by Scroll -->
       <div class="projects-scroll-backdrop" aria-hidden="true">
-        <video id="projectsScrollVideo" class="projects-scroll-video" playsinline muted preload="auto">
-          <source src="./laptop_scroll.mp4" type="video/mp4"/>
-        </video>
+        <canvas id="projectsScrollCanvas" class="projects-scroll-canvas" width="960" height="540"></canvas>
         <div class="projects-scroll-overlay"></div>
       </div>
 
@@ -3799,61 +3795,76 @@
     }
 
     /* ========================================================================
-       PROJECTS SECTION — SCROLL FRAMES SCRUBBING CONTROLLER (LAPTOP ACTION)
+       PROJECTS SECTION — SCROLL FRAMES CANVAS CONTROLLER (60FPS INSTANTANEOUS)
        ======================================================================== */
-    const projectsSection = document.getElementById('projects');
-    const projectsVideo = document.getElementById('projectsScrollVideo');
-    let projectsScrollRaf = null;
+    const TOTAL_SCROLL_FRAMES = 60;
+    const scrollFrames = [];
+    let framesLoadedCount = 0;
+    let currentRenderedFrame = -1;
 
-    function scrubProjectsVideo() {
-      if (!projectsSection || !projectsVideo) return;
-      if (!projectsVideo.duration || isNaN(projectsVideo.duration)) return;
+    const projectsCanvas = document.getElementById('projectsScrollCanvas');
+    const projectsCanvasCtx = projectsCanvas ? projectsCanvas.getContext('2d') : null;
+    const projectsSection = document.getElementById('projects');
+
+    // Preload all 60 frames immediately
+    for (let i = 0; i < TOTAL_SCROLL_FRAMES; i++) {
+      const img = new Image();
+      const numStr = String(i).padStart(2, '0');
+      img.src = `./frames/f_${numStr}.jpg`;
+      img.onload = () => {
+        framesLoadedCount++;
+        // Render first frame as soon as available
+        if (i === 0 && currentRenderedFrame === -1) {
+          renderScrollFrame(0);
+        }
+      };
+      scrollFrames.push(img);
+    }
+
+    function renderScrollFrame(index) {
+      if (!projectsCanvasCtx || !scrollFrames[index]) return;
+      const img = scrollFrames[index];
+      if (!img.complete || img.naturalWidth === 0) return;
+
+      projectsCanvasCtx.clearRect(0, 0, projectsCanvas.width, projectsCanvas.height);
+      projectsCanvasCtx.drawImage(img, 0, 0, projectsCanvas.width, projectsCanvas.height);
+      currentRenderedFrame = index;
+    }
+
+    function updateScrollFrame() {
+      if (!projectsSection || !projectsCanvasCtx) return;
 
       const rect = projectsSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      // Section scroll metrics:
-      // Start progressing as the section enters the viewport
-      // and advance through the action frames as user scrolls through the system cards
       const sectionHeight = rect.height;
-      const totalScrollable = sectionHeight;
-      if (totalScrollable <= 0) return;
+
+      // Start advancing as soon as the section approaches the viewport
+      const totalDistance = sectionHeight + windowHeight * 0.4;
+      if (totalDistance <= 0) return;
 
       const scrolled = (windowHeight * 0.75) - rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+      const progress = Math.max(0, Math.min(1, scrolled / totalDistance));
 
-      // Calculate target timestamp across the action clip
-      const targetTime = progress * projectsVideo.duration;
+      // Map progress to frame index 0..59
+      const targetIndex = Math.min(TOTAL_SCROLL_FRAMES - 1, Math.floor(progress * TOTAL_SCROLL_FRAMES));
 
-      if (Math.abs(projectsVideo.currentTime - targetTime) > 0.02) {
-        if (typeof projectsVideo.fastSeek === 'function') {
-          projectsVideo.fastSeek(targetTime);
-        } else {
-          projectsVideo.currentTime = targetTime;
-        }
+      if (targetIndex !== currentRenderedFrame) {
+        renderScrollFrame(targetIndex);
       }
     }
 
+    let projectsScrollRaf = null;
     window.addEventListener('scroll', () => {
       if (!projectsScrollRaf) {
         projectsScrollRaf = requestAnimationFrame(() => {
-          scrubProjectsVideo();
+          updateScrollFrame();
           projectsScrollRaf = null;
         });
       }
     }, { passive: true });
 
-    if (projectsVideo) {
-      projectsVideo.muted = true;
-      projectsVideo.addEventListener('loadedmetadata', scrubProjectsVideo);
-      // Warm up video rendering pipeline so frame 0 renders immediately
-      projectsVideo.play().then(() => {
-        projectsVideo.pause();
-        scrubProjectsVideo();
-      }).catch(() => {
-        scrubProjectsVideo();
-      });
-    }
+    // Initial draw
+    updateScrollFrame();
   </script>
 </body>
 </html>
