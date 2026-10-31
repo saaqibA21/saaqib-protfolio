@@ -309,7 +309,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: right 28% center;
+      object-position: center 22%;
       filter: contrast(1.04) brightness(0.98);
       transition: transform 0.6s ease;
     }
@@ -318,67 +318,216 @@
       position: absolute;
       inset: 0;
       background: 
-        linear-gradient(90deg, 
-          rgba(8, 9, 13, 0.82) 0%, 
-          rgba(8, 9, 13, 0.45) 42%, 
-          rgba(8, 9, 13, 0.04) 68%, 
-          transparent 100%),
-        linear-gradient(180deg, 
-          rgba(8, 9, 13, 0.5) 0%, 
-          transparent 15%, 
-          transparent 80%, 
-          #08090d 100%) !important;
+        radial-gradient(ellipse 680px 85% at 50% 50%, transparent 40%, rgba(8, 9, 13, 0.45) 80%, rgba(8, 9, 13, 0.85) 100%),
+        linear-gradient(180deg, rgba(8, 9, 13, 0.5) 0%, transparent 15%, transparent 80%, #08090d 100%) !important;
     }
 
-    .hero-content-layer {
+    /* Flanking Hero Stage Container: Left & Right of the Person */
+    .hero-stage-container {
       position: relative;
       z-index: 5;
-      max-width: 660px;
+      width: min(100% - 36px, 1440px);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(360px, 490px) minmax(180px, 1fr) minmax(320px, 440px);
+      align-items: center;
+      gap: clamp(20px, 3vw, 48px);
+      pointer-events: none;
+    }
+
+    /* Flowing Animated Cards */
+    .hero-flow-card {
+      pointer-events: auto;
+      position: relative;
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      padding: clamp(22px, 3vw, 32px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+      border: 1.5px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: 
+        linear-gradient(to bottom right, rgba(12, 14, 22, 0.88), rgba(18, 22, 34, 0.88)),
+        linear-gradient(135deg, 
+          rgba(255, 71, 87, 0.85) 0%, 
+          rgba(56, 189, 248, 0.90) 35%, 
+          rgba(16, 185, 129, 0.85) 70%, 
+          rgba(255, 71, 87, 0.85) 100%
+        );
+      background-size: 100% 100%, 300% 300%;
+      animation: cardBorderFlow 8s ease infinite;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-flow-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.04) 45%,
+        rgba(255, 71, 87, 0.12) 50%,
+        rgba(56, 189, 248, 0.10) 55%,
+        transparent 75%
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+    }
+    .hero-flow-card:hover::after {
+      opacity: 1;
+      animation: cardSheenFlow 2.2s infinite ease-in-out;
+    }
+
+    /* Staggered Slide-In Entrance from Left & Right */
+    .hero-flank-card {
+      opacity: 0;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-flank-left {
+      transform: translateX(-50px);
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      background: rgba(8, 9, 13, 0.55) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: clamp(22px, 3.5vw, 36px);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      gap: 16px;
     }
-    .hero-content-layer .hero-title {
-      color: #f1f5f9 !important;
+    .hero-flank-right {
+      transform: translateX(50px);
+      display: flex;
+      flex-direction: column;
     }
-    .hero-content-layer .hero-bio {
-      color: #94a3b8 !important;
+    .hero-details-revealed .hero-flank-left {
+      opacity: 1;
+      transform: translateX(0);
+      animation: floatLeftFlow 7s ease-in-out infinite 0.85s, cardBorderFlow 8s ease infinite;
     }
-    .hero-content-layer .hero-bio strong {
-      color: #ffffff !important;
+    .hero-details-revealed .hero-flank-right {
+      opacity: 1;
+      transform: translateX(0);
+      animation: floatRightFlow 8s ease-in-out infinite 1.1s, cardBorderFlow 8s ease infinite;
     }
-    .hero-content-layer .telemetry-chip {
-      background: rgba(15, 17, 24, 0.8) !important;
-      border: 1px solid rgba(255, 255, 255, 0.10) !important;
-      color: #94a3b8 !important;
+
+    @keyframes floatLeftFlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
     }
-    .hero-content-layer .telemetry-chip strong {
-      color: #ffffff !important;
+    @keyframes floatRightFlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(7px); }
     }
-    .hero-content-layer .status-badge {
-      background: rgba(15, 17, 24, 0.8) !important;
-      border: 1px solid rgba(255, 255, 255, 0.14) !important;
-      color: #cbd5e1 !important;
+
+    .hero-center-aperture {
+      min-height: 480px;
+      pointer-events: none;
     }
-    .hero-content-layer .btn-secondary {
-      background: rgba(21, 24, 36, 0.85) !important;
-      border-color: rgba(255, 255, 255, 0.18) !important;
-      color: #ffffff !important;
+
+    /* Right Card (HUD / Telemetry) Styles */
+    .hud-top-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     }
-    .hero-content-layer .btn-ghost {
-      border-color: rgba(255, 255, 255, 0.15) !important;
-      color: #cbd5e1 !important;
+    .hud-radar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-tertiary);
+      box-shadow: 0 0 10px var(--accent-tertiary);
+      animation: pulseDot 2s infinite ease-in-out;
     }
-    .hero-content-layer .btn-ghost:hover {
-      border-color: rgba(255, 255, 255, 0.3) !important;
-      color: #ffffff !important;
+    .hud-title-tag {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hud-spec-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .hud-spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .hud-spec-label {
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hud-spec-val {
+      font-size: 0.88rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+    .status-val-avail {
+      color: var(--accent-tertiary) !important;
+    }
+    .hud-metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .hud-metric-box {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 10px 4px;
+    }
+    .hud-metric-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .metric-plus {
+      color: var(--accent-primary);
+      font-size: 0.9em;
+    }
+    .hud-metric-lbl {
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+    .hud-pills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .hud-pill {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .hud-pill:hover {
+      border-color: var(--accent-secondary);
+      color: #ffffff;
     }
 
     /* Staggered entrance for details coming on the screen */
@@ -823,36 +972,54 @@
     }
     .project-card {
       background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       box-shadow: var(--card-shadow);
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-    }
-    /* Animated Gradient Accent Bar on Card Top */
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      transition: width 0.35s ease;
-      z-index: 10;
+      border: 1.5px solid transparent;
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      background-image: 
+        linear-gradient(to bottom right, var(--bg-surface), var(--bg-surface-elevated)),
+        linear-gradient(135deg, 
+          rgba(255, 71, 87, 0.75) 0%, 
+          rgba(56, 189, 248, 0.85) 35%, 
+          rgba(16, 185, 129, 0.75) 70%, 
+          rgba(255, 71, 87, 0.75) 100%
+        );
+      background-size: 100% 100%, 300% 300%;
+      animation: cardBorderFlow 7s ease infinite;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-active);
-      box-shadow: 0 20px 48px -10px rgba(255, 71, 87, 0.22), 0 0 0 1px var(--border-medium);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 50px -10px rgba(255, 71, 87, 0.28), 0 0 24px rgba(56, 189, 248, 0.16);
+      animation-duration: 3s;
     }
-    .project-card:hover::before {
-      width: 100%;
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.04) 45%,
+        rgba(255, 71, 87, 0.10) 50%,
+        rgba(56, 189, 248, 0.08) 55%,
+        transparent 75%
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+    }
+    .project-card:hover::after {
+      opacity: 1;
+      animation: cardSheenFlow 2.2s infinite ease-in-out;
     }
 
     .project-card-header {
@@ -949,6 +1116,7 @@
       flex: 1;
     }
     .project-metrics-bullet {
+      position: relative;
       background: var(--bg-surface-elevated);
       border-left: 2px solid var(--accent-primary);
       padding: 10px 14px;
@@ -960,7 +1128,24 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      overflow: hidden;
       transition: background 0.2s, border-color 0.2s;
+    }
+    .project-metrics-bullet::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 71, 87, 0.08) 40%, rgba(56, 189, 248, 0.08) 60%, transparent 100%);
+      background-size: 200% 100%;
+      animation: metricRibbonFlow 4s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes metricRibbonFlow {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
     .project-card:hover .project-metrics-bullet {
       background: rgba(255, 71, 87, 0.08);
@@ -1498,13 +1683,31 @@
     /* ==========================================================================
        RESPONSIVE BREAKPOINTS
        ========================================================================== */
+    @media (max-width: 1080px) {
+      .hero-stage-container {
+        grid-template-columns: 1fr;
+        max-width: 660px;
+        gap: 24px;
+      }
+      .hero-center-aperture {
+        display: none;
+      }
+      .hero-flank-left,
+      .hero-flank-right {
+        transform: translateY(24px);
+      }
+      .hero-details-revealed .hero-flank-left,
+      .hero-details-revealed .hero-flank-right {
+        transform: translateY(0);
+        animation: cardBorderFlow 8s ease infinite;
+      }
+    }
     @media (max-width: 960px) {
       .hero-backdrop-img { object-position: center 20%; }
       .hero-backdrop-scrim,
       [data-theme="light"] .hero-backdrop-scrim { 
-        background: linear-gradient(180deg, rgba(8, 9, 13, 0.65) 0%, rgba(8, 9, 13, 0.88) 100%) !important; 
+        background: linear-gradient(180deg, rgba(8, 9, 13, 0.70) 0%, rgba(8, 9, 13, 0.90) 100%) !important; 
       }
-      .hero-content-layer { max-width: 100%; }
       .workstation-body { grid-template-columns: 1fr; }
       .contact-card { grid-template-columns: 1fr; }
     }
@@ -1758,82 +1961,100 @@
         <div class="hero-backdrop-scrim"></div>
       </div>
 
-      <!-- Foreground Details (Slide in when person stops) -->
-      <div class="container hero-content-layer" id="heroContentLayer">
-        <!-- 1. Status Badge -->
-        <div class="hero-anim-item">
+      <!-- Foreground Flanking Panels: Left and Right of Person -->
+      <div class="hero-stage-container" id="heroContentLayer">
+        <!-- LEFT PANEL: Identity, Bio, Actions -->
+        <div class="hero-flank-card hero-flank-left hero-flow-card">
           <div class="status-badge">
             <span class="status-dot"></span>
             <span>B.Tech AI & ML @ SRMIST '27 · Open for Opportunities</span>
           </div>
-        </div>
 
-        <!-- 2. Main Title -->
-        <div class="hero-anim-item">
           <h1 class="hero-title">
             MOHAMMED <span class="highlight">SAAQIB</span>&nbsp;R
           </h1>
-        </div>
 
-        <!-- 3. Subheading -->
-        <div class="hero-anim-item">
           <div class="hero-subhead">
             AI/ML Engineer & Production Systems Developer
           </div>
-        </div>
 
-        <!-- 4. Bio Description -->
-        <div class="hero-anim-item">
           <p class="hero-bio">
             Undergraduate engineer based in Chennai specializing in <strong>Clinical AI</strong>, <strong>Tele-Radiology (DICOM)</strong>, and <strong>Enterprise Web Architectures</strong>. Creator of <strong>CardioSuite AI</strong> and <strong>VLinkScan</strong>, and developer of live production deployments including <strong>Hariharan Traders</strong> and <strong>Thirukkural AI</strong>.
           </p>
-        </div>
 
-        <!-- 5. Actions Row -->
-        <div class="hero-anim-item">
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary">
               <span>Explore Systems</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="#workstation" class="btn btn-secondary">
               <span>Clinical Simulator</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             </a>
             <button class="btn btn-secondary" id="replayHeroBtn" title="Watch Opening Video">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               <span>Watch Opening</span>
             </button>
             <a href="CV.pdf" target="_blank" rel="noopener" class="btn btn-ghost">
               <span>Resume [PDF]</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
             <button class="btn btn-ghost" id="copyHeroEmailBtn" title="Copy primary email">
               <span>Copy Email</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
           </div>
         </div>
 
-        <!-- 6. Floating Telemetry Badges -->
-        <div class="hero-anim-item">
-          <div class="hero-telemetry-strip">
-            <div class="telemetry-chip">
-              <span>CORE FOCUS:</span>
-              <strong>Clinical AI & CV</strong>
+        <!-- CENTER APERTURE: Frames the Person Standing in the City Street -->
+        <div class="hero-center-aperture" aria-hidden="true"></div>
+
+        <!-- RIGHT PANEL: Live Engineering Telemetry & Credentials HUD -->
+        <div class="hero-flank-card hero-flank-right hero-flow-card">
+          <div class="hud-top-bar">
+            <span class="hud-radar-dot"></span>
+            <span class="hud-title-tag">ENGINEERING TELEMETRY // HUD</span>
+          </div>
+
+          <div class="hud-spec-grid">
+            <div class="hud-spec-item">
+              <span class="hud-spec-label">CORE FOCUS</span>
+              <strong class="hud-spec-val">Clinical AI & Point-of-Care CV</strong>
             </div>
-            <div class="telemetry-chip">
-              <span>INSTITUTION:</span>
-              <strong>SRMIST Chennai</strong>
+            <div class="hud-spec-item">
+              <span class="hud-spec-label">INSTITUTION</span>
+              <strong class="hud-spec-val">SRMIST Chennai (Batch '27)</strong>
             </div>
-            <div class="telemetry-chip">
-              <span>CREDENTIALS:</span>
-              <strong>Stanford & IBM</strong>
+            <div class="hud-spec-item">
+              <span class="hud-spec-label">CREDENTIALS</span>
+              <strong class="hud-spec-val">Stanford Medicine & IBM Professional</strong>
             </div>
-            <div class="telemetry-chip">
-              <span>STATUS:</span>
-              <strong style="color:var(--accent-tertiary)">Available Summer '27</strong>
+            <div class="hud-spec-item">
+              <span class="hud-spec-label">AVAILABILITY</span>
+              <strong class="hud-spec-val status-val-avail">● Available Summer '27 Roles</strong>
             </div>
+          </div>
+
+          <div class="hud-metrics-strip">
+            <div class="hud-metric-box">
+              <div class="hud-metric-val">3<span class="metric-plus">+</span></div>
+              <div class="hud-metric-lbl">Deployments</div>
+            </div>
+            <div class="hud-metric-box">
+              <div class="hud-metric-val">5<span class="metric-plus">+</span></div>
+              <div class="hud-metric-lbl">AI Models</div>
+            </div>
+            <div class="hud-metric-box">
+              <div class="hud-metric-val">&lt;120<span class="metric-plus">ms</span></div>
+              <div class="hud-metric-lbl">DICOM WebGL</div>
+            </div>
+          </div>
+
+          <div class="hud-pills-list">
+            <span class="hud-pill">Ultrasound Biplane EF</span>
+            <span class="hud-pill">Cornerstone.js DICOM</span>
+            <span class="hud-pill">Agora RTC Engine</span>
+            <span class="hud-pill">PyTorch & FastAPI</span>
           </div>
         </div>
       </div>
