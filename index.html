@@ -309,46 +309,76 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: right 24% center;
-      filter: contrast(1.05) brightness(0.92);
+      object-position: right 28% center;
+      filter: contrast(1.04) brightness(0.98);
       transition: transform 0.6s ease;
     }
-    .hero-backdrop-scrim {
+    .hero-backdrop-scrim,
+    [data-theme="light"] .hero-backdrop-scrim {
       position: absolute;
       inset: 0;
       background: 
         linear-gradient(90deg, 
-          rgba(8, 9, 13, 0.97) 0%, 
-          rgba(8, 9, 13, 0.90) 45%, 
-          rgba(8, 9, 13, 0.35) 72%, 
-          rgba(8, 9, 13, 0.65) 100%),
+          rgba(8, 9, 13, 0.82) 0%, 
+          rgba(8, 9, 13, 0.45) 42%, 
+          rgba(8, 9, 13, 0.04) 68%, 
+          transparent 100%),
         linear-gradient(180deg, 
-          rgba(8, 9, 13, 0.8) 0%, 
-          transparent 20%, 
-          transparent 75%, 
-          var(--bg-canvas) 100%);
-    }
-    [data-theme="light"] .hero-backdrop-scrim {
-      background: 
-        linear-gradient(90deg, 
-          rgba(248, 250, 252, 0.97) 0%, 
-          rgba(248, 250, 252, 0.88) 46%, 
-          rgba(248, 250, 252, 0.35) 72%, 
-          rgba(248, 250, 252, 0.65) 100%),
-        linear-gradient(180deg, 
-          rgba(248, 250, 252, 0.8) 0%, 
-          transparent 20%, 
-          transparent 75%, 
-          var(--bg-canvas) 100%);
+          rgba(8, 9, 13, 0.5) 0%, 
+          transparent 15%, 
+          transparent 80%, 
+          #08090d 100%) !important;
     }
 
     .hero-content-layer {
       position: relative;
       z-index: 5;
-      max-width: 680px;
+      max-width: 660px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
+      background: rgba(8, 9, 13, 0.55) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: clamp(22px, 3.5vw, 36px);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+    .hero-content-layer .hero-title {
+      color: #f1f5f9 !important;
+    }
+    .hero-content-layer .hero-bio {
+      color: #94a3b8 !important;
+    }
+    .hero-content-layer .hero-bio strong {
+      color: #ffffff !important;
+    }
+    .hero-content-layer .telemetry-chip {
+      background: rgba(15, 17, 24, 0.8) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      color: #94a3b8 !important;
+    }
+    .hero-content-layer .telemetry-chip strong {
+      color: #ffffff !important;
+    }
+    .hero-content-layer .status-badge {
+      background: rgba(15, 17, 24, 0.8) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      color: #cbd5e1 !important;
+    }
+    .hero-content-layer .btn-secondary {
+      background: rgba(21, 24, 36, 0.85) !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      color: #ffffff !important;
+    }
+    .hero-content-layer .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.15) !important;
+      color: #cbd5e1 !important;
+    }
+    .hero-content-layer .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      color: #ffffff !important;
     }
 
     /* Staggered entrance for details coming on the screen */
@@ -397,11 +427,11 @@
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+      font-size: clamp(2.1rem, 4vw, 3.5rem);
       font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--text-main);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #f1f5f9;
     }
     .hero-title span.highlight {
       background: linear-gradient(135deg, var(--text-main) 40%, var(--accent-primary) 100%);
@@ -799,51 +829,91 @@
       display: flex;
       flex-direction: column;
       box-shadow: var(--card-shadow);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+    }
+    /* Animated Gradient Accent Bar on Card Top */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      transition: width 0.35s ease;
+      z-index: 10;
     }
     .project-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-medium);
-      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-6px);
+      border-color: var(--border-active);
+      box-shadow: 0 20px 48px -10px rgba(255, 71, 87, 0.22), 0 0 0 1px var(--border-medium);
     }
-    .project-thumb-wrap {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      background: var(--bg-surface-elevated);
-      overflow: hidden;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .project-thumb {
+    .project-card:hover::before {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s ease;
     }
-    .project-card:hover .project-thumb {
-      transform: scale(1.04);
+
+    .project-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
     }
-    .project-badge-top {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
+    .project-sys-id {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .project-status-pill {
       font-size: 0.72rem;
       font-family: var(--font-mono);
       font-weight: 600;
-      background: rgba(8, 9, 13, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      backdrop-filter: blur(8px);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .badge-client {
-      border-color: var(--accent-tertiary);
-      color: #10b981;
-    }
-    .badge-clinical {
-      border-color: var(--accent-primary);
+    .status-pill-clinical {
       color: #ff6b81;
+      border-color: rgba(255, 71, 87, 0.35);
+      background: rgba(255, 71, 87, 0.08);
+    }
+    .status-pill-client {
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.35);
+      background: rgba(16, 185, 129, 0.08);
+    }
+    .card-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      position: relative;
+      display: inline-block;
+    }
+    .card-pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      animation: cardPulse 1.8s infinite ease-out;
+    }
+    @keyframes cardPulse {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(2.5); opacity: 0; }
     }
 
     .project-content {
@@ -861,28 +931,40 @@
       margin-bottom: 6px;
     }
     .project-title {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1.32rem;
+      font-weight: 800;
       color: var(--text-main);
       margin-bottom: 10px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
+      transition: color 0.2s ease;
+    }
+    .project-card:hover .project-title {
+      color: #ffffff;
     }
     .project-desc {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.62;
       margin-bottom: 16px;
       flex: 1;
     }
     .project-metrics-bullet {
       background: var(--bg-surface-elevated);
       border-left: 2px solid var(--accent-primary);
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-family: var(--font-mono);
       color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .project-card:hover .project-metrics-bullet {
+      background: rgba(255, 71, 87, 0.08);
+      border-left-color: var(--accent-secondary);
     }
     .project-tags {
       display: flex;
@@ -893,18 +975,24 @@
     .tag-chip {
       font-size: 0.74rem;
       font-family: var(--font-mono);
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+    .project-card:hover .tag-chip {
+      border-color: var(--border-medium);
+      color: var(--text-main);
+      transform: translateY(-1px);
     }
     .project-card-footer {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-top: auto;
-      padding-top: 14px;
+      padding-top: 16px;
       border-top: 1px solid var(--border-subtle);
     }
     .btn-card-link {
@@ -914,15 +1002,16 @@
       align-items: center;
       gap: 6px;
       color: var(--text-main);
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 6px;
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
     }
     .btn-card-link:hover {
       border-color: var(--border-medium);
       color: var(--accent-primary);
+      transform: translateX(3px);
     }
     .btn-card-primary {
       background: var(--accent-primary);
@@ -932,6 +1021,7 @@
     .btn-card-primary:hover {
       background: var(--accent-primary-hover);
       color: #ffffff;
+      transform: translateY(-2px);
     }
 
     /* ==========================================================================
@@ -1410,8 +1500,10 @@
        ========================================================================== */
     @media (max-width: 960px) {
       .hero-backdrop-img { object-position: center 20%; }
-      .hero-backdrop-scrim { background: rgba(8, 9, 13, 0.88); }
-      [data-theme="light"] .hero-backdrop-scrim { background: rgba(248, 250, 252, 0.90); }
+      .hero-backdrop-scrim,
+      [data-theme="light"] .hero-backdrop-scrim { 
+        background: linear-gradient(180deg, rgba(8, 9, 13, 0.65) 0%, rgba(8, 9, 13, 0.88) 100%) !important; 
+      }
       .hero-content-layer { max-width: 100%; }
       .workstation-body { grid-template-columns: 1fr; }
       .contact-card { grid-template-columns: 1fr; }
@@ -1774,7 +1866,7 @@
         <!-- 2. Main Title -->
         <div class="hero-anim-item">
           <h1 class="hero-title">
-            MOHAMMED <span class="highlight">SAAQIB</span> R
+            MOHAMMED <span class="highlight">SAAQIB</span>&nbsp;R
           </h1>
         </div>
 
@@ -2725,7 +2817,7 @@
         return;
       }
 
-      filtered.forEach(sys => {
+      filtered.forEach((sys, idx) => {
         const card = document.createElement('article');
         card.className = 'project-card';
         card.setAttribute('aria-label', sys.title);
@@ -2736,18 +2828,29 @@
           </a>
         ` : '';
 
-        const badgeClass = sys.badgeType === 'client' ? 'badge-client' : 'badge-clinical';
+        const badgeClass = sys.badgeType === 'client' ? 'status-pill-client' : 'status-pill-clinical';
+        const sysNumber = String(idx + 1).padStart(2, '0');
 
         card.innerHTML = `
-          <div class="project-thumb-wrap">
-            <img src="${sys.img}" alt="${sys.alt}" class="project-thumb" onerror="this.onerror=null; this.src='./Project8logo.jpg'"/>
-            <span class="project-badge-top ${badgeClass}">${sys.badge}</span>
+          <div class="project-card-header">
+            <div class="project-sys-id">
+              <span style="color:var(--accent-secondary);font-weight:700;">SYS_${sysNumber}</span>
+              <span>//</span>
+              <span>${sys.category.toUpperCase()}</span>
+            </div>
+            <div class="project-status-pill ${badgeClass}">
+              <span class="card-pulse-dot"></span>
+              <span>${sys.badge}</span>
+            </div>
           </div>
           <div class="project-content">
             <span class="project-category">${sys.subtitle}</span>
             <h3 class="project-title">${sys.title}</h3>
             <p class="project-desc">${sys.desc}</p>
-            <div class="project-metrics-bullet">⚡ ${sys.metric}</div>
+            <div class="project-metrics-bullet">
+              <span style="color:var(--accent-primary);font-size:1rem;line-height:1;">⚡</span>
+              <span>${sys.metric}</span>
+            </div>
             <div class="project-tags">
               ${sys.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}
             </div>
@@ -3198,8 +3301,9 @@
       }
     }
 
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-    applyTheme(savedTheme);
+    // Default to dark obsidian theme (eradicating any stale white mode from localStorage)
+    localStorage.removeItem('portfolio-theme');
+    applyTheme('dark');
 
     themeToggleBtn.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
