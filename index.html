@@ -926,17 +926,17 @@
       width: 100%;
       height: 100vh;
       object-fit: cover;
-      object-position: center 35%;
-      opacity: 0.38;
-      filter: contrast(1.15) brightness(0.85) saturate(1.1);
-      transition: opacity 0.5s ease;
+      object-position: center 30%;
+      opacity: 0.82;
+      filter: contrast(1.10) brightness(1.08) saturate(1.1);
+      transition: opacity 0.4s ease;
     }
     .projects-scroll-overlay {
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(ellipse 1100px 75% at 50% 50%, rgba(8, 9, 13, 0.40) 0%, rgba(8, 9, 13, 0.85) 75%, #08090d 100%),
-        linear-gradient(180deg, #08090d 0%, transparent 12%, transparent 88%, #08090d 100%);
+        linear-gradient(180deg, #08090d 0%, rgba(8, 9, 13, 0.15) 12%, rgba(8, 9, 13, 0.20) 88%, #08090d 100%),
+        radial-gradient(ellipse 1200px 80% at 50% 45%, transparent 40%, rgba(8, 9, 13, 0.50) 85%, rgba(8, 9, 13, 0.85) 100%);
       pointer-events: none;
     }
     .projects-foreground-content {
@@ -1033,18 +1033,20 @@
       gap: 24px;
     }
     .project-card {
-      background: var(--bg-surface);
+      background: rgba(12, 14, 22, 0.70);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 16px 40px -6px rgba(0, 0, 0, 0.65);
       position: relative;
       border: 1.5px solid transparent;
       background-clip: padding-box, border-box;
       background-origin: padding-box, border-box;
       background-image: 
-        linear-gradient(to bottom right, var(--bg-surface), var(--bg-surface-elevated)),
+        linear-gradient(to bottom right, rgba(12, 14, 22, 0.75), rgba(18, 22, 34, 0.75)),
         linear-gradient(135deg, 
           rgba(255, 71, 87, 0.75) 0%, 
           rgba(56, 189, 248, 0.85) 35%, 
@@ -3811,18 +3813,19 @@
       const windowHeight = window.innerHeight;
 
       // Section scroll metrics:
-      // Scrubbing begins when section enters top of viewport,
-      // and advances through the frames until the user reaches the bottom of the section
-      const totalScrollable = rect.height - windowHeight;
+      // Start progressing as the section enters the viewport
+      // and advance through the action frames as user scrolls through the system cards
+      const sectionHeight = rect.height;
+      const totalScrollable = sectionHeight;
       if (totalScrollable <= 0) return;
 
-      const scrolled = -rect.top;
+      const scrolled = (windowHeight * 0.75) - rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
 
       // Calculate target timestamp across the action clip
       const targetTime = progress * projectsVideo.duration;
 
-      if (Math.abs(projectsVideo.currentTime - targetTime) > 0.03) {
+      if (Math.abs(projectsVideo.currentTime - targetTime) > 0.02) {
         if (typeof projectsVideo.fastSeek === 'function') {
           projectsVideo.fastSeek(targetTime);
         } else {
@@ -3841,8 +3844,15 @@
     }, { passive: true });
 
     if (projectsVideo) {
+      projectsVideo.muted = true;
       projectsVideo.addEventListener('loadedmetadata', scrubProjectsVideo);
-      projectsVideo.pause();
+      // Warm up video rendering pipeline so frame 0 renders immediately
+      projectsVideo.play().then(() => {
+        projectsVideo.pause();
+        scrubProjectsVideo();
+      }).catch(() => {
+        scrubProjectsVideo();
+      });
     }
   </script>
 </body>
