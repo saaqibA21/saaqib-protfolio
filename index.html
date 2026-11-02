@@ -1562,18 +1562,99 @@
     }
 
     /* ==========================================================================
-       CONTACT & COLLABORATION
+       CONTACT & COLLABORATION WITH WALKING AVATAR REVEAL
        ========================================================================== */
+    .contact-stage-wrap {
+      position: relative;
+      overflow: visible;
+      padding-top: clamp(40px, 8vw, 80px);
+      padding-bottom: clamp(60px, 10vw, 100px);
+    }
+    .contact-stage-wrap::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      right: 15%;
+      bottom: 15%;
+      background: radial-gradient(circle at 65% 50%, rgba(255, 68, 88, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
     .contact-card {
+      position: relative;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
       padding: clamp(28px, 5vw, 56px);
-      box-shadow: var(--card-shadow);
+      box-shadow: var(--card-shadow), 0 24px 64px rgba(0, 0, 0, 0.45);
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: clamp(28px, 4vw, 56px);
       align-items: center;
+      z-index: 2;
+      will-change: clip-path, -webkit-mask-image, opacity;
+      transition: box-shadow 0.3s;
+    }
+    .contact-card-header-bar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: -10px;
+    }
+    .avatar-walk-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--accent-primary);
+      background: rgba(255, 68, 88, 0.08);
+      border: 1px solid rgba(255, 68, 88, 0.22);
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .avatar-walk-status-pill:hover {
+      background: rgba(255, 68, 88, 0.16);
+      border-color: rgba(255, 68, 88, 0.4);
+      transform: translateY(-1px);
+    }
+    .avatar-walk-status-pill .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      box-shadow: 0 0 8px var(--accent-primary);
+    }
+    .contact-avatar-layer {
+      position: absolute;
+      inset: -15% -5%;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-avatar-canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.65));
+    }
+    @media (max-width: 860px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+      .contact-avatar-layer {
+        inset: -10% -2%;
+      }
+      .contact-avatar-canvas {
+        opacity: 0.88;
+      }
     }
     .contact-headline {
       font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -2678,12 +2759,19 @@
     </section>
 
     <!-- ========================================================================
-         CONTACT & COLLABORATION
+         CONTACT & COLLABORATION (WITH WALKING AVATAR REVEAL)
          ======================================================================== -->
-    <section id="contact" class="container section-wrap">
-      <div class="contact-card">
+    <section id="contact" class="container section-wrap contact-stage-wrap">
+      <div class="contact-card" id="contactCard">
+        <div class="contact-card-header-bar">
+          <span class="section-kicker" style="margin-bottom:0;">Open for Engineering Roles</span>
+          <button id="replayAvatarWalkBtn" class="avatar-walk-status-pill" title="Replay Avatar Walk Sequence">
+            <span class="pulse-dot"></span>
+            <span>Avatar Walk // Replay</span>
+          </button>
+        </div>
+
         <div>
-          <span class="section-kicker">Open for Engineering Roles</span>
           <h2 class="contact-headline">Let's build something exceptional.</h2>
           <p class="contact-sub">
             I am currently open to conversations regarding <strong>Summer 2027 Internships</strong>, <strong>Full-Stack & Clinical AI engineering positions</strong>, and freelance enterprise contracts.
@@ -2718,6 +2806,11 @@
             <button class="copy-id-btn" onclick="copyText('saaqibindia@gmail.com', 'Direct email copied!')">Copy ⎘</button>
           </div>
         </div>
+      </div>
+
+      <!-- Avatar Walk Foreground Layer (Transparent Canvas over Card) -->
+      <div class="contact-avatar-layer" aria-hidden="true">
+        <canvas id="contactAvatarCanvas" class="contact-avatar-canvas" width="960" height="540"></canvas>
       </div>
     </section>
   </main>
@@ -3969,6 +4062,134 @@
 
     // Initial draw
     updateScrollFrame();
+
+    /* ========================================================================
+       CONTACT SECTION — WALKING AVATAR & CARD REVEAL CONTROLLER
+       ======================================================================== */
+    const TOTAL_WALK_FRAMES = 60;
+    const walkFrames = [];
+    let walkFramesLoaded = 0;
+    let currentWalkIndex = -1;
+    let isWalkAnimating = false;
+    let walkAnimationRaf = null;
+    let hasAutoWalked = false;
+
+    const contactSec = document.getElementById('contact');
+    const contactCard = document.getElementById('contactCard');
+    const contactAvatarCanvas = document.getElementById('contactAvatarCanvas');
+    const contactAvatarCtx = contactAvatarCanvas ? contactAvatarCanvas.getContext('2d') : null;
+    const replayWalkBtn = document.getElementById('replayAvatarWalkBtn');
+
+    // Preload all 60 transparent WebP avatar frames
+    for (let i = 0; i < TOTAL_WALK_FRAMES; i++) {
+      const img = new Image();
+      const numStr = String(i).padStart(2, '0');
+      img.src = `./avatar_walk/walk_${numStr}.webp`;
+      img.onload = () => {
+        walkFramesLoaded++;
+        if (i === 0 && currentWalkIndex === -1) {
+          renderWalkFrame(0);
+        }
+      };
+      walkFrames.push(img);
+    }
+
+    function renderWalkFrame(index) {
+      if (!contactAvatarCtx || !walkFrames[index]) return;
+      const img = walkFrames[index];
+      if (!img.complete || img.naturalWidth === 0) return;
+
+      contactAvatarCtx.clearRect(0, 0, contactAvatarCanvas.width, contactAvatarCanvas.height);
+      contactAvatarCtx.drawImage(img, 0, 0, contactAvatarCanvas.width, contactAvatarCanvas.height);
+      currentWalkIndex = index;
+
+      // Reveal contact card behind the walking avatar (avatar walks right to left)
+      if (contactCard) {
+        const p = index / (TOTAL_WALK_FRAMES - 1);
+        if (p >= 0.94) {
+          contactCard.style.maskImage = 'none';
+          contactCard.style.webkitMaskImage = 'none';
+          contactCard.style.opacity = '1';
+        } else {
+          const revealPct = Math.min(100, Math.round(p * 115));
+          const maskVal = `linear-gradient(to left, #000 0%, #000 ${revealPct}%, rgba(0,0,0,0.15) ${Math.min(100, revealPct + 10)}%, transparent ${Math.min(100, revealPct + 18)}%)`;
+          contactCard.style.maskImage = maskVal;
+          contactCard.style.webkitMaskImage = maskVal;
+          contactCard.style.opacity = Math.max(0.2, Math.min(1, 0.2 + p * 0.9));
+        }
+      }
+    }
+
+    function updateContactWalkScroll() {
+      if (!contactSec || !contactAvatarCtx || isWalkAnimating) return;
+
+      const rect = contactSec.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // When contact section enters viewport
+      const startTrigger = windowHeight * 0.9;
+      const endTrigger = windowHeight * 0.2;
+      const totalRange = startTrigger - endTrigger;
+
+      if (rect.top <= startTrigger && rect.bottom >= 0) {
+        const scrolled = startTrigger - rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalRange));
+        const targetIndex = Math.min(TOTAL_WALK_FRAMES - 1, Math.floor(progress * TOTAL_WALK_FRAMES));
+
+        if (targetIndex !== currentWalkIndex) {
+          renderWalkFrame(targetIndex);
+        }
+
+        // Trigger smooth auto-walk to completion on first sight if user lingers
+        if (!hasAutoWalked && progress > 0.15) {
+          hasAutoWalked = true;
+          // Smoothly animate the rest of the walk
+          playAvatarWalk(targetIndex);
+        }
+      }
+    }
+
+    function playAvatarWalk(startIndex = 0) {
+      if (isWalkAnimating) cancelAnimationFrame(walkAnimationRaf);
+      isWalkAnimating = true;
+
+      let frame = startIndex;
+      const frameDuration = 1000 / 24; // 24 fps smooth playback
+      let lastTime = performance.now();
+
+      function step(now) {
+        if (now - lastTime >= frameDuration) {
+          renderWalkFrame(frame);
+          lastTime = now;
+          frame++;
+        }
+
+        if (frame < TOTAL_WALK_FRAMES) {
+          walkAnimationRaf = requestAnimationFrame(step);
+        } else {
+          renderWalkFrame(TOTAL_WALK_FRAMES - 1);
+          isWalkAnimating = false;
+        }
+      }
+
+      walkAnimationRaf = requestAnimationFrame(step);
+    }
+
+    if (replayWalkBtn) {
+      replayWalkBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playAvatarWalk(0);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      updateContactWalkScroll();
+    }, { passive: true });
+
+    // Initial check
+    setTimeout(() => {
+      updateContactWalkScroll();
+    }, 300);
   </script>
 </body>
 </html>
